@@ -1,0 +1,176 @@
+<!-- Wrapper-->
+<!-- End wrapper-->
+
+
+<div class="col-sm-1"></div>
+<div class=" row col-md-10 wrapper border-bottom white-bg page-heading m-l-110" ng-controller="builderUserListController as userdetailsctrl">
+    <i class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 m-t-b-2" aria-hidden="true" ng-if="loader"></i>
+    <div ng-if="!loader">
+        <div class="panel panel-default col-md-12">
+            <div class="panel-heading">User Info</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Name</label>
+                        <p>{{userDetails.firstName+' '+userDetails.lastName}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Gender</label>
+                        <p>{{userDetails.gender}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Date Of Birth</label>
+                        <p>{{userDetails.dateofBirth}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Age</label>
+                        <p class="numberfontsize">{{userDetails.age}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Email</label>
+                        <p>{{userDetails.userEmail}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Residence Category</label>
+                        <p>{{userDetails.residenceCategory}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>State</label>
+                        <p>{{userDetails.state}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>City</label>
+                        <p>{{userDetails.city+' '+userDetails.zip}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Employment Type</label>
+                        <p>{{userDetails.occupationType}}</p>
+                    </div>
+                    <!-- <div class="col-md-3">
+              <label>Organization Name</label>
+              <p>{{UserEmployment.employerName}}</p>
+            </div> -->
+                    <div class="col-md-3">
+                        <label>Credit Score</label>
+                        <p>{{userDetails.creditScore}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Lpi</label>
+                        <p class="numberfontsize">{{userDetails.lpi | number:0}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- no need as per the requirement -->
+        <!-- <div class="panel panel-default col-md-12">
+        <div class="panel-heading">Financial Information</div>
+        <div class="panel-body">
+          <div class="panel panel-default col-md-5">
+            <div class="panel-heading">Incomes</div>
+            <div class="panel-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Net Income</th>
+                    <th>Income Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="income in UserIncome track by $index">
+                    <td class="numberfontsize">{{income.userNetIncome | number}}</td>
+                    <td>{{income.incomeTypedesc}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel panel-default col-md-6 pull-right">
+            <div class="panel-heading">Loans</div>
+            <div class="panel-body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Lender Name</th>
+                    <th>Remaining Term </th>
+                    <th>EMI Amount</th>
+                    <th>Loan Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="loan in UserLoan track by $index">
+                    <td>{{loan.loanLender}}</td>
+                    <td class="numberfontsize">{{loan.userLoanRemainingTenure | number}}</td>
+                    <td class="numberfontsize">{{loan.userLoanPaymentAmount | number}}</td>
+                    <td>{{loan.loanTypeDesc}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div> -->
+        <div class="panel panel-default col-md-12">
+            <div class="panel-heading">Asset Details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Asset Value</label>
+                        <p class="numberfontsize">{{userDetails.assetvalueAsset | number}}</p>
+                    </div>
+                    <!-- <div class="col-md-3">
+              <label>Loan Value</label>
+              <p class="numberfontsize">{{UserFinancial.loanValue | number}}</p>
+            </div>
+            <div class="col-md-3">
+              <label>Loan Terms</label>
+              <p class="numberfontsize">{{UserFinancial.loanTerm}}</p>
+            </div>
+            <div class="col-md-3">
+              <label>Preferred Interest Rate</label>
+              <p class="numberfontsize">{{UserFinancial.preferredInterestRate}}</p>
+            </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default col-md-12" ng-hide="true">
+            <div class="">
+                <div class="panel-heading">
+                    <label>Loan Details</label>
+                </div>
+                <i class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 m-t-b-2" aria-hidden="true" ng-if="loader"></i>
+                <div class="panel-body" id="LenderListForLpi" ng-if="!loader">
+                    <div class="col-md-4" ng-repeat="lender in lenders">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">{{lender.lenderName}}</div>
+                            <div class="panel-body">
+                                <div class="col-md-4" ng-if="lender.lenderName == 'ICICI'"><img src="https://lh5.ggpht.com/Hc8vNA4SOZwg5HMnBiwJLMT3tLYll54D994uZG7GeJYBtMEa2zHk8hNywTJZqpwWTg=w300" width="100%" style="margin-top: 10px;"></div>
+                                <div class="col-md-4" ng-if="lender.lenderName == 'HDFC'"><img src="https://yt3.ggpht.com/-5PzEopGpdao/AAAAAAAAAAI/AAAAAAAAAAA/igEy-LGaBTo/s900-c-k-no-mo-rj-c0xffffff/photo.jpg" width="100%" style="margin-top: 10px;"></div>
+                                <div class="col-md-4" ng-if="lender.lenderName == 'ValuCircles'"></div>
+                                <div class="col-md-4" ng-if="lender.lenderName == 'AXIS'"><img src="http://files.prokerala.com/banking/images/bank-logo/axis-bank.png" width="100%" style="margin-top: 10px;"></div>
+                                <div class="col-md-8 pad-0">
+                                    <div class="block">
+                                        <label>Score :</label>
+                                        <p class="inline margin-10">{{lender.lpi | number:0}}</p>
+                                    </div>
+                                    <div class="block">
+                                        <label>Amount :</label>
+                                        <p class="inline margin-10">{{lender.eligilbleLoanAmount |number }}</p>
+                                    </div>
+                                    <div class="block">
+                                        <label>Int Rate :</label>
+                                        <p class="inline margin-10">{{lender.rate}} %</p>
+                                        <div class="block">
+                                            <label>EMI :</label>
+                                            <p class="inline margin-10">{{lender.eligibleEMI | number:0}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+

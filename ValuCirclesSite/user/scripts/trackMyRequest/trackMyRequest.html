@@ -1,0 +1,160 @@
+<div class="wrapper wrapper-content ng-scope">
+	<div class="row">
+		<div class="ibox">
+			<div class="ibox-title">
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-3"></div>
+			
+			<div class="col-lg-3 col-md-5 col-sm-5 col-xs-8">
+
+				<h5 class="v-inline" style="text-align: center;font-weight: bold; font-size: 18px;">My
+					Loan Requests</h5>
+
+				<div>
+					<p style="display: inline; margin-left: 0%; color: white;"
+						ng-if="dirty">
+						<i class="em em-bulb f-24"></i> Highlighed Fields have been
+						modified
+					</p>
+					<p style="display: inline; margin-left: 0%; color: white;"
+						ng-if="success">
+						<i class="em em-thumbsup f-24"></i> {{success_message}} <i
+							class="em em-thumbsup f-24"></i>
+					</p>
+					<p style="display: inline; margin-left: 0%; color: white;"
+						ng-if="error">
+						<i class="em em-bulb f-24"></i> {{error_message}} <i
+							class="em em-bulb f-24"></i>
+					</p>
+				</div>
+				</div>
+				<div class="col-lg-4 col-md-2 col-sm-2 "></div>
+
+			</div>
+			<div class="ibox-content">
+			
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<form name="Personalform" novalidate class="table-responsive">
+							<table class="table table-bordered ">
+							<thead>
+								<tr>
+									<th style="text-align: center;background:white">Lender</th>
+									<th style="text-align: center;background:white">Loan Amount</th>
+									<th style="text-align: center;background:white">Loan Tenure</th>
+									<th style="text-align: center;background:white">Rate</th>
+									<th style="text-align: center;background:white">View Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="lender in lenderss">
+									<td style="background:white">{{lender.lenderName}}</td>
+									<td style="background:white">{{lender.eligilbleLoanAmount}}</td>
+									<td style="background:white">{{lender.term}}</td>
+									<td style="background:white">{{lender.rate}}</td>
+									<td style="background:white"><a type="button" id="{{lender}}" ng-model = "lender" ng-click ="setlenderLocal(lender)" href="#/index/myRequestStatus?lenders={{lender.userLPiLenderId}}" class="apply btn btn-primary"
+											style="height: 22px; padding: 0px 6px;">View</a></td>
+								</tr>
+							</tbody>
+						</table>
+						</form>
+				</div>
+				
+			</div>
+			<i class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 m-t-b-2"
+				aria-hidden="true" ng-if="loader"></i>
+			
+		</div>
+	</div>
+	
+</div>
+
+
+
+<style type="text/css">
+html, body {
+	height: 100%;
+}
+
+.top-img {
+	top: 10px;
+}
+
+.back-clr {
+	background: #80808012;
+	border: 1px solid #8080803b;
+}
+
+.btn-top {
+	top: 1em;
+}
+
+body {
+	width: 100%;
+	background-size: cover;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control
+	{
+	background: #eee;
+	color: white;
+}
+
+button[disabled], html input[disabled] {
+	cursor: not-allowed;
+}
+
+.cursor {
+	cursor: pointer;
+}
+
+.mrgbot0 {
+	margin-bottom: 0px;
+	font-size: 13px;
+	padding-left: 45px;
+	padding-right: 39px;
+	color: #5264AE;
+	background-color: white;
+}
+
+.mrgbot1 {
+	margin-bottom: 0px;
+	font-size: 13px;
+	padding-left: 45px;
+	padding-right: 39px;
+	color: #5264AE;
+	background-color: white;
+}
+
+.mrgbot3 {
+	padding-left: 45px;
+	padding-right: 39px;
+	color: #5264AE;
+	font-size: 12px;
+	background-color: white;
+}
+
+.center {
+	text-align: center;
+}
+
+.bank-clr {
+	color: #3F51B5;
+}
+
+.ibox-content{
+line-height: 3rem;
+background: inherit;
+
+}
+
+.table{
+background: white;
+}
+</style>
+
+<script type="text/javascript">
+	function myRequestStatus(){
+		 window.location.href = '#/index/myRequestStatus.html'
+	}
+</script>
+
+

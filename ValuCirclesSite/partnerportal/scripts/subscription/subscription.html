@@ -1,0 +1,160 @@
+<style>
+table, th , td  {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding: 5px;
+  color: white;
+}
+table tr:nth-child(odd) {
+  background-color: transparent;
+}
+table tr:nth-child(even) {
+  background-color: transparent;
+}
+.eyebtn{
+	/*background: #2375bb;*/
+	padding: 5px 10px;
+}
+table{
+	width: 100%;
+}
+p{
+	color: orange;
+font-size: 18px;
+}
+h5{
+	color: white;
+}
+.Cancelbtnsize{
+	padding: 5px;
+}
+.redcolorinput{
+	border: 2px solid red;
+}
+input[type=text] {
+    text-transform: capitalize;
+}
+body{
+	background-image: linear-gradient(70deg,rgba(11, 33, 53, 0.89) 0,rgba(20, 56, 89, 0.82) 90%),url(assets/images/common/form_image.jpg) !important;
+    background-size:cover;
+	position: relative;
+}
+</style>
+<div class="row wrapper border-bottom white-bg page-heading" >
+	<div class="panel panel-default col-md-10 col-md-offset-1" >
+		<div class="panel-heading" style="color: white;font-size: 16px;border:none;text-align:center;">
+			Subscription Maintenance
+			<p style="display: inline;margin-left: 12%;color: white;font-size: 14px;" ng-if="error">
+				<i class="em em-confused"></i> {{error_message}} <i class="em em-confused"></i>
+			</p>
+			<p style="display: inline;margin-left: 8%;color: white;font-size: 14px;" ng-if="success">
+				<i class="em em-blush f-24"></i> {{success_message}} <i class="em em-blush f-24 "></i>
+			</p>
+		</div>
+		<div class="row" style="border:1px solid #fff;">
+			<div class="col-sm-4"  style="border-right: 1px solid #fff;padding: 0px;padding-bottom: 5px;">
+				<h3 style="color: white;font-size: 16px;text-align:center;border-bottom: 1px solid #fff;margin: 0px;padding: 5px;">Subscription</h3>
+				<table class="m-t-md" ng-table="">
+					<thead>
+					<tr>
+						<th>Type</th>
+						<th>Total</th>
+						<th>Assigned </th>
+						<th>Balance</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="x in subCountDetails ">
+						<td>{{x.subscriptionType}}</td>
+						<td>{{x.ct}}</td>
+						<td>{{x.used}}</td>
+						<td>{{x.ct-x.used}}</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-sm-4" style="border-right: 1px solid #fff;padding: 0px;padding-bottom: 5px;">
+				<h3 style="color: white;font-size: 16px;text-align:center;border-bottom: 1px solid #fff;margin: 0px;padding: 5px;">Buy Subscription</h3>
+				<div class="col-sm-4"><h5>How Many </h5>
+					<input type="text"  maxlength="3" class="form-control dotvalue" id="buysubscription"
+						   ng-model="addbuysubscription.howmanysubscription"
+						   ng-keyup="removedot(addbuysubscription.howmanysubscription)"
+						   numbers-only onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+				</div>
+				<div class="col-sm-4">
+					<h5>Type</h5>
+					<select  class="form-control inputtext" id="subTypeId" ng-model="mysubscriptionType"
+							 ng-options="ST.subscriptionType for ST in subCountDetails"
+							 ng-change="subselectType(mysubscriptionType.subscriptionTypeId)"></select>
+				</div>
+				<div class="col-sm-4">
+					<h5>Value</h5>
+					<input type="text"  maxlength="3" class="form-control dotvalue" id="buysubscription"
+						   ng-model="subRateforType" ng-keyup="removedot(addbuysubscription.howmanysubscription)" style="cursor: not-allowed;" numbers-only onkeypress="return event.charCode >= 48 && event.charCode <= 57" ng-disabled="true">
+				</div>
+				<div class="m-t-sm col-sm-12">
+					<button type="button" class="btn btn-primary  btnclickhide"
+							ng-click="savebuysubscription(addbuysubscription.howmanysubscription,mysubscriptionType.subscriptionTypeId,subRateforType)">Save</button>
+					<button type="button" class="btn btn-primary  Cancelbtnsize" ng-click="showme=false">Cancel</button>
+				</div>
+			</div>
+			<div class="col-sm-4" style="padding: 0px;">
+				<h3 style="font-size: 16px;color: white;text-align:center;border-bottom: 1px solid #fff;margin: 0px;padding: 5px;">Assign Subscription</h3>
+				<div class="col-sm-6">
+					<h5>Enter Email ID </h5>
+					<input type="email" placeholder="Email-Id" class="form-control" id="getemailid" ng-model="addAssingnSubscription.emailId" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
+				</div>
+				<div class="col-sm-6">
+					<h5>Type</h5>
+					<select  class="form-control inputtext" id="subTypeId"
+							 ng-model="mysubscriptionType"
+							 ng-options="ST.subscriptionType for ST in subCountDetails"
+							 ng-change="subselectType(mysubscriptionType.subscriptionTypeId)"></select>
+				</div>
+				<div class="m-t-sm col-sm-12">
+					<button type="button" class="btn btn-primary" ng-click="saveAssingnSubsciption(addAssingnSubscription.emailId,mysubscriptionType.subscriptionTypeId)">Save</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="col-sm-12">
+				<h3 style="color: white;font-size: 16px;text-align:center;">Subscription List</h3>
+				<table class="v_table">
+					<thead>
+					<tr align="center">
+						<th>#</th>
+						<th>SubscribedUser</th>
+						<th>Used ON</th>
+						<th>Assigned ON</th>
+
+					</tr>
+					</thead>
+					<tbody>
+					<tr  ng-repeat="x in data | startFrom:currentPage*pageSize | limitTo:pageSize">
+						<td>{{$index + 1}}</td>
+						<td>{{x.subscribedUser}}</td>
+						<td>{{x.SubscriptionUsedDate}}</td>
+						<td>{{x.SubscriptionAssigneddDate}}</td>
+					</tr>
+					</tbody>
+				</table>
+				<div  ng-show = "data.length == 0">
+					<center style="color:white;">List is Empty</center>
+				</div>
+				<div ng-show="data.length != 0">
+					<button class="btn vcirclebtn pull-right"  ng-hide="currentPage >= data.length/pageSize - 1"
+							ng-click="currentPage=currentPage+1">
+						<i class="fa fa-arrow-right"></i>
+					</button>
+					<span class="white pull-right">{{currentPage+1}}/{{numberOfPages()}}</span>
+					<button class="btn vcirclebtn pull-right" ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
+						<i class="fa fa-arrow-left"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>

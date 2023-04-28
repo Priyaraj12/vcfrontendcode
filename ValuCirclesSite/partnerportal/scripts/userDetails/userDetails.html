@@ -1,0 +1,283 @@
+<div class="" style="padding-top:10px;padding-left:20px;padding-right:20px;" ng-controller="userDetailsController as userctrl">               
+			   <div class="app-main__outer">
+				<div class="app-main__inner">
+                    <div class="app-page-title" style="margin-bottom:0px">
+						<div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div>Applicant(s) Info - {{UserInfo[0].firstName}} {{UserInfo[0].LastName}}
+                                    <div class="page-title-subheading">Review applicant(s) information as provided for LPi Evaluation.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-title-actions">
+                               <!-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
+                                    <i class="fa fa-star"></i>
+                                </button>  -->
+								
+								<div class="btn-actions-pane-right">
+                                                <div class="nav">
+													<a data-toggle="tab" ng-href="#/index/userLpiDetails?userId={{currentuserId}}&lenderLpi={{lpiScore}}" class="border-1 btn-transition btn btn-outline-warning">LPi Evaluation Summary</a>
+                                                    <a data-toggle="tab" ng-href="#/index/userDetails?userId={{currentuserId}}&lenderLpi={{lpiScore}}" class="mr-1 ml-1 border-1 btn-transition active btn btn-outline-warning">Details of Applicant(s)</a>
+                                                </div>
+                                            </div>
+                            </div>    
+						</div>
+                    </div>
+		<div class="card" style="padding-left:1%;padding-right:1%">
+        <div class="card-header">
+           <h5>Loan Request Details</h5>
+        </div>
+		<div class="card-body row" style="padding-bottom:0px;padding-top:1%">	
+			<div class="col-md-2">
+				<p><b>Property Identified: </b><br>{{UserInfo[0].IdentifiedProperty}}</p>
+            </div>
+			<div class="col-md-2">
+				<p><b>Property Location: </b><br>{{UserInfo[0].assetCity}}</p>
+            </div>
+			<div class="col-md-2">
+				<p><b>Type of Property: </b><br>{{UserInfo[0].TypeofAsset}}</p>
+            </div>            
+			<div class="col-md-2">
+				<p><b>Builder Name: </b><br>{{UserInfo[0].builderName}}</p>
+            </div>
+            <div class="col-md-2">
+				<p><b>Project Name: </b><br>{{UserInfo[0].projectName}}</p>
+            </div> 
+		</div>
+		<div class="card-body row" style="padding-bottom:0;padding-top:0">			
+			<div class="col-md-2">
+				<p><b>Property Value: </b><br>{{UserInfo[0].assetvalueAsset | currency:"₹ ":0 }}</p>
+            </div>
+            <div class="col-md-2">
+				<p><b>Loan Amount Requested: </b><br>{{UserInfo[0].reqLoanAmount | currency:"₹ ":0 }}</p>
+            </div>
+			<div class="col-md-2">
+				<p><b>Estimated Eligbility: </b><br>{{UserInfo[0].EligloanAmount | currency:"₹ ":0 }}</p>
+            </div>
+            <div class="col-md-2">
+				<p><b>Loan Shortfall: </b><br>{{UserInfo[0].ShortfallAmount | currency:"₹ ":0 }}</p>
+            </div>	
+			<div class="col-md-2">
+				<p><b>Own Contribution: </b><br>{{UserInfo[0].OwnContributionAmount | currency:"₹ ":0 }}</p>
+            </div>				
+        </div>
+		</div>
+					
+	<div class="row col-md-12" style="padding-bottom:1%;padding-top:0">        </div>
+	  <div class="card" style="padding-left:1%;padding-right:1%">
+        <div class="card-header">
+           <h5> Primary Applicant Details</h5>
+        </div> 
+		<div class="card-body row" >	
+			<div class="col-md-2">
+				<p><b>Name: </b><br>{{UserInfo[0].firstName}} {{UserInfo[0].LastName}}</p>
+            </div>
+            <div class="col-md-2">
+				<p><b>Gender: </b><br>{{UserInfo[0].gender}}</p>
+            </div>
+            <div class="col-md-2">
+				<p><b>Age: </b><br>{{UserInfo[0].age}}</p>
+            </div>
+			<div class="col-md-2">
+				<p><b>Marital Status: </b><br>{{UserInfo[0].maritalStatus}}</p>
+            </div>
+			<div class="col-md-2">
+				<p><b>Resident Status: </b><br>{{UserInfo[0].ResidentStatus}}</p>
+            </div> 
+            <div class="col-md-2">
+				<p><b>Country of Residence: </b><br>{{UserInfo[0].Country}}</p>
+            </div>  			
+
+
+            <div class="col-md-2">
+				<p><b>Local Address: </b><br>{{UserInfo[0].city}},{{UserInfo[0].state}} - {{UserInfo[0].zip}} </p>
+            </div> 
+            <div class="col-md-2">
+				<p><b>Educational Qualifications: </b><br>{{UserInfo[0].education}}</p>
+            </div>
+ 			
+			<div class="col-md-2">
+              <p><b>Occupation:</b><br>{{UserInfo[0].occupationType}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Organisation Name:</b><br>{{UserInfo[0].employerName}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Industry Sector:</b><br>{{UserInfo[0].EmploymentSector}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Total Experience:</b><br>{{UserInfo[0].ProfYears}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Exp in Current Org:</b><br>{{UserInfo[0].EmpYears}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Has Payslips/IT Returns:</b><br>{{UserInfo[0].PayslipsITFiled}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Primary Bank:</b><br>{{UserInfo[0].PrimayBankAccount}}</p>
+            </div>
+			<div class="col-md-2" ng-show="(UserInfo[0].OccTypeID=='2')||(UserInfo[0].OccTypeID=='3')">
+              <p><b>Business Constitution:</b><br>{{UserInfo[0].businessConstitution}}</p>
+            </div>
+			<div class="col-md-2" ng-show="((UserInfo[0].OccTypeID=='2' && UserInfo[0].PayslipsITFiled=='Yes') || (UserInfo[0].OccTypeID=='3' && UserInfo[0].PayslipsITFiled=='Yes'))">
+              <p><b>Annual Sales - Latest FY:</b><br>{{UserInfo[0].annualSales}}</p>
+            </div>
+			<div class="col-md-2" ng-show="((UserInfo[0].OccTypeID=='2' && UserInfo[0].PayslipsITFiled=='Yes') || (UserInfo[0].OccTypeID=='3' && UserInfo[0].PayslipsITFiled=='Yes'))">
+              <p><b>Profit after Tax - Latest FY:</b><br>{{UserInfo[0].annualProfit}}</p>
+            </div>		
+          </div>
+		<!--  <div class="card-body row" style="padding-bottom:1%;padding-top:0">
+			<div class="col-md-2">
+              <p><b>Has Co-Applicant:</b><br>{{UserInfo[0].coapp}}</p>
+            </div>	
+		  </div>  -->
+	</div>
+	
+	<div class="row col-md-12" style="padding-bottom:1%;padding-top:0">        </div>
+	  <div class="card" style="padding-left:1%;padding-right:1%">
+        <div class="card-header">
+           <h5> Co-Applicant Details</h5>
+        </div> 
+		<div class="card-body" ng-show="UserInfo[0].coapp=='No'">
+			<div class="col-md-12">
+				<p>No co-applicant added by customer.</p>
+            </div>	
+        </div>
+		<div class="card-body row" ng-show="UserInfo[0].coapp=='Yes'" >	
+			<div class="col-md-2">
+				<p><b>Name: </b><br>{{UserInfo[0].CoAppfirstName}} {{UserInfo[0].CoAppLastName}}</p>
+            </div>
+            <div class="col-md-2">
+				<p><b>Gender: </b><br>{{UserInfo[0].CoAppgender}}</p>
+            </div>
+            <div class="col-md-2">
+				<p><b>Age: </b><br>{{UserInfo[0].CoAppage}}</p>
+            </div>  
+			<div class="col-md-2">
+              <p><b>Co-Applicant Relationship:</b><br>{{UserInfo[0].CoAppRelationshipWithApplicant}}</p>
+            </div> 				
+            <div class="col-md-2">
+				<p><b>Educational Qualifications: </b><br>{{UserInfo[0].CoAppeducation}}</p>
+            </div>
+            <div class="col-md-2">
+				<p><b>Marital Status: </b><br>{{UserInfo[0].CoAppmaritalStatus}}</p>
+            </div>
+            <div class="col-md-2">
+				<p><b>City: </b><br>{{UserInfo[0].CoAppcity}}</p>
+            </div>            
+			<div class="col-md-2">
+              <p><b>Employment:</b><br>{{UserInfo[0].CoAppemployerName}}</p>
+            </div>   
+            <div class="col-md-2">
+				<p><b>Country of Residence: </b><br>{{UserInfo[0].CoAppCountry}}</p>
+            </div>  
+            <div class="col-md-2">
+				<p><b>Resident Status: </b><br>{{UserInfo[0].CoAppResidentStatus}}</p>
+            </div>  			
+			<div class="col-md-2">
+              <p><b>Occupation:</b><br>{{UserInfo[0].CoAppoccupationType}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Organisation Name:</b><br>{{UserInfo[0].CoAppemployerName}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Industry Sector:</b><br>{{UserInfo[0].CoAppEmploymentSector}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Total Experience:</b><br>{{UserInfo[0].CoAppProfYears}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Exp in Current Org:</b><br>{{UserInfo[0].CoAppEmpYears}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Has Payslips/IT Returns:</b><br>{{UserInfo[0].CoAppPayslipsITFiled}}</p>
+            </div>
+			<div class="col-md-2">
+              <p><b>Primary Bank:</b><br>{{UserInfo[0].CoAppPrimayBankAccount}}</p>
+            </div>		
+			<div class="col-md-2" ng-show="(UserInfo[0].CoAppOccTypeID=='2')||(UserInfo[0].CoAppOccTypeID=='3')">
+              <p><b>Business Constitution:</b><br>{{UserInfo[0].CoAppbusinessConstitution}}</p>
+            </div>
+			<div class="col-md-2" ng-show="((UserInfo[0].CoAppOccTypeID=='2' && UserInfo[0].CoAppPayslipsITFiled=='Yes') || (UserInfo[0].CoAppOccTypeID=='3' && UserInfo[0].CoAppPayslipsITFiled=='Yes'))">
+              <p><b>Annual Sales - Latest FY:</b><br>{{UserInfo[0].CoAppannualSales}}</p>
+            </div>
+			<div class="col-md-2" ng-show="((UserInfo[0].CoAppOccTypeID=='2' && UserInfo[0].CoAppPayslipsITFiled=='Yes') || (UserInfo[0].CoAppOccTypeID=='3' && UserInfo[0].CoAppPayslipsITFiled=='Yes'))">
+              <p><b>Profit after Tax - Latest FY:</b><br>{{UserInfo[0].CoAppannualProfit}}</p>
+            </div>	
+        </div>
+	</div>	
+	
+
+
+        
+	<div class="row col-md-12" style="padding-bottom:1%;padding-top:0">        </div>
+	  <div class="card" style="padding-left:1%;padding-right:1%">
+        <div class="card-header">
+           <h5> Income Details</h5>
+        </div> 
+		<div class="card-body" >	
+  
+	
+              <div class="table-responsive" style="padding-left:1%;padding-right:1%">
+                <table class="table table-hover table-striped table-bordered">
+                  <thead>
+                  <tr>
+					<th class="text-center">Income Of</th>
+					<th class="text-center">Income Type</th>
+					<th class="text-center">Income Frequency</th>
+                    <th class="text-center">Income Amount</th>     
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="income in UserIncome">
+                      <td class="text-center">{{income.primaryorcoapp}}</td>
+                      <td class="text-center">{{income.incomeTypedesc}}</td>
+					  <td class="text-center">{{income.fname}}</td>
+					  <td class="text-center numberfontsize">{{income.userGrossIncome  | currency:"₹ ":0 }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+	
+			</div>
+    </div>
+	<div class="row col-md-12" style="padding-bottom:1%;padding-top:0">        </div>
+	  <div class="card" style="padding-left:1%;padding-right:1%">
+        <div class="card-header">
+           <h5> Existing Loan / EMI Details</h5>
+        </div> 
+		<div class="card-body" ng-show="loancount==0">
+			<div class="col-md-12">
+				<p>No existing loans indicated by the customer.</p>
+            </div>	
+        </div>
+		<div class="card-body" ng-show="loancount>0">	
+			  <div class="table-responsive" style="padding-left:1%;padding-right:1%">
+                <table class="table table-hover table-striped table-bordered">
+                  <thead>
+                    <tr>
+					  <th class="text-center">Loan Of</th>
+					  <th class="text-center">Loan Type</th>
+                      <th class="text-center">Lender Name</th>
+					  <th class="text-center">EMI Amount</th>
+                      <th class="text-center">Remaining Term </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="loan in UserLoans">
+					  <td class="text-center">{{loan.primaryorcoapp}}</td>
+					  <td class="text-center">{{loan.loanTypeDesc}}</td>
+                      <td class="text-center">{{loan.loanLenderName}}</td>
+					  <td class="text-center numberfontsize">{{loan.userLoanPaymentAmount  | currency:"₹ ":0 }}</td>
+                      <td class="text-center numberfontsize ">{{loan.userLoanRemainingTenure | number}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+				</div>
+		</div>
+	</div>
+					
+                        </div>
+						</div>
+                    </div>

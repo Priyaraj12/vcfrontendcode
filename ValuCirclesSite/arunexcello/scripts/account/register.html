@@ -1,0 +1,417 @@
+<div class="img" ng-controller="accountController">
+	<div class="row">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		<image src="assets/images/common/logo2.png"
+			style="margin: 10px;width: 25%;" />
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" align="right">
+		<image src="assets/images/common/arunexcello.jpg"
+			style="margin-right:10px; width: 15%;" />
+	</div>
+	</div>
+	<div class="register-body" align="center">
+
+		<div class="row" align="center">
+			
+			<div class="col-lg-9" align="center">
+				<div class="panel panel-default" align="center" style="height: 630px;margin-bottom: 15%;"
+					ng-if="!successfullyRegister">
+					<div class="panel-heading" align="center" 
+						style="color: #337ab7; font-size: 17px;">Welcome <b>Arun Excello </b>Home Buyer. <br>Please start your home loan assessment by signing up.</div>
+					<div align="center" ng-if="loader">
+						<i class="fa fa-spinner fa-spin fa-5x white m-t-b-2"></i>
+					</div>
+					<div class="panel-body" align="center" ng-if="!loader">
+						<div class="error white m-b-10" ng-if="error" align="center" style="margin-bottom: 5%;
+">
+							{{error_message}}</div>
+						<div class="sucess white m-b-10" align="center" ng-if="sucess">
+							{{sucess_message}}</div>
+							
+							<div class="col-md-12"></div>
+						<div class="form-horizontal" ng-if="otp"><BR>
+							<form name="registerform">
+								<div class="form-group has-feedback"
+									style="margin-bottom: 3rem;">
+									<!-- <label class="col-sm-4 pt-10" for="email">Mobile Number
+										<span class="mandoryclr"> *</span>
+									</label> -->
+									<div class="col-sm-3 col-xs-4">
+									 <select required name="countrycode" id="isdcode" class="form-control" style="padding-right: 0px;padding-left:0px;"ng-model="refcountry" ng-options="countrycode.id as countrycode.name for countrycode in countrycodeList">								 
+									 </select>
+  									</div>	
+									<div class="col-sm-9 col-xs-8" style="padding-left:0px;">
+									 
+										<input type="number" class="form-control" name="mobile" required
+											id="regmob" pattern="[1-9]{1}[0-9]{5,13}" maxlength="14"
+											placeholder="" 
+											ng-model="mobile"> <span
+											class="glyphicon glyphicon-phone form-control-feedback"></span>
+										<label class="form-control-placeholder" for="regmob">
+											Mobile Number</label>
+
+
+										<div ng-messages="registerform.mobile.$error" role="alert"
+											ng-show="!registerform.mobile.$pristine">
+											<div ng-message="required" class="mandoryclr"
+												ng-if="registerform.mobile.$error.required">Mandatory
+												field</div>
+										<!--	<div ng-message="pattern" class="mandoryclr"
+												ng-if="registerform.mobile.$error.pattern">Please
+													enter your correct mobile no</div>
+											<div ng-message="minlength" class="mandoryclr"
+												ng-if="registerform.mobile.$error.minlength">Your
+												number seems to be too short</div>  -->
+											<div ng-message="maxlength" class="mandoryclr"
+												ng-if="registerform.mobile.$error.maxlength">Your
+												number seems to be too long</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group has-feedback"
+									style="margin-bottom: 3rem;">
+								
+									<div class="col-sm-12">
+										<input type="text" maxlength="50" class="form-control" placeholder=""
+											ng-model="email" name="email" id="regmail" required
+											ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"  oninput="this.value = this.value.replace(/\s/g, '');">
+										<span
+											class="glyphicon glyphicon-envelope form-control-feedback"></span>
+										<label class="form-control-placeholder" for="regmail">
+											Email</label>
+
+										<div ng-messages="registerform.email.$error" role="alert"
+											ng-if="!registerform.email.$pristine">
+											<div ng-message="required" class="mandoryclr"
+												ng-if="registerform.email.$error.required">Mandatory
+												field</div>
+											<div ng-message="pattern" class="mandoryclr"
+												ng-if="registerform.email.$error.pattern">Please enter
+												valid email id</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group has-feedback"
+									style="margin-bottom: 3rem;">
+								
+									<div class="col-sm-12">
+										<input type="password" maxlength="50" class="form-control" placeholder=""
+											ng-model="pwd" name="pwd" id="regpass" required
+											ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@_$!%*#?&])[A-Za-z\d$@_$!%*#?&]{8,}$/" oninput="this.value = this.value.replace(/\s/g, '');">
+										<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+										<label class="form-control-placeholder" for="regpass">
+											Password</label>
+
+										<div ng-messages="registerform.pwd.$error" role="alert"
+											ng-if="!registerform.pwd.$pristine">
+											<div ng-message="required" class="mandoryclr"
+												ng-if="registerform.pwd.$error.required">Mandatory
+												field</div>
+											<div ng-message="pattern" class="mandoryclr"
+												ng-if="registerform.pwd.$error.pattern">Password
+												should be minimum 8 characters and should contain at least
+												one number, one Alphabet and one special character (!,@,#,$,%,&,*,_ )</div>
+										</div>
+									</div>
+								</div>
+							<!--	<div class="form-group has-feedback"
+									style="margin-bottom: 3rem;">
+									<div class="col-sm-12">
+										<input type="password" maxlength="50" class="form-control" id="pwd"
+											placeholder="" ng-model="cnfrmpwd" name="cnfrmpwd" required
+											ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@_$!%*#?&])[A-Za-z\d$@_$!%*#?&]{8,}$/" oninput="this.value = this.value.replace(/\s/g, '');"> <span
+											class="glyphicon glyphicon-lock form-control-feedback"></span>
+										<label class="form-control-placeholder" for="pwd">Confirm
+											 Password</label>
+										<div ng-messages="registerform.cnfrmpwd.$error" role="alert"
+											ng-if="!registerform.cnfrmpwd.$pristine">
+											<div ng-message="required" class="mandoryclr"
+												ng-if="registerform.cnfrmpwd.$error.required">Mandatory
+												field</div>
+											<div ng-message="pattern" class="mandoryclr " ng-show="pwd != cnfrmpwd">Password
+												did not match</div>
+										</div>
+									</div>
+								</div>  -->
+						<!--		<div class="form-group has-feedback"
+									style="margin-bottom: 3rem;">
+									<div class="col-sm-12">
+										<input type="text" maxlength="10" class="form-control" id="refercd"
+											placeholder="" ng-model="refercd" name="refercd" required  oninput="this.value = this.value.replace(/\s/g, '');">
+										 <span
+											class="form-control-feedback"></span>
+										<label class="form-control-placeholder" for="refercd">Promo Code (optional)</label>
+									</div> 
+								</div>-->
+								  <div class="form-group">
+							<!--  		<div class="form-group has-feedback"
+										style="margin-bottom: 3rem;">  
+										<div class="col-sm-12">
+											
+											<div class="col-sm-10">
+											 	<label class="checkbox-inline " style="padding-top: 1px;">
+													<input type="checkbox"  ng-model="watsAccept" style="top: 0px;"
+													name="check" ng-checked="true">  I give consent to receive updates on WhatsApp 
+												</label>
+											
+										 
+								  	</div> -->
+				
+								<!-- <div class="form-group">
+									<div class="form-group has-feedback"
+										style="margin-bottom: 0rem;">
+										<!-- <div class="col-sm-12">
+											<div class="col-sm-1"></div>
+											<div class="col-sm-10">
+											<!--  	<label class="checkbox-inline " style="padding-top: 1px;">
+													<input type="checkbox" ng-model="accept" style="top: 0px;"
+													name="check" required> I agree to the <a href="../term.html" target="_new"><u>Terms and	Conditions</u></a>
+												</label>
+											<div class="col-sm-3"></div>
+												<p class="col-xs-12" style="padding-top: 5px;" >By signing up, you accept our <a
+													href="../term.html" target="_new"><u>Terms and Conditions</u></a> and <a
+													href="../privacy.html" target="_new"><u>Privacy Policy</u></a>. 	</p> 
+				
+												
+											</div>
+										</div> -->
+									  	<!-- <div class="col-sm-12">
+											<div class="col-sm-1"></div>
+											<div class="col-sm-12">
+											 	<label class="checkbox-inline" style="padding-top: 1px;">
+													<input type="checkbox" ng-model="acceptNationality"
+													style="top: 0px;" name="checkNationality" required>
+													I confirm that I am an Indian National residing in India <a
+													href="#" data-toggle="tooltip"
+													title="At present Valucircles provides LPi scores only for Indian Nationals residing in India. NRIs and foreign nationals may not be able to get the right scores at present."><i
+														class="fa fa-info-circle" style="font-size: 12px;"></i></a>
+												</label>
+											</div> 
+										</div>
+									</div>
+								</div> -->
+								<!-- <div class="col-sm-12">
+									<div class="col-md-2 col-sm-0"></div>
+									<div class="col-sm-7">
+								 		<div class="form-group has-feedback">
+									<!-- 	<div ng-model="reCaptcha">
+										<div id="example1" class="g-recaptcha" onload="onloadCallback"></div>
+										</div>
+										</div> 
+									</div>
+									<div class="col-sm-3"></div>
+									<div class="col-sm-3"></div>
+								</div> -->
+								<div>
+									<div class="col-sm-12" align="center"></div>
+									<div class="col-sm-12" align="center"><BR>
+										<button class="btn btn-primary " align="center" id="regSubmit"
+											ng-click="register(mobile,email,pwd,cnfrmpwd,accept,acceptNationality,refercd,refcountry)"
+											 >Sign Up</button>
+									</div>
+									<div class="col-sm-6 col-xs-6"></div>
+									 
+								</div>
+								<div class="col-sm-12 col-xs-12" align="center">
+									<div class="col-sm-12 col-md-12 col-xs-12" align="center"></div>
+									<div class="col-sm-12 col-xs-12" align="center">
+										<BR>							
+										<body style="font:size:10px;padding-top:1px;">By signing up, you accept our <a href="../term.html" target="_new"><u>Terms and Conditions</u></a> and <a href="../privacy.html" target="_new"><u>Privacy Policy</u></a>. 	
+										</body>
+									</div>
+									<div class="col-sm-6 col-xs-6"></div>
+								</div>
+								<div class="col-sm-12" align="center">
+									<div class="col-sm-12" align="center"></div>
+									<div class="col-sm-12" align="center">
+									
+										<body style="padding-top:1px;" align="center"><BR>Already have an account? <a
+											href="#/login"><u>Login here</u></a>
+
+										</body>
+									</div>
+								</div>
+						</div>
+						</form>
+					</div>
+					<div class="form-horizontal" ng-if="!otp">
+						<div class="form-group has-feedback">
+							<label class="control-label col-sm-3" for="email"></label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="email"
+									placeholder="Enter OTP" maxlength="5" ng-model="otpvalue"
+									required> <span
+									class="glyphicon glyphicon-lock form-control-feedback"></span>
+							</div>
+						</div>
+					<!-- 17/07/2019:Geetha - Changed code not to send OTP email
+					 	<p class="whitenote">OTP Sent to {{userSignUp.userEmail }} and
+							{{userSignUp.userPhone }}</p>
+							28/01/2020:Geetha - Changed code  to send OTP email for NRI customers
+					-->
+					<p class="whitenote" ng-if="NriUser">OTP Sent to {{userSignUp.userEmail }}</p>
+						<p class="whitenote" ng-if="localUser">OTP Sent to {{userSignUp.userPhone }}</p>
+						<div class="form-group">
+							<div class="col-sm-12 text-center">
+								<button type="button" class="btn btn-primary" id="btnreg"
+									ng-click="otpSubmit(otpvalue,mobile)">Submit</button>
+								<!--    <button  class="btn btn-primary  Sign_btn" ng-click="resendOtpSubmit()">Resend OTP through Mobile</button> -->
+								<button class="btn btn-primary" ng-click="resendOtpSubmit()">Resend
+									OTP</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="panel panel-default " ng-if="successfullyRegister">
+				<div class="panel-heading" align="center"
+					style="color: #337ab7; font-size: 17px;">Thank You for signing up with ValuCircles</div>
+				<div class="panel-body" align="center">
+					<p class="col-xs-12">In order to verify your email address an activation link has been sent to your email. Please activate to complete the sign up.</p>
+					
+					<!-- <p class="col-xs-12"><a href="#/login"  class="btn btn-primary  Sign_btnn" role="button"
+						style="color: white">Sign In</a></p> 
+						
+						
+						<p class="col-xs-12" style="font-size:12px;padding-top:10px;"><b>Note:</b> If you do not receive the activation email in your inbox, please check your spam folder or contact at <u>support@valucircles.com</u>.</p>
+				</div> 
+			</div>  -->
+		</div>
+	</div>
+</div>
+</div>
+</div>
+<section class="footer text-center">
+	<div class="container">
+		<div class="row" style="margin-top: 1%;">
+			<div class="col-md-3 col-xs-12">
+				<a style="color: #fff;">Copyright &copy; ValuCircles 2020</a>
+			</div>
+			<div class="col-md-9 col-xs-12">
+				<ul class="navbar-right">
+					<span><a href="../term.html" style="color: #fff;">Terms
+							& Conditions</a></span>
+					<span><a href="../privacy.html" style="color: #fff;">&nbsp;&nbsp;Privacy
+							Policy</a></span>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- 	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script> -->
+<script>
+ 
+/*	function  onloadCallback() {
+	console.clear();
+	
+        widgetId1 = grecaptcha.render('example1', {
+            'sitekey' : '6LeTk3IUAAAAAOc0rs-NtuLbTZa8N7IUq_F_NHlj',
+			'callback' : verifyCallback,
+            'theme' : 'light'
+        });		
+    };
+*/	
+</script>
+<script type="text/javascript">
+      var verifyCallback = function(response) {
+    	  $('#regSubmit').removeAttr("disabled");
+      };
+</script>
+<script>
+function enableSubmit(){  
+	$('#regSubmit').removeAttr("disabled");
+	
+}
+	
+
+function reset(){
+ var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"; 
+    document.getElementsByTagName("head")[0].appendChild(script);
+	onloadCallback();	
+}
+</script>
+<script>
+	$(document).keypress(function(event) {
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if (keycode == '13') {
+			$('#btnreg').click();
+		}
+	});
+</script>
+<script>
+function isNumberKey(evt)
+{
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
+	if (charCode != 46 && charCode > 31 
+	&& (charCode < 48 || charCode > 57))
+	return false;
+	return true;
+}  
+</script>
+<style type="text/css">
+.register-body {
+	/* 	margin: 5% auto;
+	width: 70%; */
+	
+}
+
+.g-recaptcha {
+    transform:scale(0.87);
+    transform-origin:0 0;
+}
+
+@media only screen and (max-width: 425px) {
+   .g-recaptcha {
+    transform:scale(0.77);
+    transform-origin:0 0;
+}
+}
+
+body {
+	background-color: #FFFFFF;
+}
+
+.white {
+	color: #333333;
+}
+
+.sucess{
+	border: 2px solid green !important;
+	padding: 5px;
+}
+
+.modal-body {
+	overflow-y: scroll;
+	height: 300px;
+}
+
+.banner_butt {
+	padding: 10px;
+	margin: 5px;
+	border-radius: 55px;
+	border: 1px solid #ffffff;
+	background: none;
+	font-size: 18px;
+}
+
+.answer1 {
+	line-height: 25px;
+	font-size: 12px;
+}
+
+.whitenote {
+	color: orange;
+	text-align: center;
+}
+@media (max-width: 767px){
+.Sign_btn {
+    margin: 10px;
+}
+}
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+</style>

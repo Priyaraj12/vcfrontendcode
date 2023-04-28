@@ -1,0 +1,307 @@
+<div class="wrapper wrapper-content" >
+ <i class="fa fa-spinner fa-spin fa-5x col-md-offset-5 col-sm-offset-5 col-xs-offset-5 m-t-b-2" aria-hidden="true" ng-if="!loader"></i> 
+     <div class="row" ng-if="loader">
+         <div class="">
+         <div class="ibox" style="margin: 0;">
+                <div class="row" style="color: #1d7ec1; line-height: 2.5;">
+                <div class="col-md-2 col-sm-4 col-xs-4" style="color: #1d7ec1;" ng-init="linktext()">
+                <div align="left" ng-click="back()" class="cursor" id="lintxt"><i style="padding: 0 1%;font-size: 16px;" class="fa fa-angle-double-left"></i></div>
+                </div>
+                <div class="col-md-8 col-xs-4">
+                <div align="center"  class="cursor pageheading" style="color: #1d7ec1; font-weight: bold;">
+							Bank Verification
+						</div></div>
+						<div class="col-md-2 col-sm-4 col-xs-4" style="color: #1d7ec1;">
+                <div  align="right" ng-click="next()" id="bankverify" class="cursor" >Credit Report<i style="padding: 0 1%;font-size: 16px;" class="fa fa-angle-double-right"></i></div>
+                </div>
+                </div>
+                </div>
+            	</div>
+             <div class="ibox">
+              <div class="" style=" background: white;">
+                	<div class="ibox-title" style="border-bottom: 1px solid #e7e7e7;margin-bottom: 17px;" >
+                	<div class="row">
+					<div class="col-md-4 col-sm-3 col-xs-1"></div>
+					<div class="col-md-4 col-sm-5 col-xs-11">
+								
+								<p style="color: green;" class="smsg"
+									ng-if="sucess">
+									<strong></strong> <i class="em em-thumbsup f-24"></i>{{message}}
+									<i class="em em-thumbsup f-24"></i>
+								</p>
+								<p style="color: red;" class="smsg"
+									ng-if="error">
+									<i class="em em-bulb f-24"></i> {{message}}
+								</p>
+							</div>
+							<div class="col-md-4 col-sm-4 "></div>
+					</div>
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12" style="margin-bottom:5px">
+								<h5>
+									Valucircles Advice
+								</h5>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="ibox-tools">
+									 <button class="btn vcirclebtn pull-right verifybut" ng-click="next()" title="Next" ng-disabled="savebtn">Save & Next</button>
+                             <button class="btn vcirclebtn pull-right verifybut" ng-click="skip()" title="Back" ng-disabled="skipbtn">Skip</button> 
+								</div>
+							</div>
+						</div>
+            	</div>
+            	<span>
+            	<img src="assets/images/bulb.png" height="21" width="21" style="  margin-left: 9px;margin-top: -12px;">
+            	</span>
+            	
+            	<p class="mrgbot3" style="margin-top: -27px;">
+            	
+						<span class="paraDisp" style="line-height: 1.8;">Verifying your income and loan transactions with your bank statement may increase your chances of getting a loan.</span>
+					</p>
+					
+					<p class="mrgbot3" >											
+							<span class="paraDisp" style="line-height: 1.8;">Please add primary accounts of all applicants and verify the income and loan transactions as applicable.</span>
+						 </p>
+						 
+						 <p class="mrgbot0" ><span class="paraDisp" style="line-height: 1.8;">Income not reflecting in bank statement may not be accepted by lenders.</span></p>
+            	</div>
+                 <div class="ibox-title">
+                     <h5>Bank Verification Process</h5>
+                 
+                 </div>
+                 <div class="ibox-content">
+                     <div class="row">
+                         <div class="panel panel-default" style="background-color:#ffe4b5;color:#1d7ec1;" ng-if = "bankdetails.length == 0">
+                             <img src="assets/images/icon.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Please link your online banking or upload PDF Statement(s) from your bank.
+                         </div>
+                         <div class="panel panel-default" style="background-color:#ffe4b5;color:#1d7ec1;" ng-if = "checkBankVerify || bankdetails.length != 0">
+                             <img src="assets/images/icon.png">&emsp;&emsp;Please verify the bank transactions through 'View transaction' button.
+                         </div>
+                         <form name="myForm" method="post" style="margin-left: 14px;float: left;" id="addurl" action="">
+                             <input name="userId" ng-model="userId" hidden="true">
+                             <input name="siteName" value="{{siteValue}}" hidden="true">
+                             <button type="submit" class="btn btn-info btn-sm cickbtn " data-toggle="modal" ng-click="setAction()" ng-disabled="linkbankbtn">Link Bank Account(s)</button>
+                         </form>
+                         <form  name="statementForm" method="post" style="margin-left: 14px;float: left;" id="Statement" action="">
+                             <input name="userId" ng-model="userId" hidden="true">
+                             <input name="siteName" value="{{siteStatement}}" hidden="true">
+                             <button type="submit" class="btn btn-info btn-sm cickbtn " data-toggle="modal" ng-click="setStatementAction()" ng-disabled="linkbankbtn">Upload PDF Statement(s)</button>
+                         </form>
+                         <br><br>
+                         <div class="table-responsive col-sm-12">
+                             <table class="table table-bordered m-t-25">
+                                 <thead>
+                                 <tr>
+                                     <th>#</th>
+                                     <th>Bank</th>
+                                     <th>Account No</th>
+                                     <th>Account Type</th>
+                                     <th>Action</th>
+                                 </tr>
+                                 </thead>
+                                 <tbody>
+                                 <tr ng-repeat="item in bankdetails | startFrom:currentPage*pageSize | limitTo:pageSize">
+                                     <td>{{$index + 1}}</td>
+                                     <td>{{item.bank}}</td>
+                                     <td>{{item.accountNo}}</td>
+                                     <td>{{item.accountType}}</td>
+                                     <td>
+                                         <button class="btn  btn-danger"  ng-click="delete(item.bankId);" ng-if="bankdetails.length != 0">
+                                             <i class="fa fa-trash-o"></i>
+                                         </button>
+                                         <button  class="btn btn-info btn-sm cickbtn" style="margin-left: 7px;" data-toggle="modal"  ng-click="getIncomeAndLoan(item.bankId)">View Transaction</button>
+                                     </td>
+                                 </tr>
+                                 <tr ng-show ="bankdetails.length == 0">
+                                     <center ></center>
+                                 </tr>
+                                 </tbody>
+                             </table>
+                         </div>
+                         <div class="" ng-if="open">{{open}}
+                             <div class="panel panel-default">
+                                 <div class="panel-heading" >
+                                     Verify  Transactions 
+                                 </div>
+                                 	<div style="color:red;text-align:center" ng-if="infoSuccess">{{infoMessage}}</div>
+                                 <div class="panel-body">
+                                     <div class="col-md-6">
+                                         <div class="panel panel-default">
+                                             <div class="panel-heading">Incomes</div>
+                                             <div class="panel-body" style="height: 200px;overflow-y: scroll;">
+                                                 <div class="table-responsive">
+                                                     <table class="table table-bordered">
+                                                         <thead>
+                                                         <tr>
+                                                             <th>Transaction Description</th>
+                                                             <th>Occurrence</th>
+                                                             <th>Choose </th>
+                                                         </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                         <tr ng-repeat="statementIncome in  statementIncomes">
+                                                             <td>{{statementIncome.transactionCategory}}</td>
+                                                             <td>{{statementIncome.months}}</td>
+                                                             <td><button class="" style="width: 25px;" ng-disabled="linkbankbtn" ng-click="statementIncome.selectedIndicator=!statementIncome.selectedIndicator;sucessCall();"><i class="fa" ng-class="{'fa-check': statementIncome.selectedIndicator}"></i> </button></td>
+                                                         </tr>
+
+                                                         </tbody>
+                                                     </table>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                         <div class="panel panel-default">
+                                             <div class="panel-heading">Loans</div>
+                                             <div class="panel-body" style="height: 200px;overflow-y: scroll;">
+                                                 <div class="table-responsive">
+                                                     <table class="table table-bordered">
+                                                         <thead>
+                                                         <tr>
+                                                             <th>Transaction Description</th>
+                                                             <th>Occurrence</th>
+                                                             <th>Choose</th>
+                                                         </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                         <tr  ng-repeat="statementLoan in  statementLoans">
+                                                             <td>{{statementLoan.transactionCategory}}</td>
+                                                             <td>{{statementLoan.months}}</td>
+                                                             <td><button class="" style="width: 25px;" ng-disabled="linkbankbtn" ng-click="statementLoan.selectedIndicator=!statementLoan.selectedIndicator;sucess = false;"><i class="fa" ng-class="{'fa-check': statementLoan.selectedIndicator}"></i> </button></td>
+                                                         </tr>
+
+                                                         </tbody>
+                                                     </table>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <button ng-click="incomeandloan()" data-target="#bankModal" class=" btn btn-info btn-sm cickbtn btnss" ng-disabled="linkbankbtn" >Submit</button>
+
+                                 <button  class=" btn btn-info btn-sm cickbtn" ng-click="opentrue()" style="margin-left:10px;vertical-align: super; ">Cancel</button>
+                             </div>
+                         </div>
+
+                         <div class="m-t-5" ng-show="bankdetails.length != 0">
+                             <button class="btn vcirclebtn pull-right"  ng-hide="currentPage >= bankdetails.length/pageSize - 1" ng-click="currentPage=currentPage+1"><i class="fa fa-arrow-right"></i></button>
+                             <span class=" pull-right">{{currentPage+1}}/{{numberOfPages()}}</span>
+                             <button class="btn vcirclebtn pull-right" ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1"><i class="fa fa-arrow-left"></i></button>
+                         </div>
+                    </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+</div>
+<style type="text/css">
+.btnss{
+	margin-left: 45%;
+	vertical-align: super;
+	margin-bottom: 10px;
+	}
+@media only screen and (max-width:425px){
+	.btnss{
+	margin-left: 30%;
+	vertical-align: super;
+	margin-bottom: 10px;
+	}
+	}
+    .m-t-r-0{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .labelmarg{
+	margin-left: 4% !important;
+}
+@media (max-width: 991px) {
+.labelmarg{
+	margin-left: 1% !important;
+}
+} 
+@media (max-width: 728px) {
+.labelmarg{
+	margin-left: 3% !important;
+}
+}
+@media (min-width:450px) and (max-width: 980px){
+.labelmarg{
+	margin-left: 1% !important;
+}
+}
+.cursor{
+	cursor: pointer;
+}
+
+.mrgbot0{
+	margin-bottom: 0px;
+     margin-top:-4px;
+	padding-left: 40px;
+	font-size: 13px;
+	padding-right: 39px;
+	color: #5264AE;
+	 padding-bottom: 14px;
+}
+.mrgbot1{
+	margin-bottom: 0px;
+	margin-top:-4px;
+	font-size: 13px;
+	padding-left: 45px;
+	padding-right: 39px;
+	color: #5264AE; 
+}
+.mrgbot3{
+    padding-left: 40px;
+	padding-right: 39px;
+	margin-top:-4px;
+ color: #5264AE;
+ font-size: 13px;
+}
+.pageheading{
+   	font-size : 18px;
+   }
+@media only screen and (max-width: 378px) {
+   .pageheading{
+   	font-size : 13px;
+   }
+}
+.paraDisp{
+	    margin: 0 14px;
+    	display: list-item;
+}
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 0px;
+  
+ }
+@media only screen and (max-width: 320px) {
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 15%;
+  
+ }
+ }
+
+</style>
+<script type="text/javascript">
+if(localStorage.getItem("userLpiStatus") == "1"){
+  $( "input" ).prop( "disabled", false );
+  console.clear();
+}else{
+  console.clear();
+  $( "input" ).prop( "disabled", false );
+  $('label').css('opacity','0.5');
+  $( "select" ).prop( "disabled", false );
+  $( "checkbox" ).prop( "disabled", false );
+  $( "radio" ).prop( "disabled", false );
+  $("button").prop("disabled",false);
+}
+</script>
+<!-- <script>
+$("#addurl").attr('action',localStorage.getItem("add"));
+$("#Statement").attr('action',localStorage.getItem("statement"));
+</script> -->
+

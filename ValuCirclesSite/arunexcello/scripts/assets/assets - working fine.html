@@ -1,0 +1,620 @@
+
+<div class="modal fade" id="myyModal" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header" style="text-align: center;">
+				<img src="assets/images/bulb.png"> <br>
+				<h5 class="modal-title">Please note our questionnaire is
+					designed to simulate a loan application of a lender. Your responses
+					should be as per various proofs you plan to submit to the lenders.</h5>
+				<br>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default center"
+					data-dismiss="modal" ng-disabled="false" ng-click="setLocalStorage()">Got it</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="mobileModalCombined" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header" style="text-align: center;">
+				<img src="assets/images/bulb.png"> <br>
+				<h5 class="modal-title">Please note our questionnaire is
+					designed to simulate a loan application of a lender. Your responses
+					should be as per various proofs you plan to submit to the lenders.</h5>
+				<br>
+				<h5 class=" modal-title">ValuCircles works best on a desktop. Mobile browsers may face compatibility issues.</h5>
+				<br>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default center"
+					data-dismiss="modal" ng-disabled="false">Got it</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class=" modal fade" id="mobileModal" role="dialog">
+	<div class="modal-dialog">
+		<!--  modal content-->
+		<div class="modal-content">
+			<div class="modal-header" style="text-align: center;">
+				<img src="assets/images/bulb.png"> <br>
+				<h5 class=" modal-title">ValuCircles works best on a desktop. Mobile browsers may face compatibility issues.</h5>
+				<br>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default center" data-dismiss="modal" ng-disabled="false" >Got it</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="wrapper wrapper-content">
+	<div class="row">
+		<div>
+			<div class="ibox"
+				style="margin: 0; border-bottom: 1px solid #cccccc9e;">
+				<div class="row" style="line-height: 2.5;">
+					<div class="col-md-2 col-sm-6 col-xs-6" style="color: #1d7ec1;">
+					</div>
+					<div class="col-md-8 col-xs-12">
+						<div align="center" class="cursor pageheading"
+							style="color: #1d7ec1; font-weight: bold;">
+							Loan Requirements</div>
+					</div>
+					<div class="col-md-2 col-sm-12 col-xs-12" style="color: #1d7ec1;">
+						<div align="right" ng-click="next(Assets)"
+							class="cursor personalLabel">
+							Personal Info<i style="padding: 0 1%; font-size: 16px;"
+								class="fa fa-angle-double-right"></i>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<form name="assetsform" novalidate>
+				<div class="ibox" style="margin: 0;">
+					<div class="" style="background: white">
+						<div class="ibox-title"
+							style="border-bottom: 1px solid #e7e7e7; margin-bottom: 17px;">
+							<div class="row">
+							<div class="row">
+					<div class="col-md-4 col-sm-3 col-xs-1"></div>
+					<div class="col-md-4 col-sm-5 col-xs-11">
+								<p style="display: flex;text-align:center;  margin-left: 0%; color: red;"
+									ng-if="omitdata.length > 0">
+								</p>
+								<p style="color: green;" class="smsg"
+									ng-if="sucess">
+									<i class="em f-24"></i><strong></strong>
+									{{sucess_message}} .<i class="em f-24"></i>
+								</p>
+
+								<p style="color: red;" class="smsg"
+									ng-if="error">
+									<i class="em "></i> {{error_message}} <i
+										class="em "></i>
+								</p>
+							</div>
+							<div class="col-md-4 col-sm-4 "></div>
+					</div>
+								<div class="col-md-6 col-sm-6 col-xs-12"
+									style="margin-bottom: 5px">
+									<h5>ValuCircles Advice</h5>
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class="ibox-tools">
+										<button class="btn vcirclebtn pull-right savenxt"
+											ng-disabled="savnxt" ng-click="savenext(Assets,$event)"
+											title="Next">Save & Next</button>
+								<!--		<button class="btn vcirclebtn pull-right save"
+											ng-click="save(Assets,$event)" ng-disabled="savnxt"
+											title="Save">Save</button>
+										<button class="btn vcirclebtn pull-right" ng-click="reset()"
+											ng-disabled="savnxt" title="Reset">Reset</button>  -->
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<span> <img src="assets/images/bulb.png" height="21"
+							width="21" style="margin-left: 9px;">
+						</span>
+
+						<p class="mrgbot3" style="margin-top: -22px;">
+							<span class="paraDisp" style="line-height: 1.8;padding-bottom: .5%;">Loan Amount to Property Value ratio (LTV) is governed by RBI norms. Maximum LTV is 90% for loan amounts up to INR 30 lakhs, 80% for loan amounts of INR 30 lakhs to INR 75 lakhs and 75% for loan amounts greater than INR 75 lakhs.</span></p>
+						<p class="mrgbot3"><span class="paraDisp" style="line-height: 1.8;">Eligible tenure of the loan is dependent on age of applicants. With loan tenures ranging from 36 months to 360 months, an applicant's loan tenure will be capped at either 30 years or number of years till the upper cap specified by the lender (upper caps specified by lenders are generally between 60 years to 70 years).</span></p>
+					</div>
+					<div class="ibox-title">
+						<h5>Type of Loan Required</h5>
+						<div class="ibox-tools">
+							<!-- <div class="col-md-6 col-xs-12">
+								<p style="display: inline; margin-left: 0%; color: red;"
+									ng-if="omitdata.length > 0">
+								</p>
+								<p style="display: inline; margin-left: 0%; color: green;"
+									ng-if="sucess">
+									<i class="em em-thumbsup f-24"></i><strong></strong>
+									{{sucess_message}} .<i class="em em-thumbsup f-24"></i>
+								</p>
+
+								<p style="display: inline; margin-left: 0%; color: red;"
+									ng-if="error">
+									<i class="em em-bulb"></i> {{error_message}} <i
+										class="em em-bulb"></i>
+								</p>
+							</div> -->
+
+						</div>
+					</div>
+					<!-- New code -->
+					<div class="ibox-content" style="padding-bottom: 0px">
+						<div class="row">
+							<i
+								class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 col-sm-offset-5 col-xs-offset-5 m-t-b-2"
+								aria-hidden="true" ng-if="loader"></i>
+
+							<div class="panel-body" ng-if="!loader">
+
+								<div class="">
+									<div class="col-md-12 col-sm-12 col-xs-12" id="LoanObjective">
+										<div class=" col-md-3 form-group floating-label">
+											<div>
+												<label class="radio-inline"> <input type="radio"
+													name="optradio0" ng-change="loantyperadio({{$index}})"
+													class="radalign" id="LoanObjective"
+													ng-model="Assets.loantypeid" ng-value="1">New Home Loan
+												</label>
+											</div>
+										</div>
+										<div class=" col-md-3 form-group floating-label">
+											<div>
+												<label class="radio-inline"> <input type="radio"
+													name="optradio0" ng-change="loantyperadio({{$index}})"
+													class="radalign" id="LoanObjective"
+													ng-model="Assets.loantypeid" ng-value="2">Home Loan Balance Transfer
+												</label>
+											</div>
+										</div>
+										<!-- <div class=" col-md-3 form-group floating-label">
+											<div>
+												<label class="radio-inline"> <input type="radio"
+													name="optradio0" ng-change="loantyperadio({{$index}})"
+													class="radalign" id="LoanObjective"
+													ng-model="Assets.loantypeid" ng-value="3">Loan Against Property
+												</label>
+											</div>
+										</div>
+										<div class=" col-md-3 form-group floating-label">
+											<div>
+												<label class="radio-inline"> <input type="radio"
+													name="optradio0" ng-change="loantyperadio({{$index}})"
+													class="radalign" id="LoanObjective"
+													ng-model="Assets.loantypeid" ng-value="4">Home Improvement Loan
+												</label>
+											</div>
+										</div> -->
+									</div>	
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+					<!-- New code -->
+					
+					<div class="ibox-title">
+						<h5>Property Information</h5>
+						<div class="ibox-tools">
+							<!-- <div class="col-md-6 col-xs-12">
+								<p style="display: inline; margin-left: 0%; color: red;"
+									ng-if="omitdata.length > 0">
+								</p>
+								<p style="display: inline; margin-left: 0%; color: green;"
+									ng-if="sucess">
+									<i class="em em-thumbsup f-24"></i><strong></strong>
+									{{sucess_message}} .<i class="em em-thumbsup f-24"></i>
+								</p>
+
+								<p style="display: inline; margin-left: 0%; color: red;"
+									ng-if="error">
+									<i class="em em-bulb"></i> {{error_message}} <i
+										class="em em-bulb"></i>
+								</p>
+							</div> -->
+
+						</div>
+					</div>					
+					<div class="ibox-content" style="padding-bottom: 0px">
+						<div class="row">
+							<!-- Hide Loader
+							<i
+								class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 col-sm-offset-5 col-xs-offset-5 m-t-b-2"
+								aria-hidden="true" ng-if="loader"></i>
+							-->
+							<div class="panel-body" >
+
+								<div class="">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div class=" col-md-3 form-group floating-label"
+											id="PropertyIdentifier">
+											<label for="PropertyIdentifier" class="appliradio">Have
+												you identified the property? <span class="mandoryclr">*</span>
+											</label>
+
+											<div>
+												<label class="radio-inline"> <input type="radio"
+													name="optradio1" ng-change="propradio({{$index}})"
+													class="radalign" id="PropertyIdentifier"
+													ng-model="Assets.propertyIdentifierId" ng-disabled="Assets.loantypeid == 2 || Assets.loantypeid == 3 || Assets.loantypeid == 4" ng-value="1">Yes
+												</label> <label class="radio-inline"> <input type="radio"
+													name="optradio1" ng-change="propradio({{$index}})"
+													class="radalign" id="PropertyIdentifier"
+													ng-model="Assets.propertyIdentifierId" ng-disabled="Assets.loantypeid == 2 || Assets.loantypeid == 3 || Assets.loantypeid == 4" ng-value="0">No
+												</label>
+											</div>
+										</div>
+								<div class="col-md-3 form-group floating-label">
+									<input type="text" class="form-control inputtext disninput"
+										placeholder="" id="location" maxlength="45"
+										ng-model="Assets.location" 
+										ng-change="setcityBasedBuilder(Assets.location)" ng-focus="citty()"
+										 autocomplete="off" required
+										ng-keyup="setCityName(Assets.location)"
+										typeahead="city.city for city in citysArray | filter:{city:$viewValue} | limitTo:10"
+										value="" typeahead-items='3'
+										typeahead-on-select="change(Assets.location)"> <span
+										class="form-control-feedback"></span> <label for="location"
+										class="form-control-placeholder">City <span
+										class="mandoryclr">*</span>
+									</label>
+								</div>
+
+										<div class="col-md-3 form-group floating-label">
+
+											<input
+												class="form-control getagecolor disninput inputtext numericOnly"
+												id="AssetValue" maxlength="11" ng-model="Assets.assetValue"
+												type="text" placeholder=""
+												ng-keyup="assetvaluefunc($event,Assets.assetValue);Assets.word=convertNumberToWords(Assets.assetValue)"
+												name="av" on-focusout="validatest(Assets.assetValue)"
+												required id="Assets{{$index}}"
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+											<span class="form-control-feedback"> </span> <label
+												for="AssetValue" class="form-control-placeholder">Estimated
+												Property Value <i class="fa fa-info-circle"
+												title="Costs that are generally included in Property Value are: Basic Cost, Firefighting Charges, Electricity/Water Charges, Electrification Charges, Power Back Up, Internal Development Charges (IDC), External Development Charges (EDC), Preferential Location Charges (PLC), GST, Stamp Duty and Registration Charges."></i>
+												<span class="mandoryclr">*</span>
+											</label>
+											<div
+												ng-if="Assets.assetValue == null || Assets.assetValue == undefined"
+												style="color: red" role="alert">Field should not be
+												empty</div>
+											<div
+												style="font-size: 11px; color: #333333; line-height: 1.4">{{Assets.word}}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 col-sm-12 col-xs-12">
+
+								<div class="col-md-3 form-group floating-label" ng-show="Assets.propertyIdentifierId==1">
+									<select id="purchaseVal"
+										class="form-control inputtext disninput floating-select hide-purchase-"
+										onclick="this.setAttribute('value', this.value);" value=""
+										ng-disabled="!Assets.propertyIdentifierId == 1"
+										ng-model="Assets.refnum"
+										ng-options="assetsProduct.refnum as assetsProduct.productDesc for assetsProduct in assetsProducts | filter:shouldShow"
+										ng-change="emptyAssetsValue1()">
+									</select> <label style="top: -18px" class="labelmarg">Type of
+										Property <span class="mandoryclr">*</span></label>
+								</div>
+								<div class="col-md-3 form-group floating-label" ng-show="Assets.refnum==1">
+									<input list="addBuilderName1" type="text"
+										class="form-control inputtext disninput" placeholder=""
+										id="addBuilderName" maxlength="250" value=""
+										ng-model="Assets.builderName" ng-keyup="activateProj($event)"
+										ng-focus="activateProj()" ng-model-options="{debounce: 300}"
+										autocomplete="off" required> <span
+										class="form-control-feedback"></span> <label
+										for="addBuilderName" class="form-control-placeholder">Builder
+										Name <span class="mandoryclr">*</span>
+									</label>
+									<datalist id="addBuilderName1">
+									 <option
+											ng-repeat="xs in cityBasedBuilderName | filter:search"
+											ng-click="search='';Assets.builderName=builderproject.builderName;$parent.$parent.result=false;"
+											value="{{xs.builderName}}"
+											id="{{xs.builderId}}">{{xs.builderName}}</option> 
+										<!-- <option
+											ng-repeat="builderproject in cityBasedBuilderName | filter:search"
+											ng-click="search='';Assets.builderName=builderproject.builderName;$parent.$parent.result=false;"
+											value="{{builderproject.builderName}}"
+											id="{{builderproject.builderId}}">{{builderproject.builderName}}</option> -->
+									</datalist>
+								</div>
+								<div class="col-md-3 form-group floating-label" ng-show="Assets.refnum==1">
+									<input type="text" list="projectname" id="addProjectName"
+										class="form-control inputtext disninput" value="" ng-keyup="setBuilderNameValue()"
+										ng-model="Assets.projectName" maxlength="250" ng-focus="setBuilderNameValue()"
+										autocomplete="off" required> <span
+										class="form-control-feedback"></span> <label
+										for="addProjectName" class="form-control-placeholder">Project
+										Name <span class="mandoryclr">*</span>
+									</label>
+									<datalist id="projectname">
+										<option ng-repeat="xp in projects | filter:search"
+											
+											value="{{xp.projectName}}"
+											id="{{xp.builderProjectId}}">{{builderproject.projectName}}</option>
+									</datalist>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ibox-title">
+					<h5>Loan Requirement</h5>
+					<div class="ibox-tools"></div>
+				</div>
+				<div class="ibox-content">
+					<div class="row">
+						<div class="panel-body">
+
+						<div class="col-md-12 col-sm-12 col-xs-12" ng-show="Assets.loantypeid==2">
+							<div class="col-md-3 form-group floating-label">
+								<input
+									class="form-control getagecolor inputtext numericOnly disninput "
+									maxlength="11" id="CrLoanValue" ng-model="Assets.currentLoanOutstandingAmount"
+									type="" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+									ng-keyup="currentLoanOutstandingAmountnumericOnly($event,Assets.currentLoanOutstandingAmount);Assetc.word=convertNumberToWords(Assets.currentLoanOutstandingAmount);alert( Assetc.word)"
+									name="clv" required id="Asset{{$index}}"
+									ng-disabled="Assets.loantypeid == 1 || Assets.loantypeid == 3 || Assets.loantypeid == 4">
+								<span class="form-control-feedback"> </span> <label
+									for="CrLoanValue" class="form-control-placeholder">Current Loan Outstanding
+									Amount <i class="fa fa-info-circle"
+									title="Remaining principal on the current home loan loan to be transferred."></i> <span
+									class="mandoryclr">*</span>
+								</label>
+								<div ng-if="Assets.currentLoanOutstandingAmount == null || Assets.currentLoanOutstandingAmount == undefined" style="color: red"
+									role="alert">Field should not be empty</div>
+									 <div style="font-size: 11px; color: #333333;" id="crloanvalword">{{Assetc.word}}</div>	
+								
+								<div ng-messages="assetsform.clv.$error" style="color: white"
+									role="alert">
+									<div ng-message="required"> </div>
+								</div>
+								</div>
+							<div class="col-md-3 form-group floating-label">
+								<input class="form-control getagecolor inputtext numericOnly disninput "
+									id="currentLoanTerm" ng-model="Assets.currentLoanBalanceTenure" placeholder=""
+									type="text"
+									ng-keyup="loanBalanceTenurenumericOnly($event,Assets.currentLoanBalanceTenure);Asseb.word=convertNumberToWords(Assets.currentLoanBalanceTenure)"
+									name="clt" required id="Asset{{$index}}" maxlength="3" ng-disabled="Assets.loantypeid == 1 || Assets.loantypeid == 3 || Assets.loantypeid == 4">
+								<span class="form-control-feedback"> </span> <label
+									for="currentLoanTerm" class="form-control-placeholder">Balance Loan
+									Tenure (In Months) <i class="fa fa-info-circle"
+									title="Remaining tenure for the current home loan to be transferred "></i>
+									<span class="mandoryclr">*</span>
+								</label>
+								<div ng-if="Assets.currentLoanBalanceTenure == null" style="color: red"
+									role="alert">Field should not be empty</div>
+								<div style="font-size: 11px; color: #333333;" id="btassetword">{{Asseb.word}}</div>
+								<div ng-messages="assetsform.clt.$error" style="color: white"
+									role="alert">
+									<div ng-message="required"> </div>
+								</div>
+							</div>
+							<div class="col-md-3 form-group floating-label">
+								<input class="form-control getagecolor inputtext numericOnly disninput "
+									id="CrEMI" ng-model="Assets.currentEMI" placeholder=""
+									type="text"
+									ng-keyup="currentEMInumericOnly($event,Assets.currentEMI);Assec.word=convertNumberToWords(Assets.currentEMI)"
+									 name="cemi" required id="Asset{{$index}}" maxlength="10" ng-disabled="Assets.loantypeid == 1 || Assets.loantypeid == 3 || Assets.loantypeid == 4">
+								<span class="form-control-feedback"> </span> <label
+									for="CrEMI" class="form-control-placeholder">Current Loan EMI <i class="fa fa-info-circle"
+									title="Monthly EMI amount for current home loan"></i>
+									<span class="mandoryclr">*</span>
+								</label>
+								<div ng-if="Assets.currentEMI == null" style="color: red"
+									role="alert">Field should not be empty</div>
+								<div style="font-size: 11px; color: #333333;" id="cEMIassetword">{{Assec.word}}</div>
+								<div ng-messages="assetsform.cemi.$error" style="color: white"
+									role="alert">
+									<div ng-message="required"> </div>
+								</div>
+							</div>
+						    <div class="col-md-3 form-group hideCollege floating-label">
+								<select class="form-control floating-select disninput " placeholder="" name="cler"  id="loanlender" ng-model="Assets.CrLenderName" ng-options="LT.loanLenderId as LT.loanLenderName for LT in LoanLenderType" required ng-disabled="Assets.loantypeid == 1 || Assets.loantypeid == 3 || Assets.loantypeid == 4">
+								<option selected="selected" hidden></option>
+								</select>
+								<span class="form-control-feedback"> </span>
+								<label for="loanlender" class="labelmarg">Current Lender <i class="fa fa-info-circle" title="Current loan lender"></i> <span class="mandoryclr">*</span></label>
+							<!--  	<div ng-messages="assetsform.cler.$error"  role="alert">
+								<div ng-message="required"> </div> -->
+								</div>
+                            </div>
+														<div class="">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="col-md-3 form-group floating-label">
+								<input
+									class="form-control getagecolor inputtext numericOnly disninput "
+									maxlength="11" id="LoanValue" ng-model="Assets.loanValue"
+									type="" placeholder=""
+									ng-keyup="loanvaluefunc($event,Assets.loanValue);Asset.word=convertNumberToWords(Assets.loanValue)"
+									name="lv" required id="Asset{{$index}}"
+									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+								<span class="form-control-feedback"> </span> <label
+									for="LoanValue" class="form-control-placeholder">Required
+									Loan Amount <i class="fa fa-info-circle"
+									title="Loan amount can range from 5 lakhs to 5 crores"></i> <span
+									class="mandoryclr">*</span>
+								</label>
+								<div ng-if="Assets.loanValue == null" style="color: red"
+									role="alert">Field should not be empty</div>
+								<div style="font-size: 11px; color: #333333; line-height: 1.4"
+									id="loanvalword">{{Asset.word}}</div>
+								<div ng-messages="assetsform.lv.$error" style="color: white"
+									role="alert">
+									<div ng-message="required"> </div>
+								</div>
+							</div>
+							<div class="col-md-3 form-group floating-label">
+								<input class="form-control getagecolor inputtext disninput "
+									id="LoanTerm" ng-model="Assets.loanTermId" placeholder=""
+									type="text"
+									ng-keyup="assettermnumericOnly($event,Assets.loanTermId);Asse.word=convertMonthNumberToWords(Assets.loanTermId)"
+									" name="lt" required id="Asset{{$index}}" maxlength="3">
+								<span class="form-control-feedback"> </span> <label
+									for="LoanTerm" class="form-control-placeholder">Required Loan
+									Tenure <span class="mandoryclr">(In Months)</span> <i class="fa fa-info-circle"
+									title="Loan tenure can range from 36 months to 360 months "></i>
+									<span class="mandoryclr">*</span>
+								</label>
+								<div ng-if="Assets.loanTermId == null" style="color: red"
+									role="alert">Field should not be empty</div>
+								<div style="font-size: 11px; color: #333333;" id="assetword">{{Asse.word}}</div>
+								<div ng-messages="assetsform.lt.$error" style="color: white"
+									role="alert">
+									<div ng-message="required"> </div>
+								</div>
+							</div>
+						    <div class="col-md-3 form-group hideCollege floating-label">
+								<select class="form-control floating-select disninput " placeholder="" name="ltf"  id="loantime" ng-model="Assets.loantime" 
+								ng-options="object.id as object.timeframe_desc for object in loanTimeFrame" required>
+								<option selected="selected" hidden></option>
+								</select>
+								<label for="loantime" class="labelmarg">When do you require this loan? <i class="fa fa-info-circle" title="When do you require this loan?"></i> <span class="mandoryclr">*</span></label>
+								<div ng-messages="assetsform.ltf.$error"  role="alert">
+								<div ng-message="required"> </div>
+								</div>
+                            </div>
+							</div>
+						</div>
+						</div>
+					</div>	
+						<div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:2%;padding-right: 0px">
+									<div class="ibox-tools">
+										<button class="btn vcirclebtn pull-right savenxt"
+											ng-disabled="savnxt" ng-click="savenext(Assets,$event)"
+											title="Next">Save & Next</button>
+							<!--			<button class="btn vcirclebtn pull-right save"
+											ng-click="save(Assets,$event)" ng-disabled="savnxt"
+											title="Save">Save</button>
+										<button class="btn vcirclebtn pull-right" ng-click="reset()"
+											ng-disabled="savnxt" title="Reset">Reset</button> -->
+									</div>
+							</div>
+						</div>
+			</form>
+			
+		</div>
+		
+	</div>
+</div>
+
+
+<style>
+.labelmarg {
+	margin-left: 4.7%;
+}
+
+@media ( max-width : 991px) {
+	.labelmarg {
+		margin-left: 2% !important;
+	}
+}
+
+@media ( max-width : 728px) {
+	.labelmarg {
+		margin-left: 3% !important;
+	}
+}
+
+@media ( min-width :450px) and (max-width: 980px) {
+	.labelmarg {
+		margin-left: 1.3% !important;
+	}
+}
+
+.cursor {
+	cursor: pointer;
+}
+
+.mrgbot1 {
+	margin-top: -4px;
+	padding-bottom: 0px;
+	font-size: 13px;
+	padding-left: 43px;
+	padding-right: 39px;
+	color: #5264AE;
+}
+
+.mrgbot3 {
+	margin-top: -4px;
+	padding-left: 40px;
+	padding-right: 39px;
+	color: #5264AE;
+	font-size: 13px;
+	margin-bottom: 0px;
+	padding-bottom: 9px;
+}
+
+.paraDisp{
+	    margin: 0 14px;
+    display: list-item;
+}
+
+.pageheading {
+    font-size: 18px;
+}
+@media only screen and (max-width: 378px){
+.pageheading {
+    font-size: 13px;
+    line-height: 1.5;
+}
+}
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 0px;
+  
+ }
+@media only screen and (max-width: 320px) {
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 15%;
+  
+ }
+ }
+</style>
+ 
+<script type="text/javascript">
+
+$("input").on("keypress", function(e) {
+    if (e.which === 32 && !this.value.length)
+        e.preventDefault();
+});
+
+
+	if (localStorage.getItem("userLpiStatus") == "1") {
+		//console.clear(); 
+		$("input").prop("disabled", false);
+	} else {
+		 //console.clear(); 
+		$("input").prop("disabled", true);
+		$('label').css('opacity', '0.5');
+		$("select").prop("disabled", true);
+		$("checkbox").prop("disabled", true);
+		$("radio").prop("disabled", true);
+		$("button").prop("disabled", true);
+	}
+</script>
+

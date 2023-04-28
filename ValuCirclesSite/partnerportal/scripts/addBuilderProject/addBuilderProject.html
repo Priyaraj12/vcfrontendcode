@@ -1,0 +1,162 @@
+
+<style type="text/css">
+	.btn-sm{
+		margin-right: 10px;
+	}
+	.optColor option{
+		color:black;
+	}
+input[type=text] {
+    text-transform: capitalize;
+}	
+.openSelect {
+    position: absolute;
+    width: 92%;
+    z-index: 1;
+}
+ body{
+    background-image: linear-gradient(70deg,rgba(11, 33, 53, 0.89) 0,rgba(20, 56, 89, 0.82) 90%),url(assets/images/common/form_image.jpg) !important;
+    background-size:cover;
+	position: relative;
+}
+</style>
+<div class="row wrapper border-bottom white-bg page-heading " ng-controller="addBuilderProjectController">
+	<div class="panel panel-default col-md-10 col-md-offset-1">
+		<div class="panel-heading">Add Project 
+			<p style="display: inline;margin-left: 18%;color:white;" ng-if="error"> 
+			 	<strong>Info!</strong> <i class="em em-confused"></i> {{error_message}}<i class="em em-confused"></i>
+			</p>
+			<p style="display: inline;margin-left: 15%;color: white;" ng-if="sucess"> 
+				<i class="em em-blush f-24"></i> Your changes have been succesfully recorded. <i class="em em-blush f-24 "></i>
+			</p> 
+			<p style="display: inline;margin-left: 15%;color: white;" ng-if="checkemptydata.length > 0"> 
+				<i class="em em-disappointed"></i> Mandatory field(s) need to be filled in (Highlighted)..<i class="em em-disappointed"></i>
+			</p>
+			<a class="savebtn">
+				<button type="button" class="btn btn-primary btn-sm " id="btnSaveProject" ng-click="saveProject(addProject,specDatas)">
+					<i class="fa fa-save"></i>
+				</button>
+			</a>
+			<a class="savebtn" ng-href="#/index/builderInfo">
+				<button type="button" class="btn btn-primary btn-sm " id="btnbackProject" >
+					<i class="fa fa-arrow-left"></i>
+				</button>
+			</a>
+		</div>
+		<i class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 m-t-b-2" aria-hidden="true" ng-if="loader"></i>
+		<div class="panel-body" ng-if="!loader">
+			<div class="row">
+				<div class="col col-md-4 col-xs-12" hidden="true">
+					<div class="field">
+						<label class="main">Project Name</label> 
+						<input id="hiddenBuilderProjectId"  type="text" class="form-control boxbottomspace"  ng-model="addProject.builderProjectId" required>
+						<span class="error"></span>
+					</div>
+				</div>
+				<div class="col col-md-4 col-xs-12">
+					<div class="field">
+						<label class="main">Project Name</label>
+						<span class="mandoryclr"> *</span> 
+						<input id="projectName" type="text" class="boxbottomspace form-control" ng-model="addProject.projectName" required> 
+						<span class="error"></span>
+					</div>
+				</div>
+				<div class="col col-md-4 col-xs-12">
+					<div class="field">
+						<label class="main">Project Zip</label>
+						<span class="mandoryclr"> *</span>
+						<input id="projectZip" type="text" class="boxbottomspace floatnumber form-control"  ng-model="addProject.projectZip" required onkeypress="return event.charCode >= 48 && event.charCode <= 57" ng-change="zipChange(addProject.projectZip);">
+						<span class="error"></span>
+					</div>
+				</div> 
+				<div class="col col-md-4 col-xs-12" >
+					<div class="field">
+						<label for="ss">City</label>
+						<span class="mandoryclr"> *</span> 
+						<select	class="form-control boxbottomspace openSelect" id="City"  ng-model="addProject.zipId" ng-options="city.zipId as city.city for city in citys" ng-change="cityChange(addProject.zipId);"></select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col col-md-3 col-xs-12">
+					<div class="field">
+					<label class="main">Number of Floors</label>
+					<span class="mandoryclr"> *</span> 
+					<input id="numberOfFloors" type="text" class="boxbottomspace floatnumber form-control" ng-model="addProject.numberOfFloors" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+					<span class="error"></span>
+					</div>
+				</div>
+				<div class="col-md-3 col-xs-12">
+					<div class="field">
+						<label class="main">Number Of Units</label>
+						<span class="mandoryclr"> *</span>
+						<input type="text"  id="numberOfUnits" class="boxbottomspace floatnumber form-control" ng-model="addProject.numberOfUnits" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+					</div>
+				</div>
+				<div class="col col-md-3 col-xs-12">
+					<div class="field">
+						<label class="main">Number of Blocks</label>
+						<span class="mandoryclr"> *</span>
+						<input id="numberOfBlocks" 
+						type="text" class="boxbottomspace floatnumber form-control" ng-model="addProject.numberOfBlocks" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+						<span class="error"></span>
+					</div>
+				</div>
+				<div class="col col-md-3 col-xs-12">
+					<div class="field">
+						<label for="ss">RERA Compliance</label>
+						<span class="mandoryclr"> *</span> 
+						<select class="boxbottomspace form-control optColor" id="reRaCompliance" ng-model="addProject.reRaCompliance" ng-options= "reRaCompliance.name as reRaCompliance.name for reRaCompliance in reRaCompliances" required>
+						</select>
+					</div>
+				</div>	
+			</div>
+			<div class="row">
+				<div class="panel panel-default">
+					<div class="panel-heading height-40">
+						<span class="col-md-10">Project Specification</span>
+						<span class="col-md-2" style="margin-top:-10px;">
+							<button class="addIncome btn btn-primary pull-right hidincomes plusbtn" ng-click="addSpec();">
+								<i class="fa fa-plus-circle"></i>
+							</button>
+						</span>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-3 white font-12">Type <span class="mandoryclr"> *</span></div>
+							<div class="col-md-3 white font-12">Min Price <span class="mandoryclr"> *</span></div>
+							<div class="col-md-3 white font-12">Max Price <span class="mandoryclr"> *</span></div>
+							<div class="col-md-2 white font-12">Avalability <span class="mandoryclr"> *</span></div>
+						</div>
+						<div class="row">
+							<div ng-repeat="projectSpec in specDatas"> 
+								<!-- <div class="col-md-3 white loan-information" hidden="true">
+									<input ng-model="projectSpec.builderProjectSpecId" class="form-control">
+								</div> -->
+								<div class="col-md-3 white loan-information"> 
+									<select class="form-control"  ng-model="projectSpec.specId" ng-options="spec.assetSpecId as spec.assetSpecification for spec in specType">
+									</select>
+								</div> 
+								<div class="col-md-3 white loan-information">
+									<input ng-model="projectSpec.minPrice" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" ng-keyup="projectSpec.minPrice=numericOnly($event,projectSpec.minPrice)" id="minPrice">
+								</div>
+								<div class="col-md-3 white loan-information">
+									<input ng-model="projectSpec.maxPrice" class="addminprice form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" numericOnly ng-keyup="projectSpec.maxPrice=numericOnly($event,projectSpec.maxPrice)" id="maxPrice">
+								</div>
+								<div class="col-md-2 white loan-information">
+									<select class="addmaxprice form-control" ng-model="projectSpec.availability" ng-options="availability.value as availability.name for availability in availabilitys">
+									</select>
+								</div>
+								<div class="col-md-1 white">
+									<button class="addIncome btn btn-danger  hidincomes plusbtn" ng-click="removeLoan(projectSpec)">
+										<i class="fa fa-minus-circle"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div>
+</div>

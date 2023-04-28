@@ -1,0 +1,240 @@
+<!-- <link rel="stylesheet" type="text/css" href="jquery.countdownTimer.css" /> -->
+<div class="img">
+	<div class="logo" ng-click="home()">
+		<image src="assets/images/common/logo2.png"
+			style="margin: 10px;width: 50%;" />
+	</div>
+	<div class="login-body" ng-if="loginbody">
+		<div class="row">
+			<!-- <div class="col-md-6">
+				<img src="assets/images/login.jpg" class="img-responsive" style="height:400px">
+			</div>-->
+			<form>
+			<div class="col-md-6">
+				<div class="panel panel-default" style="height: 400px;">
+					<div class="panel-heading" align="center" style="color: #337ab7; font-size: 17px;">LOGIN</div>
+					<div class="panel-body" style="height: auto;">
+						<div class="error" ng-if="errorlogin" align="center"
+							style="margin-bottom: 24px;">{{errorlogin}}</div>
+							<!-- 04/07/2019: Geetha -Displaying email verification message -->
+								<div class="success" ng-if="successemail" align="center"
+							style="margin-bottom: 24px;">{{successemail}}</div>
+							<!-- end -->
+						<div class="form-group has-feedback">
+							<input type="text" maxlength="50" class="form-control" placeholder=""  autocomplete="new-mail"
+								ng-model="emailId" id="logmail" required oninput="this.value = this.value.replace(/\s/g, '');"> <span
+								class="glyphicon glyphicon-envelope form-control-feedback"></span>
+							<label class="form-control-placeholder" for="logmail">Email</label>
+						</div>
+						<div class="form-group has-feedback">
+							<input type="password" maxlength="50" class="form-control" placeholder="" autocomplete="new-password"
+								id="logpass" ng-model="password" required oninput="this.value = this.value.replace(/\s/g, '');"> <span
+								class="glyphicon glyphicon-lock form-control-feedback"></span> <label
+								class="form-control-placeholder" for="logpass">Password</label>
+						</div>
+						<div class="row" align="center">
+							<!--<div class="col-sm-4 col-xs-6">
+								<a href="#/Register"
+									class="colorwhite btn btn-primary  pull-left btn-block">
+									Sign Up </a>
+							</div>-->
+							<div class="col-xs-4">
+							</div>
+							<div class="col-sm-4 col-xs-4">
+								<button type="submit"
+									class="btn btn-primary btn-block btn-flat"
+									ng-click="submit(emailId,password);" id="btnLogIn">
+									<span ng-if="click"><i
+										class="fa fa-spinner fa-spin white " aria-hidden="true"></i></span><span
+										ng-if="!click">Log In</span>
+								</button>
+								<p class=" m-t-5" style="font-size: 11px; cursor: pointer;text-align: center;"
+									ng-click="openforgot();">Forgot password?</p>
+							</div>
+						</div>
+						<div class="row" align="center">
+							<div class="col-xs-2"><BR>
+							</div>
+							<div class="col-sm-8 col-xs-8" align="center">
+							<body style="padding-top: 1px;" align="center"> Don't have an account? <a href="#/Register"><u>Sign Up here</u></a>
+							</body>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+			</form>
+			<div class="col-md-6">
+				<img src="assets/images/login.jpg" class="img-responsive" style="height:400px">
+			</div>
+		</div>
+		<br> <br>
+		<div class="row">
+			<div class="panel-body"
+				style="text-align: justify; font-size: 1rem; line-height: 1.5rem;">
+				<b>Disclaimer:</b> Valucircles Data Solutions Pvt strives to keep
+				its information accurate and up to date. This information may be
+				different than what you see when you visit a financial institution,
+				service provider or specific product's site. All financial
+				products, shopping products and services are presented without
+				warranty. When evaluating offers, please review the financial
+				institution’s Terms and Conditions. Pre-qualified offers are not
+				binding. If you find discrepancies with your credit score or
+				information from your credit report, please contact CRIF High Mark
+				directly.
+			</div>
+		</div>
+		<div class="browsersupport">
+			Supported browsers - <img src="assets/images/Chrome.png">
+			Google chrome, <img src="assets/images/firefox.png">Mozilla
+			Firefox.
+		</div>
+	</div>
+	<!-- 03/07/2019 Geetha <div class="login-body" ng-if="!loginbody && !loginotp">
+		 change ng-if name to forgotbody
+	 -->	
+	<div class="login-body"  ng-if="forgotbody">
+		
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading" align="center">Kindly Enter your Registered E-mail Id</div>
+					<div class="panel-body">
+						<div class="sucess " ng-if="forgotSucessStatus" align="center">
+							{{forgotSucessMessage}}</div>
+						<div class="error " ng-if="forgotErrorStatus" align="center">
+							{{forgotErrorMessage}}</div>
+						<form style="margin-top: 10px;">
+							<div class="form-group has-feedback" style="margin-top: 7%;">
+							<input type="text" maxlength="50" class="form-control" placeholder=""
+								ng-model="forgotEmailId" id="fmail" required oninput="this.value = this.value.replace(/\s/g, '');"> <span
+								class="glyphicon glyphicon-envelope form-control-feedback"></span>
+							<label class="form-control-placeholder" for="fmail" >Email</label>
+						</div>
+							<br>
+							<div style="text-align: center;">
+								<span type="submit" class="btn btn-primary"
+									ng-click="closesubmitforgotpwd();">Cancel</span>&nbsp;&nbsp;&nbsp; 
+									<span type="submit" class="btn btn-primary"
+									ng-click="submitforgotpwd(forgotEmailId);">Submit</span>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div ng-if="loginotp" data-ng-init="init()" style="margin-top: 6%;">
+		<div class="">
+			<div class="col-md-3 col-sm-3 col-xs-3"></div>
+			<div class="col-md-6 ">
+				<div class="panel panel-default" >
+					<div class="panel-heading" align="center" style="color: #337ab7; font-size: 17px;">
+						<h4 ng-if="localUser">Please enter OTP sent to your mobile </h4>
+						<h4 ng-if="NriUser">Please enter OTP sent to your email </h4>
+					</div>
+
+					<div class="panel-body">
+					<i class="fa fa-spinner fa-spin fa-5x  col-md-offset-5 col-xs-offset-5 m-t-b-2"
+			aria-hidden="true" ng-if="loader"></i>
+						<div class="form-horizontal">
+							<div class="form-group has-feedback" style="margin-bottom: 2rem;">
+								<label class="control-label col-sm-3" for="email"></label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="otppp" maxlength="5"
+										placeholder="Enter OTP" ng-model="otpvalue" required >
+									<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+								</div>
+							</div>
+							<div class="form-group has-feedback" style="margin-bottom: 2rem;">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"
+									id="mssge"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12 text-center">
+								<button type="button" class="btn btn-primary" id="timerstop"
+									value="submit" ng-click="otpSubmit(otpvalue,mobile)">Submit</button>
+								<button class="btn btn-primary" id="rsndotp" ng-click="resendMailOtpSubmit()">Resend OTP</button>
+							</div>
+							<div style="text-align: center;">
+								Resend OTP after <span id="timer"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div></div>
+			</div>
+			<div class="col-md-3 col-sm-3 col-xs-3"></div>
+		</div>
+	</div>
+</div>
+<section class="footer text-center">
+	<div class="container">
+		<div class="row" style="margin-top: 1%;">
+			<div class="col-md-4 col-sm-6  col-xs-12">
+				<a style="color: #fff;">Copyright &copy; Valucircles 2018</a>
+			</div>
+			<div class="col-md-4 "></div>
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<ul class="terms">
+					<span><a href="../term.html" style="color: #fff;">Terms
+							& Conditions</a></span>
+					<span><a href="../privacy.html" style="color: #fff;">&nbsp;&nbsp;Privacy
+							Policy</a></span>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	$(document).keypress(function(event) {
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if (keycode == '13') {
+			$('#btnLogIn').click();
+		}
+	});
+</script>
+<script>
+$(document).keypress(function(event) {
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if (keycode == '13') {
+		$('#timerstop').click();
+	}
+});
+
+
+
+</script>
+<style type="text/css">
+body {
+	background-color: #f3f3f4;
+}
+
+.white {
+	color: #ffffff !important;
+}
+
+.sucess {
+	border: 2px solid green !important;
+}
+.terms{
+	margin-left:0%;
+}
+.browsersupport{
+ padding-bottom: 0%;
+ text-align: center;
+}
+@media only screen and (max-width: 500px) {
+.terms{
+	margin-left:-10%;
+}
+.browsersupport{
+ padding-bottom: 22%;
+ text-align: center;
+}
+}
+</style>

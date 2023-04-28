@@ -1,0 +1,92 @@
+ <!-- Wrapper -->
+<div id="wrapper" >
+    
+        <div class="app-header header-shadow">
+            <div class="app-header__logo">
+                <div class="logo-src" style="height:35px;width: 125px"></div>
+
+            </div>
+
+        </div>
+		 <div class="row" style="padding-top:100px;"> </div>
+								
+		<div class="row" ng-if="loginbody">
+			<div class="col-md-4"> </div>
+                         <div class="col-md-4">
+                         <div class="main-card mb-3 card">
+                         	<div class="card-body" ><h5 class="card-title" >Partner Log In</h5>
+       					 <p class="alert alert-danger fade show" role="alert" ng-if="errorlogin"> {{errorlogin}} </p>
+        				 <div class="form-group has-feedback">
+             <label for="emailId" class="" style=" padding-top:10px;">Email</label><input type="text" class="form-control"  placeholder="Email"
+                    ng-model="emailId"> 
+         </div>
+         <div class="form-group has-feedback">
+             <label for="Password" class="" style="padding-top:10px;">Password</label><input type="password" class="form-control" " placeholder="Password"
+                    ng-model="password"> 
+         </div>
+        
+
+             
+	<div class="" style="padding-top:10px;">
+                 <button type="submit" class="mt-1 btn btn-primary"
+                                 ng-click="submit(emailId,password);"  id="btnLogIn" ng-disabled="click" ><span ng-if="click"><i class="fa fa-spinner fa-spin fa-2x white " aria-hidden="true" ></i></span><span ng-if="!click" >Sign In</span></button>
+				<div class="float-right"><p class="btn-lg btn btn-link" ng-click="openforgot();">Recover Password</p></div>
+            
+     </div>    
+
+     </div>
+	 </div> </div></div>
+<!-- Forgot password -->
+
+		<div class="row" ng-if="forgotbody">
+			<div class="col-md-4"> </div>
+                         <div class="col-md-4">
+<div class="main-card mb-3 card"   align="center">
+	
+			
+					<div class="card-body" ><h5 class="card-title" >Password Recovery</h5>
+					<div class="card-body">Kindly enter your registered e-mail address</div>
+					<div class="panel-body">
+						
+						<form style="margin-top: 10px;">
+						
+						<div class="alert alert-success fade show" role="alert" ng-if="forgotSucessStatus" align="center">
+							{{forgotSucessMessage}}</div>
+						<div class="alert alert-danger fade show" role="alert" ng-if="forgotErrorStatus" align="center">
+							{{forgotErrorMessage}}</div>
+						<div class="form-group has-feedback">
+							<input type="email" class="form-control" placeholder="Email"
+								ng-model="forgotEmailId" id="fmail" required oninput="this.value = this.value.replace(/\s/g, '');"> 
+						</div>
+						
+						
+					
+						<div style="padding-top:10px;" ng-show="!loader && !forgotSucessStatus">
+								<button type="submit" class="btn btn-primary pull-left"
+									ng-click="submitforgotpwd(forgotEmailId);">Submit</button>
+								<button type="submit" class="btn btn-light pull-right "
+									ng-click="closesubmitforgotpwd();">Cancel</button>&nbsp;&nbsp;&nbsp; 
+									
+						</div>
+							
+							
+						<i class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 col-sm-offset-5 col-xs-offset-5 m-t-b-2" aria-hidden="true" ng-if="loader" ></i>
+						</form>
+				 
+						</div>
+					<div class="col-md-4"></div>
+		 
+					</div> 
+                                        </div>
+                                    </div>
+									
+                               
+
+<script>
+        $(document).keypress(function(event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+                $('#btnLogIn').click();
+            }
+        });
+    </script>

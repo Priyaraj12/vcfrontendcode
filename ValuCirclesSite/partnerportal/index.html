@@ -1,0 +1,100 @@
+<!doctype html>
+<html ng-app="vcircle">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Page title set in pageTitle directive -->
+<title page-title></title>
+
+<!-- Bootstrap 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  -->
+	<link rel="stylesheet" type="text/css" href="assets/DataTables/datatables.min.css">
+ 
+
+
+<!-- Font awesome -->
+<!-- <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Ionicons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+           <!-- Ionicons -->
+<!-- Main Inspinia CSS files -->
+<link href="assets/css/main.87c0748b313a1dda75f5.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Leckerli+One|Merienda|Titillium+Web|Comfortaa|Montserrat|Pacifico|Open Sans|Josefin Slab|Lato|Vollkorn|Hanuman|Roboto" rel="stylesheet" async="">
+<link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" type="text/css">
+
+
+</head>
+<!-- ControllerAs syntax -->
+<!-- Main controller with serveral data used in Inspinia theme on diferent view -->
+
+<body class="{{$state.current.data.specialClass}}"  ng-controller="MainController">
+<!-- Main view  -->
+<!-- <div ng-include="'scripts/common/content.html'"></div> -->
+<div ui-view style="height:100%"></div>
+
+
+<!-- jQuery and Bootstrap -->
+
+
+
+
+<!-- Main Angular scripts-->
+
+
+<!-- build:js scripts/app.js -->
+<!-- inject:js -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="assets/DataTables/datatables.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="scripts/common/index.js"></script>
+<script src="scripts/common/services.js"></script>
+<script src="scripts/common/controller.js"></script>
+<script src="scripts/login/index.js"></script>
+<script src="scripts/login/login-controller.js"></script>
+<script src="scripts/login/login-services.js"></script>
+<script src="scripts/builderInfo/index.js"></script>
+<script src="scripts/builderInfo/builderInfo-controller.js"></script>
+<script src="scripts/addBuilderProject/index.js"></script>
+<script src="scripts/addBuilderProject/addBuilderProject-controller.js"></script>
+<script src="scripts/changePassword/index.js"></script>
+<script src="scripts/changePassword/changePassword-controller.js"></script>
+<script src="scripts/subscription/index.js"></script>
+<script src="scripts/subscription/subscription-controller.js"></script>
+<script src="scripts/register/index.js"></script>
+<script src="scripts/register/register-controller.js"></script>
+<script src="scripts/landing/index.js"></script>
+<script src="scripts/landing/landing-controller.js"></script>
+<script src="scripts/reset/index.js"></script>
+<script src="scripts/reset/reset-controller.js"></script>
+<script src="scripts/partnerUserList/index.js"></script>
+<script src="scripts/loansWIP/index.js"></script>
+<script src="scripts/loansSanctioned/index.js"></script>
+<script type="text/javascript" src="scripts/loansSanctioned/loansSanctioned-controller.js"></script>
+<script type="text/javascript" src="scripts/loansWIP/loansWIP-controller.js"></script>
+<script type="text/javascript" src="scripts/partnerUserList/partnerUserList-controller.js"></script>
+<script src="scripts/userDetails/index.js"></script>
+<script type="text/javascript" src="scripts/userDetails/userDetails-controller.js"></script>
+
+<script type="text/javascript"   src="md5.js"></script>
+
+
+
+<script src="app.js"></script>
+
+
+<!-- endinject -->
+<!-- endbuild -->
+</body>
+</html>

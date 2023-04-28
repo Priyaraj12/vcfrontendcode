@@ -1,0 +1,474 @@
+<div class="wrapper wrapper-content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox" style="margin: 0;">
+				<div class="row" style="color: #1d7ec1; line-height: 2.5;">
+					<div class="col-md-2 col-sm-4 col-xs-4"
+						style="color: #1d7ec1; padding: 0px;">
+						<div align="left" ng-click="back()" class="cursor" id="linprev">
+							<i style="padding: 0 1%; font-size: 16px;"
+								class="fa fa-angle-double-left"></i>Requirements
+						</div>
+					</div>
+					<div class="col-md-8 col-xs-4">
+					<div align="center"  class="cursor pageheading"  style="color: #1d7ec1; font-weight: bold;">
+							Personal Information
+						</div></div>
+					<div class="col-md-2 col-sm-4 col-xs-4"
+						style="color: #1d7ec1; padding: 0px;" ng-init="linkfin()">
+						
+						<div id="linkchng" ng-init="checklink()" align="right"
+							ng-click="nextPages(userInfo)" class="cursor"></div>
+					</div>
+				</div>
+			</div>
+
+			<form role="form" name="Personalform">
+
+				<div class="ibox">
+					<div class="row" style=" background: white;">
+						<div class="ibox-title" style="border-bottom: 1px solid #e7e7e7;margin-bottom: 17px;">
+					<div class="row">
+					<div class="col-md-3 col-sm-3 col-xs-1"></div>
+					<div class="col-md-5 col-sm-5 col-xs-11">
+								<p style=" color: red;"
+									ng-if="dirty">
+								</p>
+								<p style="color: green;" class="smsg"
+									ng-if="success">
+									<i class="em em-thumbsup f-24"></i> {{success_message}} <i
+										class="em em-thumbsup f-24"></i>
+								</p>
+								<p style="color: red;" class="smsg"
+									ng-if="error">
+									<i class="em em-bulb f-24"></i> {{error_message}} <i
+										class="em em-bulb f-24"></i>
+								</p>
+							</div>
+							<div class="col-md-4 col-sm-4 "></div>
+					</div>
+						<div class="row" >
+					<div class="col-md-6 col-sm-6 col-xs-12" style="margin-bottom:5px">
+							<h5>
+								ValuCircles Advice
+							</h5>
+							</div>
+							
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="ibox-tools">
+								<button class="btn vcirclebtn pull-right nxtbtn" id="#session"
+									ng-click="savenext(userInfo,$event)" title="Next">
+									Save & Next</i>
+								</button>
+					<!--			<button class="btn vcirclebtn pull-right save"
+									ng-click="save(userInfo,$event)" title="Save"
+									>
+									Save</i>
+								</button>
+								<button class="btn vcirclebtn pull-right" ng-click="reset()"
+									title="Reset">
+									Reset</i>
+								</button>  -->
+							</div>
+							</div>
+							</div>
+						</div>
+						<span>
+						<img src="assets/images/bulb.png" height="21" width="21" style="margin-left: 13px;margin-top: -12px;">
+						</span>
+						
+						<p class="mrgbot3" style="margin-top: -27px; margin-bottom: 6px;">
+						<span class="paraDisp" style="line-height: 1.8;">
+							Any co-owner of the property MUST be a co-applicant on the loan.</span>
+						</p>
+						<p class="mrgbot1" >					
+							<span class="paraDisp" style="line-height: 2.5;">In case of sole ownership you may add a co-applicant if the co-applicant:</span></p>
+							
+							<p class="mrgbot0"> &emsp;-	Is an immediate family member</p>
+							<p class="mrgbot0"> &emsp;-	Has verifiable income which can be pooled with yours to boost eligibility</p>							
+							<p class="mrgbot31"> &emsp;-	Is a woman as she may be eligible for special interest rate</p>						
+						 
+						 <p class="mrgbot1">
+							<span class="paraDisp" style="line-height: 1.8;">In case of sole ownership It is not advisable to add co-applicant if the co-applicant:</span></p>
+								<p class="mrgbot0">&emsp;-	Is nearing or past retirement age</p>
+								<p class="mrgbot31">&emsp;-	Already has loan obligations to their maximum eligibility</p>
+						
+					</div>
+					<div class="row">
+						<div class="ibox-title">
+							<h5>Personal Information</h5>
+
+						</div>
+						<i class="fa fa-spinner fa-spin fa-5x  col-md-offset-5 col-sm-offset-5 col-xs-offset-5 m-t-b-2"
+							aria-hidden="true" ng-if="loader"></i>
+						<div ng-if="!loader">
+							<div class="ibox-content" style="padding-bottom: 0px">
+							
+								<div class="row no-margin">
+									<div class="col-md-3 form-group">
+
+										<input type="text" class="form-control inputtext disninput "
+											 maxlength="37" placeholder="" 
+											id="firstName" ng-model="userInfo.firstName"
+											ng-keypress="valispace(userInfo.firstName)" ng-pattern="/^([a-zA-Z'\s])+$/"
+											name="firstName" ng-required="req_fn" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123 ) || (event.charCode != 8 ) || (event.charCode != 9 ) "> 
+											<span
+											class="mandoryclr form-control-feedback"> </span> <label
+											for="firstName" class="form-control-placeholder">First
+											Name (As per ID proof)<span class="mandoryclr">*</span>
+										</label>
+										<div ng-if="Personalform.firstName.$invalid && Personalform.firstName.$dirty"
+											style="color: red" role="alert">Please enter only
+											alphabets</div>
+									</div>
+									<div class="col-md-3 form-group">
+										<input type="text" class="form-control inputtext disninput "
+											onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode != 8 ) || (event.charCode != 9 )"
+											ng-pattern="/^([a-zA-Z'\s])+$/" id="lastName" placeholder=""
+											maxlength="37" ng-model="userInfo.lastName" name="lastName"
+											ng-required="req_ls" /> <span
+											class="mandoryclr form-control-feedback"> </span> <label
+											for="lastName" class="form-control-placeholder">Last
+											Name (As per ID proof) <span class="mandoryclr">*</span>
+										</label>
+										<div ng-if="Personalform.lastName.$invalid && Personalform.lastName.$dirty"
+											style="color: red" role="alert">Please enter only alphabets</div>
+									</div>
+									<div class="col-md-3 form-group">
+										<input type="text" id="DateofBirth"
+											ng-model="userInfo.dateofBirth"
+											ng-blur="userInfo.age=calculateAge(userInfo.dateofBirth);
+                								userInfo.refAgeId=calculateAge(userInfo.dateofBirth); removeDOBError()"
+											class="getdateformat form-control inputtext disninput " vdatepicker
+											ng-pattern="/^((0[13578]|1[02])[\/.]31[\/.](18|19|20)[0-9]{2})|((01|0[3-9]|1[1-2])[\/.](29|30)[\/.](18|19|20)[0-9]{2})|((0[1-9]|1[0-2])[\/.](0[1-9]|1[0-9]|2[0-8])[\/.](18|19|20)[0-9]{2})|((02)[\/.]29[\/.](((18|19|20)(04|08|[2468][048]|[13579][26]))|2000))$/"
+											maxlength="10"
+											placeholder="" name="dob" required> <span
+											class="mandoryclr form-control-feedback"> </span> <label
+											for="DateofBirth" class="form-control-placeholder">DOB (MM/DD/YYYY)
+											<span class="mandoryclr">*</span>
+										</label>
+										<div ng-if="Personalform.dob.$invalid && Personalform.dob.$dirty"
+											style="color: red;" role="alert">Please enter DOB in MM/DD/YYYY</div>
+									</div>
+									<div class="col-md-3 form-group">
+										<input class="form-control getagecolor inputtext disninput" name="age"
+											id="Age" ng-model="userInfo.age"  required disabled> <span
+											id="agebelow" class="bordercoloralert form-control-feedback">
+										</span> <label for="Age" class="form-control-placeholder">Age
+											<span class="mandoryclr"> *</span>
+										</label>
+										<div id="ageAlert" ng-show="(userInfo.age < 21 || userInfo.age > 64) && userInfo.dateofBirth.length"
+											style="color: red;" role="alert">Age limit between 21 to 64</div>
+									</div>
+								</div>
+								<div class="row no-margin">
+								<div class="col-md-3 form-group floating-label">
+										<select class="form-control floating-select disninput "
+											onclick="this.setAttribute('value', this.value);" value=""
+											id="Gender" ng-model="userInfo.genderId"
+											ng-options=" gender.genderId as gender.gender for gender in getPersonalDetailsDropdown.gender"
+											required name="gender"><option selected="selected"
+												hidden></option></select> <label for="Gender" style="top: -18px;" class="labelmarg">Gender
+											<span class="mandoryclr">*</span>
+										</label>
+										<div ng-if="Personalform.Gender.$invalid && Personalform.Gender.$dirty"
+											style="color: red" role="alert">Please Select Your Gender</div>
+									</div>
+									<div class="col-md-3 form-group floating-label">
+										<select class="form-control floating-select disninput " id="Marital"
+											onclick="this.setAttribute('value', this.value);" value=""
+											ng-model="userInfo.maritalStatusId" 
+											ng-options="marital.maritalStatusId as marital.maritalStatus for marital in getPersonalDetailsDropdown.maritals"
+											required name="marital"><option hidden
+												selected="selected"></option></select> 
+												<label for="Marital"
+											class="labelmarg" style="top: -18px;">Marital Status <span
+											class="mandoryclr">*</span></label>
+									</div>
+									<div class="col-md-3 form-group floating-label">
+										<select
+											class="form-control floating-select getProfessionalQualification disninput "
+											onclick="this.setAttribute('value', this.value);" value=""
+											placeholder=""
+											ng-options="education.educationId as education.education for education in getPersonalDetailsDropdown.educations"
+											ng-model="userInfo.educationId" id="Education"><option
+												hidden selected="selected"></option></select>
+										<label for="Education" class="labelmarg" style="top: -18px;">Professional
+											Qualification <span class="mandoryclr">*</span>
+										</label>
+									</div>
+								</div>	
+								<div class="row no-margin">
+									<div class="col-md-3 form-group floating-label">
+										<select class="form-control floating-select "
+											onclick="this.setAttribute('value', this.value);" value=""
+											ng-model="userInfo.address3"
+											ng-options="residentStatus.name as residentStatus.name for residentStatus in residentStatuses"
+											id="residentStatus"></select> <label for="residentStatus"
+											style="top: -18px;" class="labelmarg">Resident Status <span
+											class="mandoryclr"> *</span></label>
+									</div>
+									<div class="col-md-3 form-group floating-label">
+										<select class="form-control floating-select "
+											onclick="this.setAttribute('value', this.value);" value=""
+											ng-model="userInfo.country"
+											ng-options="country.name as country.name for country in countries"
+											id="countryResidence"></select> <label for="countryResidence"
+											style="top: -18px;" class="labelmarg">Country of Residence<span
+											class="mandoryclr"> *</span></label>
+									</div>
+								</div>
+							</div>
+							<h5 class="ibox-title" style="margin-top: 0px;"> Current Address Information (Indian Address) </h5>
+							<div class="ibox-content">
+								<div class="row no-margin">
+
+						<!--			<div class="col-md-3 form-group">
+										<input type="text" class="form-control inputtext disninput "
+											id="Address1" placeholder="" maxlength="45"
+											ng-model="userInfo.address1"> <span
+											class="form-control-feedback"> </span> <label for="Address1"
+											class="form-control-placeholder">Address 1
+											(Door#/Building) <span class="mandoryclr"></span>
+										</label>
+									</div>
+									<div class="col-md-3 form-group">
+										<input type="text" class="form-control inputtext disninput "
+											id="Address2" placeholder="" maxlength="45"
+											ng-model="userInfo.address2"> <span
+											class="form-control-feedback"> </span> <label for="Address2"
+											class="form-control-placeholder">Address 2</label>
+									</div>
+								</div>
+								<div class="row no-margin"> -->
+									<div class="col-md-3 form-group">
+										<input type="text" class="form-control inputtext disninput "
+											id="postalZip" placeholder="" maxlength="6"
+											ng-model="userInfo.postalZip"
+											ng-change="changePostZip(userInfo.postalZip)"
+											onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+											name="zip" ng-required="req_zip"/> <span
+											class="form-control-feedback"> </span> <label for="postalZip"
+											class="form-control-placeholder">PinCode <span
+											class="mandoryclr"> *</span>
+										</label>
+										<div  id="pincodeAlert" style="color: red; display:none" role="alert">Please enter 6 digit PinCode</div>
+										<div  id="pincodeAlert1" style="color: red; display:none" role="alert"></div>
+									</div>
+									<div class="col-md-3 form-group floating-label">										
+										<select class="form-control floating-select disninput"
+											onclick="this.setAttribute('value', this.value);" value=""
+											id="City" ng-model="userInfo.city"
+											ng-options="city.city as city.city for city in citys"
+											ng-change="zipset(userInfo.city)" ng-required="req_city">
+												</select> 											
+												<label for="City"
+											class="labelmarg" style="top: -18px;">Location/Area Name<span
+											class="mandoryclr"> *</span></label>
+									</div>
+									<div class="col-md-3 form-group">
+										<input type="text" class="form-control disninput" id="State"
+											ng-model="userInfo.state" disabled required> <span
+											class="form-control-feedback"> </span> <label for="State"
+											class="form-control-placeholder">State</label>
+									</div>
+								</div>
+								<div class="row no-margin">
+
+									<div class="col-md-3 form-group floating-label">
+											<select class="form-control floating-select disninput "
+											onclick="this.setAttribute('value', this.value);" value=""
+											id="Residence"
+											ng-options="Residence.refResidenceCategoryId as Residence.residenceCategory for Residence in getPersonalDetailsDropdown.Residences"
+											ng-model="userInfo.refResidenceCategoryId" required
+											name="residence">
+											</select>
+											<label for="Residence" class="labelmarg" style="top: -18px;">Type of Residence<i class="fa fa-info-circle" title="If your accommodation type is not listed please select &quot;Others&quot;."></i> <span class="mandoryclr"> *</span>
+											</label>
+									</div>
+									<div class=" col-md-3 form-group" id="compareaddrId">
+										<label for="compareaddrId" class="appliradio">Is this
+											also your permanent residence?<span class="mandoryclr">
+												*</span>
+										</label>
+										<div>
+											<label class="radio-inline"> <input type="radio"
+												name="optradio1" id="compareaddrId"
+												ng-model="userInfo.compareaddrId" ng-value="1" >Yes
+											</label> 
+											<label class="radio-inline"> <input type="radio"
+												name="optradio1" id="compareaddrId"
+												ng-model="userInfo.compareaddrId" ng-value="0" >No
+											</label>
+										</div>
+									</div>
+								</div>
+								</div>
+								<h5 class="ibox-title" style="margin-top: 0px;">Co-Applicant/Guarantor </h5>
+								<div class="ibox-content">
+								<div class="row no-margin">
+									<div class="col-md-3 form-group" id="CoApplicant">
+										<label class="appliradio">Do you have a Co-Applicant?
+											<span class="mandoryclr"> *</span>
+										</label>
+										<div><!--  ng-change="coAppli()" -->
+											<label class="radio-inline"> <input type="radio"
+												name="optradio" ng-model="userInfo.coApplicantId"
+												 ng-value="1">Yes
+											</label> <label class="radio-inline"> <input type="radio"
+												name="optradio" id="CoApplicant"
+												ng-model="userInfo.coApplicantId" ng-value="0">No
+											</label>
+										</div>
+									</div>
+							<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12" style="padding-right: 0px">
+								<div class="ibox-tools">
+								<button class="btn vcirclebtn pull-right nxtbtn" id="#session"
+									ng-click="savenext(userInfo,$event)" title="Next">
+									Save & Next</i>
+								</button>
+					<!--			<button class="btn vcirclebtn pull-right save"
+									ng-click="save(userInfo,$event)" title="Save"
+									>
+									Save</i>
+								</button>
+								<button class="btn vcirclebtn pull-right" ng-click="reset()"
+									title="Reset">
+									Reset</i>
+								</button>   -->
+							</div>
+							</div>
+							</div>
+								</div>
+								
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	if (localStorage.getItem("userLpiStatus") == "1") {
+		//console.clear();
+		$("input").prop("disabled", false);
+		$("#Age,#State,#country").prop("disabled", true);
+	} else {
+		//console.clear();
+		$("#Age,#State,#country").prop("disabled", true);
+		$("input").prop("disabled", true);
+		$("select").prop("disabled", true);
+		$("checkbox").prop("disabled", true);
+		$("radio").prop("disabled", true);
+		$('label').css('opacity','0.5');
+	}
+	$(document).ready(function() {
+		$("#DateofBirth").val("");
+		$(".getdateformat").val('')
+	});
+</script>
+<style>
+input[type=checkbox], input[type=radio] {
+	vertical-align: middle;
+	position: relative;
+	bottom: 1px;
+}
+
+input[type=radio] {
+	bottom: 2px;
+}
+
+.labelmarg {
+	margin-left: 4.7%;
+}
+
+@media ( max-width : 991px) {
+	.labelmarg {
+		margin-left: 2% !important;
+	}
+}
+
+@media ( max-width : 728px) {
+	.labelmarg {
+		margin-left: 3% !important;
+	}
+}
+
+@media ( min-width :450px) and (max-width: 980px) {
+	.labelmarg {
+		margin-left: 2% !important;
+	}
+}
+
+.cursor {
+	cursor: pointer;
+}
+
+
+.mrgbot0{
+	margin-bottom: 0px;
+	margin-top: -4px;
+	font-size: 13px;
+	padding-left: 73px;
+	padding-right: 39px;
+	color: #5264AE;
+	line-height: 1.9;
+}
+.pageheading{
+   	font-size : 18px;
+   }
+@media only screen and (max-width: 378px) {
+   .pageheading{
+   	font-size : 13px;
+   	line-height: 1.5;
+   }
+}
+
+.mrgbot1{
+	margin-bottom: 0px;
+	margin-top: -4px;
+	font-size: 13px;
+	padding-left: 41px;
+	padding-right: 39px;
+	color: #5264AE; 
+}
+.mrgbot31{
+margin-top: -4px;
+padding-left:73px;
+	padding-right: 39px;
+	font-size: 13px;
+ color: #5264AE;
+  background-color: white;
+  line-height: 1.9;
+}
+.mrgbot3{
+margin-top: -4px;
+padding-left:41px;
+	padding-right: 39px;
+	font-size: 13px;
+ color: #5264AE;
+  background-color: white;
+}
+
+.paraDisp{
+	    margin: 0 14px;
+    display: list-item;
+}
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 0px;
+  
+ }
+@media only screen and (max-width: 320px) {
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 15%;
+  
+ }
+ }
+</style>

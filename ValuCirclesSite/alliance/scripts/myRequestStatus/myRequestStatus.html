@@ -1,0 +1,235 @@
+<div class="wrapper wrapper-content ng-scope">
+	<div class="row">
+
+		<div class="ibox" style="margin: 0; border-bottom: 4px solid #f89f26;">
+			<div class="row" style="color: #1d7ec1; line-height: 2.5;">
+				<div class="col-md-2 col-sm-6 col-xs-6" style="color: #1d7ec1;"
+					ng-init="linktext()">
+					<div align="left" ng-click="back()" class="cursor">
+					<a href="#/index/trackMyRequest">
+						<i style="padding: 0 1%; font-size: 16px;"
+							class="fa fa-angle-double-left"></i> Track My Request</i></a>
+					</div>
+				</div>
+				<div class="col-md-8 col-xs-12">
+				<div align="center"  class="cursor" style="font-size: 18px; color: #1d7ec1; font-weight: bold;">
+							My Requests Status
+						</div>				
+				</div>
+				<div class="col-md-2 col-sm-6 col-xs-6" style="color: #1d7ec1;">
+					<div align="right" ng-click="next()" class="cursor">&ensp;</div>
+				</div>
+			</div>
+		</div>
+		<div class="ibox">
+			<div class="ibox-content">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive tableres">
+						<table class="table table-bordered table-hover"
+							style="text-align: center; background: white">
+							<thead>
+								<tr>
+									<th class="cols" colspan="4" style="text-align: center;">Requests
+										Details</th>
+								</tr>
+								<tr>
+									<th style="text-align: center;">Lender</th>
+									<th style="text-align: center;">Amount</th>
+									<th style="text-align: center;">Tenure</th>
+									<th style="text-align: center;">Rate</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr >
+									<td>{{dataInfo.lenderName}}</td>
+									<td>{{dataInfo.eligilbleLoanAmount}}</td>
+									<td>{{dataInfo.term}}</td>
+									<td>{{dataInfo.rate}}</td>
+								</tr>
+							</tbody>
+						</table>
+				</div>
+			</div>
+			<div class="ibox-content">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive tableres">
+						<table class="table table-bordered table-hover"
+							style="text-align: center;">
+							<thead>
+								<tr>
+									<th class="cols" colspan="4" style="text-align: center;">Status</th>
+								</tr>
+								<tr>
+									<th style="text-align: center;">Date & Time</th>
+									<th style="text-align: center;">Status</th>
+									<th style="text-align: center;">Comments</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="lender in lenderss">
+									<td>{{lender.updatedOn}}</td>
+									<td>{{lender.lenderLpiStatus}}</td>
+									<td>{{lender.comments}}</td>
+								</tr>
+							</tbody>
+						</table>
+				</div>
+			</div>
+			<div class="ibox-content">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive tableres">
+						<table class="table table-bordered table-hover"
+							style="text-align: center;">
+							<thead>
+								<tr>
+									<th class="cols" colspan="4" style="text-align: center;">Sanction
+										Details</th>
+								</tr>
+								<tr>
+									<th style="text-align: center;">Date</th>
+									<th style="text-align: center;">Amount</th>
+									<th style="text-align: center;">Tenure</th>
+									<th style="text-align: center;">Rate</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="lender in lenders1">
+									<td>{{lender.sanctionDate}}</td>
+									<td>{{lender.sanctionAmount}}</td>
+									<td>{{lender.sanctionTenure}}</td>
+									<td>{{lender.sanctionRate}}</td>
+								</tr>
+							</tbody>
+						</table>
+				</div>
+			</div>
+			<div class="ibox-content">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive tableres">
+						<table class="table table-bordered table-hover "
+							style="text-align: center;">
+							<thead>
+								<tr>
+									<th class="cols" colspan="4" style="text-align: center;">Disbursement
+										Details</th>
+								</tr>
+								<tr>
+									<th style="text-align: center;">Date</th>
+									<th style="text-align: center;">Amount</th>
+									<th style="text-align: center;">Status</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="lender in lenders2">
+									<td>{{lender.disbursementDate}}</td>
+									<td>{{lender.disbursementAmount}}</td>
+									<td>{{lender.disbursementStatus}}</td>
+								</tr>
+							</tbody>
+						</table>
+				</div>
+			</div>
+			<i class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 col-sm-offset-5 col-xs-offset-5 m-t-b-2"
+				aria-hidden="true" ng-if="loader"></i>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+html, body {
+	height: 100%;
+}
+
+.top-img {
+	top: 10px;
+}
+
+.back-clr {
+	background: #fff;
+	border: 1px solid #8080803b;
+}
+
+.btn-top {
+	top: 1em;
+}
+
+body {
+	/*background-image: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url(assets/images/common/form_image.jpg) !important;*/
+	width: 100%;
+	background-size: cover;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control
+	{
+	background: #eee;
+	color: white;
+}
+button[disabled], html input[disabled] {
+	cursor: not-allowed;
+}
+.cursor {
+	cursor: pointer;
+}
+.mrgbot0 {
+	margin-bottom: 0px;
+	font-size: 13px;
+	padding-left: 45px;
+	padding-right: 39px;
+	color: #5264AE;
+	background-color: white;
+}
+
+.mrgbot1 {
+	margin-bottom: 0px;
+	font-size: 13px;
+	padding-left: 45px;
+	padding-right: 39px;
+	color: #5264AE;
+	background-color: white;
+}
+
+.mrgbot3 {
+	padding-left: 45px;
+	padding-right: 39px;
+	color: #5264AE;
+	font-size: 12px;
+	background-color: white;
+}
+
+.center {
+	text-align: center;
+}
+
+.bank-clr {
+	color: #3F51B5;
+}
+
+
+.ibox-content {
+line-height: 3rem;
+	background: inherit;
+	margin-bottom: 0;
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+
+.table{
+background: white;
+font-family: 'Roboto', sans-serif !important;
+}
+th{
+	background: white;
+}
+
+.cols{
+background-color: white; 
+color: black;
+}
+
+@media only screen and (max-width:768px){
+	.tableres {
+		padding:0px;
+	}
+	
+	
+	
+	}
+</style>
+
+

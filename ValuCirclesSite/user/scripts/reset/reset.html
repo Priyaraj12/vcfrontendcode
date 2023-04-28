@@ -1,0 +1,80 @@
+<div class="img">
+	<div class="logo" ng-click="home()">
+         <image src="assets/images/common/logo2.png" style="margin: 10px;width: 50%;"/>
+     </div>
+     <div class="login-body">
+     <form name="resetform" class="form-horizontal" >
+	     <div class="row">
+			<div class="col-md-8" style="margin-left: 20%;">
+				<div class="panel panel-default">
+					<div class="panel-heading" align="center" style="color: #337ab7; font-size: 17px;">Reset Password
+					
+						
+					</div>
+					<div class="panel-body" ng-if="!loader">
+						<div class="error " ng-if="error">{{error_message}}</div>
+						<div class="sucess " ng-if="sucess">{{sucess_message}}</div>
+						<i class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 m-t-b-2" aria-hidden="true" ng-if="loader"></i>
+						<div class="form-horizontal">				
+						<div class="form-group has-feedback">
+							<label class="control-label col-sm-4" for="newpwd">New Password:</label>
+							<div class="col-sm-5">          
+							<input type="password" class="form-control" id="newpwd" name="newpwd" placeholder="Enter  Password" ng-model="newpwd" required ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@_$!%*#?&])[A-Za-z\d$@_$!%*#?&]{8,}$/" 
+					oninput="this.value = this.value.replace(/\s/g, '');">
+							<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+							  <div ng-message="pattern" class="mandoryclr" ng-if="resetform.newpwd.$error.pattern">Password should be atleast 8 characters long
+                                    and should contain one number,one character and one special
+                                    character</div>
+							</div>
+						</div> 
+						<div class="form-group has-feedback">        
+							<label class="control-label col-sm-4" for="pwd">Confirm Password:</label>
+							<div class="col-sm-5">           
+							<input type="password" class="form-control" id="pwd" name = "pwd" placeholder="Enter Confirm Password" ng-model="cnfrmpwd" required ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@_$!%*#?&])[A-Za-z\d$@_$!%*#?&]{8,}$/" 
+					oninput="this.value = this.value.replace(/\s/g, '');">
+							<span class="glyphicon glyphicon-lock form-control-feedback"></span>						
+							<div ng-message="pattern" class="mandoryclr" ng-if="resetform.pwd.$error.pattern">Password should be atleast 8 characters long
+                                    and should contain one number,one character and one special
+                                    character</div>
+							</div>
+						</div>
+						<div class="form-group" >   
+							<div class="col-sm-12 text-center">
+			       			<button type="submit" class="btn btn-primary  Sign_btn" ng-click="home();">Cancel</button>
+							<button type="submit" class="btn btn-primary  Sign_btn" ng-click="reset(newpwd,cnfrmpwd)">Submit</button>
+							</div>
+							
+						</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+<!--  <style type="text/css">
+        .img{
+            background-image: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.4)),url(assets/images/common/loginpage3.jpg) !important;
+        }
+        .white{
+            color: #ffffff !important;
+        }
+        .image{
+            position: relative !important;
+        }
+    </style> -->
+    <style>
+    body {
+    background-color: #f3f3f4;
+
+}
+.sucess{
+       border: 2px solid green !important;
+       text-align: center;
+    }
+    .error{
+       border: 2px solid red !important;
+       text-align: center;
+    }
+</style>

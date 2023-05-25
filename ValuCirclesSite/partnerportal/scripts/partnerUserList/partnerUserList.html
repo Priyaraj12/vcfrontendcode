@@ -4,7 +4,7 @@
 						 <i class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 m-t-b-2" aria-hidden="true" ng-if="loader"></i>
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
-                                    <div class="card-header">Loan Probability Index for Prospects
+                                    <div class="card-header">Leads
                                         <div class="btn-actions-pane-right">
                                          <!--   <div role="group" class="btn-group-sm btn-group">
                                                 <button class="active btn btn-focus">Last Week</button>
@@ -23,18 +23,18 @@
 														  
 														 
 														  <th class="text-center" >Mobile No.</th>
-														  <th >Customer Name (Project)</th>
+														  <th >Customer Name </th>
 
-														  <!-- <th >Net Income</th> -->
-														  <!-- <th >Pending Loan</th> -->
-														  <!-- <th >Emi</th> -->
-														  <th  class="text-center">Property Cost</th>
-														  <th  class="text-center">Requested Loan Amount</th>
-														  <th  class="text-center">Est. Loan Eligbility</th>
-														  <th  class="text-center">Est. Loan Shortfall</th>
-														  <th  class="text-center">Own Contribution</th>
+														  <th >Property City</th> 
+														  <th >Loan Type</th> 
+														  <th >Product Type</th> 
+														  <!--<th  class="text-center">Property Cost</th>-->
+														  <th  class="text-center">Eligible Loan Amount</th>
+														  <!--<th  class="text-center">Lender Name</th>-->
+														  <th  class="text-center">Offer availability</th>
+														  <th  class="text-center">Offer acceptance</th>
 														 <th  class="text-center">LPi</i></th>
-														 <th  class="text-center">Details</th>
+														 <!-- <th  class="text-center">Details</th> -->
 														  
 														</tr>
 													  </thead>
@@ -48,7 +48,7 @@
                                                         <div class="widget-content-wrapper">
                                                                 <div class="widget-content-left flex2">
                                                                 <div class="widget-heading">{{x.userName}}</div>
-                                                                <div class="widget-subheading opacity-7">({{x.BuilderProject}})</div>
+                                                                <!--<div class="widget-subheading opacity-7">({{x.BuilderProject}})</div>-->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -60,15 +60,19 @@
 												 
 												  <!-- <td class="numberfontsize">{{ x.totalIncomes | number:0 }}</td> -->
 												  <!-- <td class="numberfontsize">{{ x.pendingLoan | number }}</td> -->
-												  <!-- <td class="numberfontsize">{{ x.emi | number:0 }}</td> -->
-												  <td class="numberfontsize text-center">{{x.AssetCost}} </td>
-												  <td class="numberfontsize text-center">{{x.reqLoanAmount}}</td>
+												  <!-- <td class="numberfontsize">{{ x.emi | number:0 }}</td> 
+												  <td class="numberfontsize text-center">{{x.AssetCost}} </td>-->
+												  <td class="numberfontsize text-center">{{x.assetCity}}</td>
+												  <td class="numberfontsize text-center">{{x.loanTypeDescription}}</td>
+												  <td class="numberfontsize text-center">{{x.productDescription}}</td>
 												  <td class="numberfontsize text-center">{{x.EligloanAmount}}</td>
-												  <td class="text-center">
+												  <td class="numberfontsize text-center">{{x.OfferAvailability}}</td>
+												  <td class="numberfontsize text-center">{{x.OfferAcceptance}}</td>
+												  <!--<td class="text-center">
 													<div class="numberfontsize" style="color:red" ng-show="x.LoanShortfall!=0">{{x.LoanShortfall}}</div>
 													<div class="numberfontsize " ng-show="x.LoanShortfall==0"> {{x.LoanShortfall}}</div>
 												  </td>
-												  <td class="numberfontsize text-center">{{x.OwnContribution}}</td>
+												  <td class="numberfontsize text-center">{{x.OwnContribution}}</td>-->
 												   <td class="text-center">
 													<div class="badge badge-warning" ng-show="x.lpi=='Fair'">{{x.lpi}}</div>
 													<div class="badge badge-success" ng-show="x.lpi=='Good'||x.lpi=='Excellent'">{{x.lpi}}</div>
@@ -76,7 +80,7 @@
 												  </td>
 												  
 												  
-												  <td class="text-center"><a type="button" class="btn btn-primary btn-sm" ng-href="#/index/userLpiDetails?userId={{x.userid}}&lenderLpi={{x.lpi | number:0}}">Details</a>
+												  <!--<td class="text-center"><a type="button" class="btn btn-primary btn-sm" ng-href="#/index/userLpiDetails?userId={{x.userid}}&lenderLpi={{x.lpi | number:0}}">Details</a>-->
                                                 </td>
 												</tr>
 											</tbody>

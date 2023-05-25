@@ -103,8 +103,9 @@ var Ps = Ps || {};
 										];
 								$scope.builderList =
 										[ 
-											{ name: 'Arun Excello', id: 510 }
+											{ name: 'Urban Company', id: 100 }
 										];
+                    //Keeping these builderProjects as of now, later it will be changed
 								$scope.builderprojectList =
 										[ 
 											{ name: 'Triveni', id: 846 },

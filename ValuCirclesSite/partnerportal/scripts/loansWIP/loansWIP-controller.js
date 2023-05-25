@@ -55,7 +55,8 @@ var Ps = Ps || {};
         for (var i = 0; i < $scope.data.length  ;  i++) {
           var EffectiveCreditSCore=$scope.data[i].UserEffectiveCreditSCore;
 		  var LpiDesc=$scope.data[i].lpi;
-		  
+		  /* We are not taking creditscore and hence these are not needed as of now. Later may be taken
+		  //Commented as of now it is not required -- Priyaraj 25-05-2023
 		  if (EffectiveCreditSCore == -99)
 		  {
 			      //alert("effective score -99 +" + EffectiveCreditSCore);
@@ -104,6 +105,7 @@ var Ps = Ps || {};
 				  $scope.data[i].UserEffectiveCreditSCore=EffectiveCreditSCore;
 				 
 		  }
+		  */
 			
 		  if (LpiDesc <= 20)
 		  {
@@ -136,10 +138,11 @@ var Ps = Ps || {};
 		  }
 		  
 		  $scope.data[i].EligloanAmount = $scope.data[i].EligloanAmount.toLocaleString('en-IN').replace(/\B(?=(\d{3})+(?!\d))/g,",");
-	    $scope.data[i].reqLoanAmount = $scope.data[i].reqLoanAmount.toLocaleString('en-IN').replace(/\B(?=(\d{3})+(?!\d))/g,",");
-	    $scope.data[i].LoanShortfall = $scope.data[i].LoanShortfall.toLocaleString('en-IN').replace(/\B(?=(\d{3})+(?!\d))/g,",");
+		  //Commented as of now it is not required -- Priyaraj 25-05-2023
+	    //$scope.data[i].reqLoanAmount = $scope.data[i].reqLoanAmount.toLocaleString('en-IN').replace(/\B(?=(\d{3})+(?!\d))/g,",");
+	    //$scope.data[i].LoanShortfall = $scope.data[i].LoanShortfall.toLocaleString('en-IN').replace(/\B(?=(\d{3})+(?!\d))/g,",");
 		$scope.data[i].AssetCost = $scope.data[i].AssetCost.toLocaleString('en-IN').replace(/\B(?=(\d{3})+(?!\d))/g,",");
-		$scope.data[i].OwnContribution = $scope.data[i].OwnContribution.toLocaleString('en-IN').replace(/\B(?=(\d{3})+(?!\d))/g,",");
+		//$scope.data[i].OwnContribution = $scope.data[i].OwnContribution.toLocaleString('en-IN').replace(/\B(?=(\d{3})+(?!\d))/g,",");
 	   	   
 	   
         }

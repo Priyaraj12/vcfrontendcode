@@ -1,0 +1,509 @@
+<div class="wrapper wrapper-content">
+	<div class="row">
+
+		<div class="col-lg-12" style="padding: 0px">
+			<div class="ibox" style="margin: 0;">
+				<div class="row" style="color: #1d7ec1; line-height: 2.5;">
+					<div class="col-md-2 col-sm-4 col-xs-4"
+						style="color: #1d7ec1; padding: 0px">
+						<div align="left" ng-click="back(coApplicant)" class="cursor"
+							style="padding-left: 12px;">
+							<i style="padding: 0 1%; font-size: 16px;"
+								class="fa fa-angle-double-left"></i>Personal Info
+						</div>
+					</div>
+					<div class="col-md-8 col-xs-4">
+						<div align="center" class="cursor pageheading"
+							style="color: #1d7ec1; font-weight: bold;">
+							Co-Applicant Personal Information</div>
+					</div>
+					<div class="col-md-2 col-sm-4 col-xs-4"
+						style="color: #1d7ec1; padding: 0px">
+						<div align="right" ng-click="nextPage(coApplicant)" class="cursor coAPPNav"
+							style="padding-right: 12px;">
+							Financial Info<i style="padding: 0 1%; font-size: 16px;"
+								class="fa fa-angle-double-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="ibox" style="margin-bottom: 0px">
+				<div class="" style=" background: white;">
+					<div class="ibox-title" style="border-bottom: 1px solid #e7e7e7;margin-bottom: 17px;">
+					<div class="row">
+					<div class="col-md-4 col-sm-3 col-xs-1"></div>
+					<div class="col-md-4 col-sm-5 col-xs-11">
+								<p style="display: flex;text-align:center; margin-left: 0%; color: red;"
+									ng-if="omitdata.length > 0">
+									<i class="em em-bulb f-24"></i> Highlighted Field values have
+									been modified
+								</p>
+								<p style="color: green;" class="smsg"
+									ng-if="sucess">
+									<strong></strong> <i class="em em-thumbsup f-24"></i>{{success_message}}
+									<i class="em em-thumbsup f-24"></i>
+								</p>
+								<p style="color: red;" class="smsg"
+									ng-if="error">
+									<i class="em em-bulb f-24"></i> {{error_message}}
+								</p>
+							</div>
+							<div class="col-md-4 col-sm-4 "></div>
+					</div>
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12" style="margin-bottom:5px">
+								<h5>
+									ValuCircles Advice
+								</h5>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+
+
+								<div class="ibox-tools">
+									<button class="btn vcirclebtn pull-right"
+										ng-click="next(coApplicant)" title="Next">Save & Next</button>
+							<!--		<button class="btn vcirclebtn pull-right"
+										ng-click="save(coApplicants)" title="Save">Save</button>
+									<button class="btn vcirclebtn pull-right reset" ng-click="reset($event)"
+										title="Reset">Reset</button>   -->
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<span>
+					<img src="assets/images/bulb.png" height="21" width="21" style="  margin-left: 9px;margin-top: -12px;">
+					</span>
+					
+					<p class="mrgbot3" style="margin-top: -27px;">
+						
+					<span class="paraDisp" style="line-height: 1.8;">Lenders will perform verification of co-applicant information. All co-applicant details must be as per proofs available</span>
+
+
+						</p>
+											
+						<p class="mrgbot31" >
+						<span class="paraDisp" style="line-height: 1.8;">Different lenders may have different norms for co-applicant types. Ensure these are discussed with the lender before proceeding with application.</span>
+						 </p>
+
+				</div>
+				<div>
+					<form name="coApplicantform" novalidate>
+						<div class="ibox-title">
+							<h5 class="v-inline">Co-Applicant Information</h5>
+							<!-- <div class="col-md-6 col-xs-12">
+								<p style="display: inline; margin-left: 0%; color: red;"
+									ng-if="omitdata.length > 0">
+									<i class="em em-bulb f-24"></i> Highlighted Field values have
+									been modified
+								</p>
+								<p style="display: inline; margin-left: 0%; color: green;"
+									ng-if="sucess">
+									<strong></strong> <i class="em em-thumbsup f-24"></i>{{success_message}}
+									<i class="em em-thumbsup f-24"></i>
+								</p>
+								<p style="display: inline; margin-left: 0%; color: red;"
+									ng-if="error">
+									<i class="em em-bulb f-24"></i> {{error_message}}
+								</p>
+							</div> -->
+
+						</div>
+						<i class="fa fa-spinner fa-spin fa-5x  col-md-offset-5 col-sm-offset-5 col-xs-offset-5 m-t-b-2"
+							aria-hidden="true" ng-if="loader"></i>
+							<div ng-if="!loader">
+						<div class="ibox-content">
+							
+							<div class="panel-body">
+								<div ng-repeat="coApplicant in coApplicants">
+									<div class="row">
+
+										<div class="col-md-3 form-group hideCollege floating-label">
+											<!--  ng-if="person_maritalStatus != 1" -->
+											<select class="form-control getCollege floating-select disselect"
+												onclick="this.setAttribute('value', this.value);" value=""
+												id="Relationship" ng-model="coApplicant.relationshipId"
+												ng-options="family.relationshipID as family.relationship for family in family"
+												required ng-change="relationApplicant(coApplicant.relationshipId)">
+												<option hidden selected="selected"></option></select>
+											<label for="Relationship" class="labelmarg">Co-applicant Relationship with Applicant</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 form-group">
+											<input type="text" class="form-control inputtext disninput"
+												ng-pattern="/^([a-zA-Z'\s])+$/" name="FN{{$index}}"
+												placeholder="" id="FirstName" maxlength="37"
+												ng-model="coApplicant.firstName" required
+												onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)|| (event.charCode != 8 ) || (event.charCode != 9 )">
+											<span class="form-control-feedback"> </span> <label
+												for="FirstName" class="form-control-placeholder">First
+												Name (As per ID proof)<span class="mandoryclr">*</span>
+											</label>
+
+											<div ng-if="coApplicant.firstName == null" style="color: red"
+												role="alert">Please enter only alphabets</div>
+
+										</div>
+										<div class="col-md-3 form-group">
+											<input type="text" class="form-control inputtext disninput"
+												ng-pattern="/^([a-zA-Z'\s])+$/" id="LastName" placeholder=""
+												maxlength="37" ng-model="coApplicant.lastName"
+												name="LN{{$index}}" required
+												ng-class="{error : applicants{{$index}}.LastName.$error.required}"
+												onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode != 8 ) || (event.charCode != 9 )">
+											<span class="form-control-feedback"> </span> <label
+												for="LastName" class="form-control-placeholder">Last
+												Name (As per ID proof)<span class="mandoryclr">*</span>
+											</label>
+											<div
+												ng-if="coApplicantform['LN'+$index].$invalid && coApplicantform['LN'+$index].$dirty"
+												style="color: red" role="alert">Please enter only
+												alphabets</div>
+										</div>
+
+										<div class="col-md-3 form-group">
+											<input type="text" id="DateofBirth{{$index}}"
+												ng-blur="coApplicant.age=calculateAge(coApplicant.dateofBirth); coApplicant.refAgeId=calculateAge(coApplicant.dateofBirth)"
+												name="dob{{$index}}" ng-model="coApplicant.dateofBirth"
+												class="getdateformat form-control inputtext disninput" vdatepicker
+												ng-pattern="/^((0[13578]|1[02])[\/.]31[\/.](18|19|20)[0-9]{2})|((01|0[3-9]|1[1-2])[\/.](29|30)[\/.](18|19|20)[0-9]{2})|((0[1-9]|1[0-2])[\/.](0[1-9]|1[0-9]|2[0-8])[\/.](18|19|20)[0-9]{2})|((02)[\/.]29[\/.](((18|19|20)(04|08|[2468][048]|[13579][26]))|2000))$/"
+												maxlength="10"
+												placeholder="" required> <span
+												class="form-control-feedback"> </span> <label
+												for="DateofBirth{{$index}}" class="form-control-placeholder">DOB (MM/DD/YYYY)
+												<span class="mandoryclr">*</span>
+											</label>
+											<div ng-if="coApplicant.dateofBirth==null" style="color: red"
+												role="alert">Please enter DOB in MM/DD/YYYY	</div>
+											<div ng-messages="coApplicantform['dob'+$index].$error"
+												style="color:" role="alert"></div>
+										</div>
+
+										<div class="col-md-3 form-group">
+											<input
+												class="form-control getagecolor inputtext Age disninput"
+												id="coApplicantage{{$index}}" ng-model="coApplicant.age"
+												name="age{{$index}}" required disabled> <span
+												class="form-control-feedback"> </span> <label
+												for="DateofBirth{{$index}}" class="form-control-placeholder">Age</label>
+											<div id="AgeIID" ng-show="(coApplicant.age < 21 || coApplicant.age > 65) && coApplicant.dateofBirth.length"
+											style="color: red;" role="alert">Age should be between 21 to 65</div>
+											<div ng-messages="coApplicantform['age'+$index].$error"
+												style="color:" role="alert"></div>
+
+										</div>
+										<div class="col-md-3 form-group floating-label">
+
+											<select class="form-control floating-select disselect"
+												onclick="this.setAttribute('value', this.value);" value=""
+												id="Gender" ng-model="coApplicant.genderId"
+												ng-options="gender.genderId as gender.gender for gender in genders"
+												name="gender{{$index}}" required>
+												<option selected="selected" hidden></option>
+											</select> <label for="Gender" class="labelmarg">Gender <span
+												class="mandoryclr">*</span></label>
+											<div ng-messages="coApplicantform['gender'+$index].$error"
+												style="color:" role="alert"></div>
+										</div>
+
+										<div class="col-md-3 form-group floating-label">
+											<select class="form-control floating-select disninput"
+												onclick="this.setAttribute('value', this.value);" value="" 
+												id="Marital" ng-model="coApplicant.maritalStatusId" 
+												ng-options="marital.maritalStatusId as marital.maritalStatus for marital in maritals"
+												name="maritals_status{{$index}}" required ng-change="changeMarialtoRelationship(coApplicant.maritalStatusId)">
+												<option selected="selected" hidden></option>
+											</select> <label for="Marital" class="labelmarg" style="top: -18px;">Marital
+												Status <span class="mandoryclr">*</span>
+											</label>
+											<div
+												ng-messages="coApplicantform['maritals_status'+$index].$error"
+												style="color:" role="alert"></div>
+										</div>
+
+										<div class="col-md-3 form-group floating-label">
+											<select
+												class="form-control getProfessionalQualification floating-select disninput"
+												onclick="this.setAttribute('value', this.value);" value=""
+												ng-options="education.educationId as education.education for education in educations"
+												ng-model="coApplicant.educationId" id="Education"
+												ng-change="setDegree(coApplicant.educationId,$index)"
+												name="educationId" required><option
+													selected="selected" hidden></option></select> <label for="Education"
+												class="labelmarg" style="top: -18px;">Professional
+												Qualification <span class="mandoryclr">*</span>
+											</label>
+											<div ng-messages="coApplicantform.educationId.$error"
+												style="color:" role="alert">
+											</div>
+										</div>
+									</div>
+									<div class="row">								
+										<div class="col-md-3 form-group floating-label">
+
+											<select class="form-control floating-select disselect"
+												onclick="this.setAttribute('value', this.value);" value=""
+												id="residentStatus" ng-model="coApplicant.address3"
+												ng-options="residentStatus.name as residentStatus.name for residentStatus in residentStatuses"
+												name="residentStatus{{$index}}" required>
+											</select> <label for="residentStatus" class="labelmarg">Resident Status <span
+												class="mandoryclr">*</span></label>
+											<div ng-messages="coApplicantform['residentStatus'+$index].$error"
+												style="color:" role="alert"></div>
+										</div>																		
+									<div class="col-md-3 form-group floating-label">
+										<select class="form-control floating-select disninput "
+											onclick="this.setAttribute('value', this.value);" value=""
+											ng-model="coApplicant.country"
+											ng-options="country.name as country.name for country in countries"
+											id="country"></select> <label for="country"
+											style="top: -18px;" class="labelmarg">Country of Residence <span
+											class="mandoryclr"> *</span></label>
+											<div ng-messages="coApplicantform.country.$error"
+													style="color:" role="alert">
+												</div>
+									</div>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ibox-title">
+							<h5 class="v-inline"> Current Address Information (Indian Address)</h5>
+						</div>
+						<div class="ibox-content">
+							<div class="">
+								<div ng-if="!loader"></div>
+								<div ng-repeat="coApplicant in coApplicants">
+									<div class="panel-body">
+										<div class="row">
+
+											<div class=" col-md-3 form-group" id="compareaddrId">
+												<label for="compareaddrId" class="appliradio">Is co-applicant address same as the primary applicant?<span class="mandoryclr"> *</span>
+												</label>
+
+												<div>
+										
+													<label class="radio-inline"> <input type="radio"
+														name="optradio1" id="compareaddrId"
+														ng-model="userInfo.compareaddrId" ng-value="1"
+														ng-change="pAddr(userInfo.compareaddrId)">Yes
+													</label> <label class="radio-inline"> <input type="radio"
+														name="optradio1" id="compareaddrId"
+														ng-model="userInfo.compareaddrId" ng-value="0"
+														ng-change="pAddr(userInfo.compareaddrId)" checked="true">No
+													</label>
+												</div>
+											</div>
+										</div>	
+										<div class="row">
+									<!--
+											<div class="col-md-3 form-group">
+												<input type="text" class="form-control inputtext disninput"
+													id="Address1" placeholder="" maxlength="190"
+													ng-model="coApplicant.address1"> <span
+													class="form-control-feedback"> </span> <label
+													for="Address1" class="form-control-placeholder">Address
+													1(Door No/Building Name) </label>
+											</div>
+
+
+										</div>
+										<div class="row">
+
+											<div class="col-md-3 form-group">
+												<input type="text" class="form-control inputtext disninput"
+													id="Address2" placeholder="" maxlength="190"
+													ng-model="coApplicant.address2"> <span
+													class="form-control-feedback"> </span> <label
+													for="Address2" class="form-control-placeholder">Address
+													2(Street Name) </label>
+											</div>
+											-->
+
+											<div class="col-md-3 form-group">
+												<input type="text" class="form-control inputtext disninput" id="Zip"
+													placeholder="" maxlength="6"
+													ng-model="coApplicant.postalZip"
+													ng-change="changePostZip(coApplicant.postalZip,$index);zipcity=true;"
+													onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+													name="zip" required 
+													ng-class="{error : applicants{{$index}}.zip.$error.required}">
+												<span class="form-control-feedback"> </span> <label
+													for="Zip" class="form-control-placeholder">PinCode <span class="mandoryclr">*</span>
+												</label>
+												 <div id="pincodeAlert" style="color: red;" ng-show="coApplicant.postalZip == null "
+													role="alert">Please enter PinCode</div>
+												 <div id="pincodeAlert" style="color: red;" ng-show="coApplicant.postalZip != '' && coApplicant.postalZip.length < 6"
+													role="alert">Please enter 6 digit PinCode</div> 
+													<div id="pincodeAlert1" style="color: red;" ng-show="coApplicant.postalZip.length == 6 && coApplicant.citys.length == 0"
+													role="alert">Please enter your nearest PinCode</div>
+											</div>
+
+											<div class="col-md-3 form-group">
+												<select class="form-control disninput" id="City{{$index}}"
+													ng-model="coApplicant.city"
+													ng-options="city.city as city.city for city in coApplicant.citys"
+													ng-change="zipSet(coApplicant.city,$index)" ng-if="zipcity"
+													ng-init="zipcity=false;" ></select> <input
+													class="form-control disninput" id="City{{$index}}"
+													ng-model="coApplicant.city" ng-if="!zipcity" required>
+												<span class="form-control-feedback">  </span> <label
+													for="City{{$index}}" class="form-control-placeholder">Location/Area Name <span class="mandoryclr">*</span>
+												</label>
+
+											</div>
+
+										
+											<div class="col-md-3 form-group">
+												<input type="text" class="form-control disninput" id="State"
+													ng-model="coApplicant.state" disabled required> <span
+													class="form-control-feedback"> </span> <label for="State"
+													class="form-control-placeholder">State </label>
+											</div>
+																						<div class="col-md-3 form-group floating-label">
+												<select class="form-control floating-select disselect"
+													onclick="this.setAttribute('value', this.value);" value=""
+													id="Residence"
+													ng-options="Residence.refResidenceCategoryId as Residence.residenceCategory for Residence in Residences"
+													ng-model="coApplicant.refResidenceCategoryId"
+													name="Residence" required>
+													<option	selected="selected" hidden></option></select> 
+													<label	for="Residence" class="labelmarg form-control-placeholderr">Residential
+													Category <i class="fa fa-info-circle" title="If co-applicant accommodation type is not listed please select “Others”";></i>
+													 <span class="mandoryclr">*</span>
+												</label>
+												<div ng-messages="coApplicantform.Residence.$error"
+													style="color:" role="alert">
+												</div>
+											</div>
+
+										</div>
+										<div class="row">
+										<div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 2%;padding-right: 0px">
+											<div class="ibox-tools">
+												<button class="btn vcirclebtn pull-right"
+													ng-click="next(coApplicant)" title="Next">Save & Next</button>
+								<!--				<button class="btn vcirclebtn pull-right"
+													ng-click="save(coApplicants)" title="Save">Save</button>
+												<button class="btn vcirclebtn pull-right reset" ng-click="reset($event)"
+													title="Reset">Reset</button>  -->
+											</div>
+										</div>
+										</div>
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+</div>
+</div>
+<style>
+.labelmarg {
+	margin-left: 4%;
+}
+
+@media ( max-width : 991px) {
+	.labelmarg {
+		margin-left: 1% !important;
+	}
+}
+
+@media ( max-width : 728px) {
+	.labelmarg {
+		margin-left: 3% !important;
+	}
+}
+
+@media ( min-width :450px) and (max-width: 980px) {
+	.labelmarg {
+		margin-left: 1% !important;
+	}
+}
+.cursor {
+	cursor: pointer;
+}
+.mrgbot1{
+	margin-bottom: 0px;
+	margin-top: -4px;
+	padding-left: 45px;
+	padding-right: 39px;
+	color: #5264AE; 
+	font-size: 13px;
+}
+.mrgbot3{
+margin-top: -4px;
+padding-left: 40px;
+font-size: 13px;
+padding-right: 39px;
+color: #5264AE;
+
+}
+.mrgbot31{
+    margin-top: -4px;
+    padding-left: 40px;
+    padding-right: 39px;
+    font-size: 13px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+    color: #5264AE;
+    background-color: white;
+    line-height: 1.9;
+    }
+.pageheading{
+   	font-size : 18px;
+   }
+@media only screen and (max-width: 378px) {
+   .pageheading{
+   	font-size : 13px;
+   	line-height: 1.5;
+   }
+}
+.paraDisp{
+	    margin: 0 14px;
+    display: list-item;
+}
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 0px;
+  
+ }
+@media only screen and (max-width: 320px) {
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 15%;
+  
+ }
+ }
+</style>
+<script type="text/javascript">
+	if (localStorage.getItem("userLpiStatus") == "1") {
+		console.clear();
+		$("input").prop("disabled", false);
+		$(".Age,#State,#getCountry").prop("disabled", true);
+
+	} else {
+	  console.clear();
+		$(".Age,#State,#getCountry").prop("disabled", true);
+		$('label').css('opacity','0.5');
+		$("input").prop("disabled", true);
+		$("select").prop("disabled", true);
+		$("checkbox").prop("disabled", true);
+		$("radio").prop("disabled", true);
+		$("button").prop("disabled", true);
+	}
+</script>

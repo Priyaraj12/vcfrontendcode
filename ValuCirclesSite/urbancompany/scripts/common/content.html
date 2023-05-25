@@ -1,0 +1,220 @@
+<!-- Wrapper-->
+ <div class="row gray-bg" style="padding-bottom:2px">
+ <div class="col-md-7 col-sm-6 col-xs-4">
+     <div class="logo"><img src="assets/images/logo.png" class="logosize" /></div>
+ </div>
+     <div class="welcome col-md-4 col-sm-3 col-xs-4 pull-left"> Welcome {{username}}</div>
+    <div class="col-md-1 col-sm-3 col-xs-4" style="margin-top:1%">
+    <div class="dropdown account_dropdown pull-right">
+            <div class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-user"></i> Profile
+                <span class="caret"></span></div>
+            <ul class="dropdown-menu" >
+                <li> <!-- <p class="welcome"> Welcome {{username}}</p> --></li>
+                  <li id="trackApp" ng-disabled="lpiDisabled">
+                    <a href="#/index/trackMyRequest" style="color: #1d7ec1">
+                        <i class="fa fa-chevron-circle-right"></i> Track My Request
+                    </a>
+                </li>
+                <li>
+                    <a href="#/index/ChangePassword"  style="color: #1d7ec1">
+                        <i class="fa fa-key"></i> Change Password
+                    </a>
+                </li>
+                <li>
+                    <a href="" ng-click="Logout();" style="color: #1d7ec1">
+                        <i class="fa fa-power-off"></i> Sign Out
+                    </a>
+                </li>
+               
+            </ul>
+        </div>
+    </div> 
+ </div>
+ <nav class="navbar navbar-inverse col-md-2" style="background-color: #fff;border-color: #fff;"">
+  <div class="navbar-header">      
+      <button type="button" class="navbar-toggle collapsebtn" data-toggle="collapse" style="background-color: #1d7ec1;" 
+      data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar" style="padding: 0px !important;border-color: transparent;">
+
+    <span ng-bind = "Message"></span>
+    <ul class="col-sm-12" style="margin-top: 22px;font-size: 1.7rem;line-height: 6rem;padding:0px">
+    <a  class="vcirclemenu">
+              <a href="#/index/Assets" class="vcirclemenu">
+                 <li class="treeview " id="selector6" value="{{PAGE_COMPLETED}}">
+                <div class="col-md-2 col-sm-2 col-xs-2 text-center"><i class="fa fa-home"></i></div>
+                <div class="col-md-10 col-sm-10 col-xs-12"><span style="font-family: 'Roboto',sans-serif !important;white-space: nowrap;text-decoration: none;">Requirements</span></div>
+            
+        </li></a>
+        <a ng-href="{{PAGE_COMPLETED >= 1 ? '#/index/CustomerPersonal':''}}" class="vcirclemenu">
+        <li class="treeview" id="selector1" value="{{PAGE_COMPLETED >= 1 ?1:-1}}" ng-click="setLocalStorage()">
+         <div class="col-md-2 col-sm-2 col-xs-2 text-center"><i class="fa fa-user"></i></div>
+                <div class="col-md-10 col-sm-10 col-xs-12"><span style="font-family: 'Roboto',sans-serif !important;white-space: nowrap;text-decoration: none;">Personal Info</span></div>
+        </li> 
+        </a>
+        
+            <a ng-href="{{PAGE_COMPLETED >= 3 ? '#/index/Financial':''}}" class="vcirclemenu">
+                <li class="treeview " id="selector2" value="{{PAGE_COMPLETED >= 3 ?1:-1}}">
+                <div class=" col-md-2  col-sm-2 col-xs-2 text-center"><i class="fa fa-rupee"></i></div>
+                <div class="col-md-10 col-sm-10 col-xs-12"><span style="font-family: 'Roboto',sans-serif !important;white-space: nowrap;text-decoration: none;">Financial Info</span></div>
+            
+        </li></a>
+     <!--    <a href="#/index/CoApplicant" class="vcirclemenu">
+        <li class="treeview"  ng-if="coApplicant == 1" id="selector3">
+            
+                <i class="fa fa-user-plus"><span style="font-family: 'Roboto',sans-serif !important;">
+                &nbsp;&nbsp;&nbsp;Co-Applicant</span></i>
+            
+        </li></a> -->
+       
+           <!--  <a href="#/index/coApplicantfinancial" class="vcirclemenu">
+                 <li class="treeview" ng-if="coApplicant == 1" id="selector4">
+                <i class="fa fa-rupee" style="line-height: 2rem;"><span style="font-family: 'Roboto',sans-serif !important;line-height: 2.5rem;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Co-Applicant
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Financial Info</span></i>
+            
+        </li></a> -->
+        <!-- Commenting the Bank Verification Page 
+		<a ng-href="{{PAGE_COMPLETED >=5  ? '#/index/bankVerify':''}}" class="vcirclemenu">
+        <li class="treeview" id="selector5" value="{{PAGE_COMPLETED >= 5 ?1:-1}}">
+        <div class="col-md-2 col-sm-2 col-xs-2 text-center"><i class="fa fa-bank"></i></div>
+        <div class="col-md-10 col-sm-10 col-xs-12"><span style="font-family: 'Roboto',sans-serif !important;white-space: nowrap;text-decoration: none;">Verification</span></div>
+         		 
+        </li></a>
+		Ending comment of bank verification page--> 
+        <a ng-href="{{PAGE_COMPLETED >= 5  ? '#/index/credit':''}}" class="vcirclemenu">
+        <li class="treeview" id="selector12" value="{{PAGE_COMPLETED >= 5 ?1:-1}}">
+        <div class="col-md-2 col-sm-2 col-xs-2 text-center"><i class="fa fa-bank"></i></div>
+                <div class="col-md-10 col-sm-10 col-xs-12"><span style="font-family: 'Roboto',sans-serif !important;white-space: nowrap;text-decoration: none;">Credit Report</span></div>
+            
+        </li></a>
+       
+            <a ng-href="{{PAGE_COMPLETED >= 5  ? '#/index/Lpi':''}}" class="vcirclemenu">
+                 <li class="treeview " id="selector7" value="{{PAGE_COMPLETED >= 5 ?1:-1}}">
+                <div class="col-md-2 col-sm-2 col-xs-2 text-center"><i class="fa fa-registered"></i></div>
+                <div class="col-md-10 col-sm-10 col-xs-12"><span style="font-family: 'Roboto',sans-serif !important;white-space: nowrap;text-decoration: none;">LP<i>i</i> &#153; & Eligibility</span></div>
+            
+        </li></a>
+            <!--  <a ng-href="{{PAGE_COMPLETED >= 9  ? '#/index/loanOffers':''}}" class="vcirclemenu">
+                 <li class="treeview " id="selector15" value="{{PAGE_COMPLETED >= 9 ?1:-1}}">
+                <div class="col-md-2 col-sm-2 col-xs-2 text-center"><i class="fa fa-registered"></i></div>
+                <div class="col-md-10 col-sm-10 col-xs-12"><span style="font-family: 'Roboto',sans-serif !important;white-space: nowrap;text-decoration: none;">Loan Offers</span></div>
+            
+        </li></a> -->
+        
+        
+        </a>
+    </ul>
+  </div>
+</nav>
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body…</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<div ui-view class="col-xs-12 col-md-10" style="border-left: solid; border-width: medium; border-color:#f3f3f4; "></div>
+
+
+<!-- End wrapper-->
+<script>
+var selector = '.treeview';
+
+$(selector).on('click', function(){
+	//var e = 10;
+	//if(localStorage.getItem('PAGE_COMPLETED') )
+    var val = ($(this)[0].value);
+    if(val>=0){
+        $(selector).removeClass('active');
+        $(this).addClass('active'); 
+    }           
+      
+});
+
+$(document).ready(function(){
+    
+     $("#selector3").click(function(){
+         $(selector).removeClass('active');
+         $(this).addClass('active');     
+    });
+     $("#selector4").click(function(){
+         $(selector).removeClass('active');
+         $(this).addClass('active'); 
+    });
+
+});
+
+
+</script>
+<style>
+.active >div:last-child
+{
+    border-right: 4px solid #f89f26;
+    background: #1d7ec1;
+    color:white;
+}
+.active >div:first-child
+{
+    /*border-right: 4px solid #f89f26;*/
+    background: #1d7ec1;
+    color:white;
+    
+
+}
+li.active > a > i {
+    color:#fff;
+}
+.treeview>div:first-child{
+ 	font-size: 16px;
+}
+.vcirclemenu >li{
+	display:flex;
+}
+a {
+    color: #337ab7;
+    text-decoration: none !important;
+}
+
+.logosize{
+	width : 60%;
+}
+@media only screen and (max-width:450px){
+	.logosize{
+	width : 160%;
+}
+}
+
+</style>
+
+ <!-- Hide Footer in Application
+ <section class="footer text-center gray-bg">
+         <div class="container" >
+            <div class ="row" style="margin-top: 1%;">
+                <div class="col-md-3 col-xs-12">
+                <a>Copyright &copy; ValuCircles 2018 - 2020</a>
+                </div>
+            </div>
+        </div>
+</section>  -->
+<style>
+
+ul {
+  list-style-type: none;
+}
+    
+</style>

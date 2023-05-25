@@ -1,0 +1,658 @@
+<div class="wrapper wrapper-content ng-scope">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox" style="margin: 0;">
+				<div class="row" style="color: #1d7ec1; line-height: 2.5;">
+					<div class="col-md-2 col-sm-4 col-xs-4" style="color: #1d7ec1;padding:0px">
+						<div align="left" ng-click="backPage()" class="cursor" >
+							<i style="padding: 0 1%; font-size: 16px;"
+								class="fa fa-angle-double-left"></i>Financial
+						</div>
+					</div>
+					 <div class="col-md-8 col-xs-4">
+					<div align="center"  class="cursor pageheading" style="color: #1d7ec1; font-weight: bold;">
+							Co-Applicant Financial Information
+						</div></div>
+					<div class="col-md-2 col-sm-4 col-xs-4" style="color: #1d7ec1;padding:0px">
+						<div align="right" ng-click="nextPages()" class="cursor coAppFinNav"  id="coAppFinNextPage">
+							Credit Report<i style="padding: 0 1%; font-size: 16px;"
+								class="fa fa-angle-double-right"></i>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<form role="form" name="financialformditry" novalidate>
+
+				<div class="ibox">
+					<div class="row" style="background: white">
+					<div class="ibox-title" style="border-bottom:1px solid #e7e7e7;margin-bottom: 17px;">
+					<div class="row">
+					<div class="col-md-4 col-sm-3 col-xs-1"></div>
+					<div class="col-md-4 col-sm-5 col-xs-11">
+						<p style="color: red;" class="smsg" ng-if="omitdata.length > 0"><i class="em em-bulb f-24"></i>Highlighed Field values have been modified</p>
+                    <p style="color: green;" class="smsg" ng-if="success"><i class="em em-thumbsup f-24"></i> {{success_message}}<i class="em em-thumbsup f-24"></i></p>
+                    <p style="color: red;" class="error_message smsg" ng-if="error"><i class="em em-bulb f-24"></i> {{error_message}}<i class="em em-bulb f-24"></i></p>
+							</div>
+							<div class="col-md-4 col-sm-4 "></div>
+					</div>
+					<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-12" style="margin-bottom:5px" >
+							<h5>
+								Valucircles Advice 
+							</h5>
+							</div>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="ibox-tools">
+                      		<button class="btn vcirclebtn pull-right savenxt" ng-click="next1(userInfo,incomes,loanDatas,salaryDatas,$event)" title="Next">Save & Next</button>
+	                 <!--       <button class="btn vcirclebtn pull-right savebtn" ng-click="save1(userInfo,incomes,loanDatas,salaryDatas,$event)" title="Save" >Save</button>
+                         	<button class="btn vcirclebtn pull-right" ng-click="reset()" title="Reset" >Reset</button>  -->
+                          </div>
+					</div>
+				</div>
+						</div>
+						
+						<span>
+						<img src="assets/images/bulb.png" height="21" width="21" style="  margin-left: 9px;margin-top: -12px;">
+						</span>
+						
+						<p class="mrgbot3" style="margin-top: -27px;">            	
+						<span class="paraDisp" style="line-height: 1.8;">Employment type may impact your chances of getting a loan.</span>
+					</p>
+					
+					<p class="mrgbot3" >											
+							<span class="paraDisp" style="line-height: 1.8;">Lenders will generally cap secondary incomes like rental income, investment income to the level of primary income i.e. salary, incentives and bonuses combined.</span>
+						 </p>
+						 
+						 <p class="mrgbot0" >
+						 <span class="paraDisp" style="line-height: 1.8;">Any income which is not supported by bank statements will be disregarded by the lenders.</span></p>
+					</div>
+					
+					<div class="row">
+						<div class="ibox-title">
+							<h5>Employment Information</h5>
+						</div>
+						<i class="fa fa-spinner fa-spin fa-5x  col-md-offset-5 col-sm-offset-5 col-xs-offset-5 m-t-b-2"
+							aria-hidden="true" ng-if="loader"></i>
+						<div ng-if="!loader">
+							<div class="ibox-content" style="padding-bottom: 0px">
+								<div class="row no-margin">
+								<div class="col-md-12 col-sm-12 col-xs-12 nopaddlr">
+									 <div class="col-md-3 form-group floating-label">
+                                        <select class="form-control floating-select disninput " onclick="this.setAttribute('value', this.value);" value=""  id="occupationType" ng-model="userInfo.occupationTypeId" ng-options="varoccupationType.occupationTypeId as varoccupationType.occupationType for varoccupationType in occupationTypes" ng-change="selectedOccupationType(userInfo.occupationTypeId);" >
+                                        <option selected="selected" hidden></option>
+                                        </select><!-- ng-init="occTyp(userInfo.occupationTypeId)" -->
+                                        <label class="labelmarg" for="occupationType" style="top: -18px;">Employment Type <i class="fa fa-info-circle" title="Please indicate your employment type"></i>   <span class="mandoryclr"> *</span></label>
+                                    </div>
+                                    <div class="col-md-3 form-group floating-label">
+                                        <select class="form-control floating-select disninput"  id="oddCategoy" ng-model="userInfo.occupationcategoryid"
+                                        ng-options="varname.categoryid as varname.categoryname for varname in occCatyId" ng-change="selectedCattgoryType(userInfo.occupationcategoryid,'ctgyChange');" >
+                                        </select>
+                                        <label class="labelmarg" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3" for="categoy" style="top: -18px;">Employment Category <i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+										<label class="labelmarg" ng-show="userInfo.occupationTypeId==4" for="categoy" style="top: -18px;">Has any income? <i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+										<label class="labelmarg" ng-show="userInfo.occupationTypeId==5" for="categoy" style="top: -18px;">Has pension/other income? <i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+                                    </div>
+										<!-- Changes are done by Priyaraj on 23-02-3023 to simulate the employer to show as dropdown and this is similar to the city feature in requirements page -->
+									<!-- Commenting the existing one -->
+									<!--
+									<div class="col-md-3 form-group" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3">
+									    <input type="text" ng-keyup="orgType(userInfo.employerName)" class="form-control inputtext disninput" id="OrganisationName" placeholder=""  maxlength="250" ng-model="userInfo.employerName" typeahead="companyList.legal_name for companyList in companyList |  limitTo:10" value="" typeahead-items='3'
+                                        ng-blur="setSegment(userInfo.employerName)" typeahead-on-select="change($item)" autocomplete="off" required 
+                                        ng-disabled="userInfo.occupationTypeId === 4 || userInfo.occupationTypeId === 5" >
+                                         <span class="form-control-feedback" > </span>
+                                          <label for="OrganisationName" class="form-control-placeholder font-size-label orgName">Employer / Organisation Name
+                                          <i class="fa fa-info-circle" title="Please type your employer name here and select. if you can't find in our list then just add the name.";></i><span class="mandoryclr"> *</span></label>
+                                            <div ng-if="userInfo.employerName==null  && userInfo.occupationTypeId == 1 "
+											style="color: red;display: none;" role="alert" id="organvalid">Please enter Organisation Name</div>
+                                    </div>
+									-- >
+									<!-- making changes according to the requirements page cities feature -->
+									<div class="col-md-3 form-group floating-label" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3">
+                                        <input type="text" class="form-control inputtext disninput" 
+										ng-blur="setSegment(userInfo.employerName)"
+										ng-keyup="orgType(userInfo.employerName,1)" ng-change="orgType(userInfo.employerName,1)" 
+										ng-disabled="userInfo.occupationTypeId === 4 || userInfo.occupationTypeId === 5"
+										id="OrganisationName" placeholder=""  maxlength="250" 
+										ng-model="userInfo.employerName" 
+										typeahead="orgName.employerName for orgName in orgNameArray |  limitTo:10" 
+										value="" typeahead-items='3'  
+                                        
+										typeahead-on-select="change($item)" 
+										autocomplete="off"  
+                                        
+										>
+                                         <span class="form-control-feedback" > </span>
+                                          <label for="OrganisationName" class="form-control-placeholder font-size-label orgName">Employer / Organisation Name 
+                                          <i class="fa fa-info-circle" title="Please type your employer name here and select. if you can t find in our list then just add the name.";></i><span class="mandoryclr"> *</span> </label>
+                                            <div ng-if="userInfo.employerName==null && userInfo.occupationTypeId == 1"
+											style="color: red;display: none;" role="alert" id="organvalid">Please enter Organisation Name</div>
+                                    </div>
+
+
+									<div class="col-md-3 form-group floating-label" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3||(userInfo.occupationTypeId==4 && userInfo.occupationcategoryid==993) || (userInfo.occupationTypeId==5 && userInfo.occupationcategoryid==995)">
+                                        <select class="form-control floating-select disninput" id="primaryBank" ng-model="userInfo.primaryBank" 
+                                        ng-options="primaryBank.id as primaryBank.name for primaryBank in primaryBankList">
+                                        <option hidden></option>
+                                        </select>
+                                        <label class="labelmarg" for="primaryBank" style="top: -18px;">Primary Bank Account <i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+                                    </div>
+
+							<!--		<div class="col-md-3 form-group">
+                                        <input type="text" class="form-control inputtext w-60 disninput " ng-disabled="userInfo.occupationTypeId === 4 || userInfo.occupationTypeId === 5 || userInfo.occupationTypeId === 17" 
+                                               id="categorydetail"  max="40" min="1"  ng-model="userInfo.categorydetail">
+                                               <span class="form-control-feedback" > </span>
+                                               <label for="categorydetail" class="form-control-placeholder font-size-label" ng-init="selectedCattgoryType(userInfo.categorydetail)"><span id="fdyLabel" ></span>&ensp;<i class="fa fa-info-circle" title="category" ></i></label>
+                                                <div ng-show="userInfo.edunumber==null"
+											style="color: red;display: none;" role="alert">Please enter valid details</div>
+                                    </div> -->
+                                    </div>
+									<div class="col-md-12 col-sm-12 col-xs-12 nopaddlr"  >
+									
+                                    <div class="col-md-3 form-group" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3">
+                                        <input type="text" class="form-control inputtext w-60 disninput "  id="yearsofServiceinIndustry" placeholder=""  max="40" min="1" maxlength="2" ng-model="userInfo.yearsofServiceinIndustry" ng-change="userInfo.yearsofServiceinIndustry=removetextexp(userInfo.yearsofServiceinIndustry);"  ng-blur="validOrNotValidBlur(userInfo.yearsofServiceinIndustry)" required 
+                                        ng-disabled="userInfo.occupationTypeId === 4 || userInfo.occupationTypeId === 5 || userInfo.occupationTypeId === 17">
+											 <span class="form-control-feedback" > </span>
+											 <label for="yearsofServiceinIndustry" class="form-control-placeholder font-size-label" >Total Experience (In Years)
+											     <i class="fa fa-info-circle" title="Total work experience from the time you started working" ></i><span class="mandoryclr"> *</span></label>
+											  <div ng-if="userInfo.yearsofServiceinIndustry==null"
+											style="color: red;display: none;" role="alert" class="totalExpValid">Please enter Total Experience (In Years)</div>
+                                    </div>
+									<div class="col-md-3 form-group" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3">
+                                        <input type="text" class="form-control inputtext w-60 disninput "
+                                               id="yearsofServicewithEmployer" placeholder="" max="40" min="1" maxlength="2" ng-model="userInfo.yearsofServicewithEmployer" ng-change="userInfo.yearsofServicewithEmployer=removetextexp(userInfo.yearsofServicewithEmployer);" required  name="yearsofServicewithEmployer" ng-blur="validOrNotValidBlur1(userInfo.yearsofServicewithEmployer)" 
+                                               ng-disabled="userInfo.occupationTypeId === 4 || userInfo.occupationTypeId === 5 || userInfo.occupationTypeId === 17">
+                                               <span class="form-control-feedback" > </span>
+                                               <label for="yearsofServicewithEmployer" class="form-control-placeholder font-size-label" >Current Experience (In Years)
+                                               <i class="fa fa-info-circle" title="Total experience in current company" ></i><span class="mandoryclr"> *</span></label>
+                                                <div ng-if="userInfo.yearsofServicewithEmployer==null"
+											style="color: red;display: none;" role="alert" class="totalExpValid1">Please enter Current Experience (In Years)</div>
+                                    </div>
+									<div class="col-md-3 form-group floating-label"	id="itfiled" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3||(userInfo.occupationTypeId==4 && userInfo.occupationcategoryid==993) || (userInfo.occupationTypeId==5 && userInfo.occupationcategoryid==995)">
+											<label for="itfiled" ng-show="userInfo.occupationTypeId==1" class="appliradio">Have Payslips/Form 16? <span class="mandoryclr">*</span>
+											</label>
+											<label for="itfiled" ng-show="userInfo.occupationTypeId==2 || userInfo.occupationTypeId == 3|| userInfo.occupationTypeId == 4|| userInfo.occupationTypeId == 5" class="appliradio">IT returns filed? <span class="mandoryclr">*</span>
+											</label>
+
+											<div>
+												<label class="radio-inline"> <input type="radio"
+													name="optradio2" ng-change="selectedITFiled()"
+													class="radalign" id="itfiled"
+													ng-model="userInfo.itfiled" ng-value="1">Yes
+												</label> <label class="radio-inline"> <input type="radio"
+													name="optradio2" ng-change="selectedITFiled()"
+													class="radalign" id="itfiled"
+													ng-model="userInfo.itfiled" ng-value="0">No
+												</label>
+											</div>
+									</div>
+<!--Geetha -->
+
+	
+									<div class="col-md-3 form-group floating-label" ng-show="userInfo.occupationTypeId==1">
+                                        <select class="form-control floating-select disninput" id="businessConstitution" ng-model="userInfo.businessConstitution" 
+                                        ng-options="businessConstitution.id as businessConstitution.name for businessConstitution in businessConstitutionList">
+                                        </select>
+                                        <label class="labelmarg" for="businessConstitution" style="top: -18px;">Employer Constitution <i class="fa fa-info-circle" title="What is the constitution of your Employer?"></i> <span class="mandoryclr"> *</span></label>
+                                    </div>
+	
+
+<!-- Geetha -->
+                                    </div>
+								</div>
+								</div>
+							<div class="ibox-content" style="border-top: 3px solid #faaf40;" ng-show="userInfo.occupationTypeId==3||userInfo.occupationTypeId==2">
+								<div class="row no-margin">
+								<div class="row no-margin" style="margin-bottom: 16px;" >
+                                        <div class="title-card" style="height: 47px; background: transparent; margin-left: -20px;margin-right: -20px;border-bottom: 1px solid #80808047;margin-top: -18px;background-color: white;" >
+                                            <div class="col-md-6 col-sm-6 col-xs-10" style="padding-left:  6px;">
+                                                <h3 style="margin-top: 12px;">Business Details<span class="mandoryclr"> *</span> </h3>
+                                            </div>
+                                            <div class="col-md-3 col-sm-5 col-xs-0"></div>
+                                        </div>
+								</div>
+								<div class="col-md-12 col-sm-12 col-xs-12 nopaddlr" style="padding-top: 1%" ng-show="userInfo.occupationTypeId==3||userInfo.occupationTypeId==2" >
+									<div class="col-md-3 form-group floating-label">
+                                        <select class="form-control floating-select disninput" id="businessConstitution" ng-model="userInfo.businessConstitution" 
+                                        ng-options="businessConstitution.id as businessConstitution.name for businessConstitution in businessConstitutionList">
+                                        </select>
+                                        <label class="labelmarg" for="businessConstitution" style="top: -18px;">Business Constitution <i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+                                    </div>
+									<div class="col-md-3 form-group" 
+									ng-show="userInfo.businessConstitution!=0 && userInfo.businessConstitution!=1">
+                                        <input type="text" class="form-control inputtext w-60 disninput" id="ownershipShare" min="1" maxlength="2" ng-model="userInfo.ownershipShare" ng-change="userInfo.ownershipShare=removetextexp(userInfo.ownershipShare);"  ng-blur="validOrNotValidBlur(userInfo.ownershipShare)">
+											 <span class="form-control-feedback" > </span>
+											 <label for="ownershipShare" class="form-control-placeholder font-size-label" >% Ownership in Business
+											  <i class="fa fa-info-circle" title="Total work experience from the time you started working" ></i><span class="mandoryclr"> *</span></label>
+											  <div ng-if="userInfo.ownershipShare==null" 
+											style="color: red;display: none;" role="alert" class="totalExpValid">Please enter % ownership in business</div><!-- ||userInfo.yearsofServiceinIndustry==0 -->
+                                    </div>
+									<div class="col-md-3 form-group floating-label">
+                                        <select class="form-control floating-select disninput" id="employeeCount" ng-model="userInfo.employeeCount" 
+                                        ng-options="employeeCount.id as employeeCount.name for employeeCount in employeeCountList">
+                                        </select>
+                                        <label class="labelmarg" for="employeeCount" style="top: -18px;">No. of Employees <i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+                                    </div>
+									<div class="col-md-3 form-group floating-label">
+                                        <select class="form-control floating-select disninput" id="officeType" ng-model="userInfo.officeType" 
+                                        ng-options="officeType.id as officeType.name for officeType in officeTypeList">
+                                        </select>
+                                        <label class="labelmarg" for="officeType" style="top: -18px;">Type of Office/Shop<i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+                                    </div>
+								</div>	
+								<div class="col-md-12 col-sm-12 col-xs-12 nopaddlr" ng-show="(userInfo.occupationTypeId==3 && userInfo.itfiled==1)||(userInfo.occupationTypeId==2 && userInfo.itfiled==1)" >		
+									<div class="col-md-3 form-group floating-label">
+                                        <select class="form-control floating-select disninput" id="annualSales" ng-model="userInfo.annualSales" 
+                                        ng-options="annualSales.id as annualSales.name for annualSales in annualSalesList">
+                                        </select>
+                                        <label class="labelmarg" for="annualSales" style="top: -18px;">Annual Turnover Latest FY<i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+                                    </div>
+									<div class="col-md-3 form-group floating-label">
+                                        <select class="form-control floating-select disninput" id="annualProfit" ng-model="userInfo.annualProfit" 
+                                        ng-options="annualProfit.id as annualProfit.name for annualProfit in annualProfitList">
+                                        </select>
+                                        <label class="labelmarg" for="annualProfit" style="top: -18px;">Annual Net Profit Latest FY<i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+                                    </div>
+									<div class="col-md-3 form-group floating-label">
+                                        <select class="form-control floating-select disninput" id="annualSalesPY" ng-model="userInfo.annualSalesPY" 
+                                        ng-options="annualSales.id as annualSales.name for annualSales in annualSalesList">
+                                        </select>
+                                        <label class="labelmarg" for="annualSalesPY" style="top: -18px;">Annual Turnover Previous FY<i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+                                    </div>
+									<div class="col-md-3 form-group floating-label">
+                                        <select class="form-control floating-select disninput" id="annualProfitPY" ng-model="userInfo.annualProfitPY" 
+                                        ng-options="annualProfit.id as annualProfit.name for annualProfit in annualProfitList">
+                                        </select>
+                                        <label class="labelmarg" for="annualProfitPY" style="top: -18px;">Annual Net Profit Previous FY<i class="fa fa-info-circle" title="category"></i> <span class="mandoryclr"> *</span></label>
+                                    </div>
+								</div>
+								</div>
+							</div>
+							<div class="ibox-content" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3||(userInfo.occupationTypeId==4 && userInfo.occupationcategoryid==993) || (userInfo.occupationTypeId==5 && userInfo.occupationcategoryid==995)"
+								style="border-top: 3px solid #faaf40; border-bottom: 3px solid #faaf40;">
+								<div class="row no-margin" style="margin-bottom: 16px;">
+									<div class="title-card"
+										style="height: 47px; background: transparent; margin-left: -20px; margin-right: -20px; border-bottom: 1px solid #80808047; margin-top: -18px; background-color: white;">
+										<div class="col-md-6 col-sm-6 col-xs-10"
+											style="padding-left: 6px;">
+											<h3 style="margin-top: 12px;">
+												Current Income Details<span class="mandoryclr"> *</span>
+											</h3>
+										</div>
+										<div class="col-md-3 col-sm-5 col-xs-0"></div>
+								<!--		<div class="col-md-3 col-sm-1 col-xs-2" style="left: -10px;"
+											ng-init="valClone()">
+											<button type="button"
+												class="addIncome btn btn-primary hidincomes plusbtn addloanbutton"
+												ng-click="incomeClone($event)"
+												ng-if="IncomeType.length > incomes.length">
+												<img src="assets/images/plus.png" />
+											</button>
+										</div> -->
+									</div>
+								</div>
+								<div class="desktop">
+									<div class="row no-margin">
+										<div class="col-md-3 col-sm-4 col-xs-4  font-12 m-t-b-2 font-size-label">Income Type</div>
+										<div class="col-md-3 col-sm-4 col-xs-4  font-12 m-t-b-2 font-size-label">Frequency</div>
+										<div class="col-md-3 col-sm-3 col-xs-3  font-12 m-t-b-2 font-size-label">Amount</div>
+									</div>
+									<div class="row no-margin">
+										<div class="row no-margin">
+											<div ng-repeat="income in incomes" class="h-40">
+
+												<div class="col-md-3 col-sm-4 col-xs-4 loan-information">
+
+													<select class="form-control"
+														ng-model="income.refIncomeTypeId"
+														ng-options="IT.refIncomeTypeId as IT.incomeTypedesc for IT in income.IncomeType | filter:skipValues"
+														ng-change="incomeChnge(income.refIncomeTypeId,{{$index}})"
+														id="incomeTypeSelect-{{$index}}"
+														ng-disabled="(income.refIncomeTypeId==0 || income.refIncomeTypeId==8 || income.refIncomeTypeId==13 || income.refIncomeTypeId==10 || income.refIncomeTypeId == 9 || income.refIncomeTypeId == 11 ||income.refIncomeTypeId == 12) || (income.refIncomeTypeId==1  && $index==0)">
+
+													</select>
+
+												</div>
+												<div class="col-md-3 col-sm-4 col-xs-3">
+													<select class="form-control" id="freqIncome-{{$index}}"
+														ng-model="income.frequencyType"
+														ng-options="IT.fid as IT.fname for IT in frequencyType"
+														ng-change="income.disabled = true;"
+														ng-disabled="income.refIncomeTypeId== 8 && income.frequencyType==12 ||income.refIncomeTypeId==9 && income.frequencyType==12 || income.refIncomeTypeId==10 && income.frequencyType==12 || income.refIncomeTypeId==1 || income.refIncomeTypeId==2 ||income.refIncomeTypeId==4 && income.frequencyType==1 || income.refIncomeTypeId==11 && income.frequencyType==12 || income.refIncomeTypeId==12 && income.frequencyType==12 || income.refIncomeTypeId==13 && income.frequencyType==12 || income.refIncomeTypeId==14 && income.frequencyType==12 || income.refIncomeTypeId==15 && income.frequencyType==12">
+														<option value="" selected="selected" hidden>Select</option>
+													</select>
+												</div>
+												<div class="col-md-3 col-sm-3 col-xs-3  loan-information">
+													<input class="form-control" ng-model="income.userNetIncome"
+														maxlength="9" type=""
+														ng-keyup="income.userNetIncome=commaSeparatedNumeric($event,income.userNetIncome);income.word=convertNumberToWords(income.userNetIncome)"
+														required ng-required="amountreq" id="income{{$index}}"
+														oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+												</div>
+												
+												<div class="col-md-3 col-sm-1 col-xs-1">
+													<button type="button"
+														class="addIncome btn btn-primary hidincomes"
+														ng-hide="(income.refIncomeTypeId==8 || income.refIncomeTypeId==9 || income.refIncomeTypeId==10 || income.refIncomeTypeId==11 || income.refIncomeTypeId==12 || income.refIncomeTypeId==13) || (income.refIncomeTypeId==1 && $index==0 )" ng-click="removeIncome(income,$index)">
+														<i class="fa fa-minus"></i>
+													</button>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-3 col-xs-12 col-sm-1" style="padding-top: 1%" ng-init="valClone()">
+                                                        <button type="button" ng-if="incomes.length > 0" class="btn btn-primary" ng-click="incomeClone($event);" title="AddIncome">Add Another Income</button>
+                                        </div>
+									</div>
+								</div>
+								<div class="mobile_device_425px">
+
+									<div class="row no-margin">
+									
+											<div ng-repeat="income in incomes" class="h-40">
+												<div
+													class="col-md-3 col-sm-3 col-xs-12  font-12 m-t-b-2 font-size-label">Income
+													Type</div>
+												<div
+													class="col-md-3 col-sm-3 col-xs-12 loan-information padd2">
+													<select class="form-control"
+														ng-model="income.refIncomeTypeId"
+														ng-options="IT.refIncomeTypeId as IT.incomeTypedesc for IT in income.IncomeType | filter:skipValues"
+														ng-change="incomeChnge(income.refIncomeTypeId,{{$index}})"
+														id="incomeTypeSelect-{{$index}}"
+														ng-disabled="(income.refIncomeTypeId==8 || income.refIncomeTypeId==9|| income.refIncomeTypeId==10 || income.refIncomeTypeId==11 || income.refIncomeTypeId==12|| income.refIncomeTypeId == 13) || (income.refIncomeTypeId==1  && $index==0)""
+														><!-- ng-disabled="income.refIncomeTypeId == 1 && $index == 0" -->
+													</select>
+												</div>
+												<div
+													class="col-md-3 col-sm-4 col-xs-12  font-12 m-t-b-2 font-size-label">Frequency</div>
+												<div class="col-md-3 col-sm-4 col-xs-12 padd2">
+													<select class="form-control" id="freqIncome-{{$index}}"
+														ng-model="income.frequencyType"
+														ng-options="IT.fid as IT.fname for IT in frequencyType"
+														ng-change="income.disabled = true;"
+														ng-disabled="income.refIncomeTypeId == 8 || 
+															  income.refIncomeTypeId==1 ||
+															  income.refIncomeTypeId==2 ||
+															  income.refIncomeTypeId==4 && income.frequencyType==1 ||
+															  income.refIncomeTypeId==8 && income.frequencyType==12 || 
+															  income.refIncomeTypeId==9 && income.frequencyType==12 ||
+															  income.refIncomeTypeId==10 && income.frequencyType==12 ||
+															  income.refIncomeTypeId==11 && income.frequencyType==12 ||
+															  income.refIncomeTypeId==12 && income.frequencyType==12 ||
+															  income.refIncomeTypeId==13 && income.frequencyType==12 ||
+															  income.refIncomeTypeId==14 && income.frequencyType==12 ||
+															  income.refIncomeTypeId==15 && income.frequencyType==12""
+														><!-- ng-disabled="income.refIncomeTypeId == 1 && $index == 0" -->
+														<option value="" selected="selected" hidden>Select</option>
+													</select>
+												</div>
+												<div
+													class="col-md-3 col-sm-4 col-xs-12  font-12 m-t-b-2 font-size-label">Amount</div>
+												<div
+													class="col-md-3 col-sm-4 col-xs-12  loan-information padd2">
+													<input class="form-control" ng-model="income.userNetIncome"
+														maxlength="12" type=""
+														ng-keyup="income.userNetIncome=commaSeparatedNumeric($event,income.userNetIncome);income.word=convertNumberToWords(income.userNetIncome)"
+														required ng-required="amountreq" id="income{{$index}}"
+														oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+												</div>
+
+												<div class="col-md-3 col-sm-1 col-xs-12 padd2"
+													style="border-bottom: 3px solid #80808047;">
+													<button type="button" class="btn btn-primary" ng-click="removeIncome(income,$index)"
+                                                        ng-hide="(income.refIncomeTypeId==8 || income.refIncomeTypeId==9 || income.refIncomeTypeId==10 || income.refIncomeTypeId==11 || income.refIncomeTypeId==12 || income.refIncomeTypeId==13) || (income.refIncomeTypeId==1 && $index==0 )" title="RemoveLoan">Remove Income</button>
+												</div>
+											</div>
+											<div class="col-md-3 col-xs-12 col-sm-1" style="padding-top: 1%" ng-init="valClone()">
+                                                        <button type="button" ng-if="incomes.length > 0" class="btn btn-primary" ng-click="incomeClone($event);" title="AddIncome">Add Another Income</button>
+                                            </div>
+										</div>
+									
+								</div>
+							</div>
+							<div class="ibox-content" >
+								<div class="row no-margin" style="margin-bottom: 6px;" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3||(userInfo.occupationTypeId==4 && userInfo.occupationcategoryid==993) || (userInfo.occupationTypeId==5 && userInfo.occupationcategoryid==995)">
+                                        <div class="title-card " style="height: 47px;background: transparent;margin-left: -20px;margin-right: -20px;border-bottom: 1px solid #80808047;margin-top: -18px; background-color: white;">
+                                            <div class="col-md-6 col-sm-6 col-xs-10" style="padding-left:  6px;">
+                                                <h3 style="margin-top: 12px;">Current EMIs and Loans (Please list all EMIs)<span class="mandoryclr"> </span> </h3>
+                                            </div>
+                                            <div class="col-md-5 col-sm-5 col-xs-0"></div>
+                                 <!--           <div class="col-md-1 col-sm-1 col-xs-2" style="left: -18px;">
+                                               <button type="button" ng-if="loanDatas.length == 0" class="btn btn-primary" ng-click="loanClone();" title="AddLoan">Add Loan Obligation</button>
+											   <button type="button" ng-if="loanDatas.length > 0" class="btn btn-primary" ng-click="loanClone();" title="AddLoan">Add Another Loan</button>
+											   <button type="button" class="addIncome btn btn-primary hidincomes plusbtn addloanbutton" ng-click="loanClone();">
+                                                <img src="assets/images/plus.png" />
+                                            </button>
+                                            </div> -->
+                                        </div>
+								</div>
+								<div class="desktop" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3||(userInfo.occupationTypeId==4 && userInfo.occupationcategoryid==993) || (userInfo.occupationTypeId==5 && userInfo.occupationcategoryid==995)">
+								<div class="row no-margin" ng-show="loanDatas.length > 0">
+                                                 <div class="row no-margin">
+                                                <div class="col-md-3  col-xs-3 col-sm-4 font-12 font-size-label">Lender Name</div>
+                                                <div class="col-md-3 col-xs-2 col-sm-3 font-12 font-size-label">Loan type</div>
+                                                <div class="col-md-3  col-xs-3 col-sm-2 font-12 font-size-label">Number of EMIs Remaining</div>
+                                                <div class="col-md-2 col-xs-3 col-sm-2 font-12 font-size-label">EMI </div>
+                                            </div>
+								</div>
+								    <div class="row no-margin" ng-show="loanDatas.length > 0">
+                                                <div ng-repeat="LD in loanDatas" class="h-40">
+                                                    <div class="col-md-3 col-xs-3 col-sm-4  loan-information">
+                                                        <select class="form-control"  ng-model="LD.userLenderName" ng-options="LT.loanLenderId as LT.loanLenderName for LT in LoanLenderType" >
+                                                        </select>
+                                                    </div>
+                                                       <div class="col-md-3 col-xs-2 col-sm-3 loan-information">
+                                                        <select class="form-control"  ng-model="LD.loanTypeId" ng-options="LoanTy.loanTypeId as LoanTy.loanTypeDesc for LoanTy in LoanType">
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-xs-3 col-sm-2 loan-information">
+                                                        <input ng-model="LD.userLoanRemainingTenure"  class="form-control" id="Tenure{{$index}}" ng-keyup="removetextterm(LD.userLoanRemainingTenure,$index)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="3">
+                                                    </div>
+                                                     <div class="col-md-2 col-xs-3 col-sm-2 loan-information">
+                                                    <input ng-model="LD.userLoanPaymentAmount"  class="form-control" ng-keyup="LD.userLoanPaymentAmount=commaSeparatedNumeric($event,LD.userLoanPaymentAmount);LD.word=convertNumberToWords(LD.userLoanPaymentAmount)" id="PaymentAmount{{$index}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="9">
+                                                </div>
+                                                 
+                                                    <div class="col-md-1 col-xs-1 col-sm-1">
+                                                        <button type="button" class="addIncome btn btn-primary hidincomes" ng-click="removeLoan(LD)">
+                                                            <i class="fa fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+												<div class="row no-margin" ng-show="loanDatas.length == 0">
+													<div class="col-md-3 col-xs-12 col-sm-1 padd2">
+                                                        <button type="button" ng-if="loanDatas.length == 0" class="btn btn-primary" ng-click="loanClone();" title="AddLoan">Add EMI Details</button>
+                                                    </div>
+												</div>
+												<div class="row no-margin" ng-show="loanDatas.length > 0">
+													<div class="col-md-3 col-xs-12 col-sm-1 padd2">
+                                                        <button type="button" ng-if="loanDatas.length > 0" class="btn btn-primary" ng-click="loanClone();" title="AddLoan">Add Another EMI</button>
+                                                    </div>
+												</div>
+                                            </div>
+                                            
+                                <div class="mobile_device_425px" ng-show="userInfo.occupationTypeId==1 || userInfo.occupationTypeId == 2 || userInfo.occupationTypeId == 3||(userInfo.occupationTypeId==4 && userInfo.occupationcategoryid==993) || (userInfo.occupationTypeId==5 && userInfo.occupationcategoryid==995)">
+								
+								    <div class="row no-margin" >
+                                                <div ng-repeat="LD in loanDatas" class="h-40">
+                                                <div class="col-md-3  col-xs-12 col-sm-3 font-12 font-size-label">Lender Name</div>
+                                                    <div class="col-md-3 col-xs-12 col-sm-3  loan-information padd2">
+                                                        <select class="form-control"  ng-model="LD.userLenderName" ng-options="LT.loanLenderId as LT.loanLenderName for LT in LoanLenderType" >
+                                                        </select>
+                                                    </div><div class="col-md-3 col-xs-12 col-sm-4 font-12 font-size-label">Loan type</div>
+                                                       <div class="col-md-3 col-xs-12 col-sm-4 loan-information padd2">
+                                                        <select class="form-control"  ng-model="LD.loanTypeId" ng-options="LoanTy.loanTypeId as LoanTy.loanTypeDesc for LoanTy in LoanType">
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2  col-xs-12 col-sm-2 font-12 font-size-label">Number of EMIs Remaining</div>
+                                                    <div class="col-md-2 col-xs-12 col-sm-2  loan-information padd2">
+                                                        <input ng-model="LD.userLoanRemainingTenure"  class="form-control" id="Tenure{{$index}}" ng-keyup="removetextterm(LD.userLoanRemainingTenure,$index)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="3">
+                                                    </div>
+                                                    <div class="col-md-2 col-xs-12 col-sm-2 font-12 font-size-label ">EMI </div>
+                                                     <div class="col-md-1 col-xs-12 col-sm-2 loan-information padd2">
+                                                    <input ng-model="LD.userLoanPaymentAmount" class="form-control"  ng-keyup="LD.userLoanPaymentAmount=commaSeparatedNumeric($event,LD.userLoanPaymentAmount);LD.word=convertNumberToWords(LD.userLoanPaymentAmount)" id="PaymentAmount{{$index}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="9">
+                                                </div>
+                                                 
+                                                    <div class="col-md-3 col-xs-12 col-sm-1 padd2" style="border-bottom: 3px solid #80808047;">
+                                                        <button type="button" class="addIncome btn btn-primary hidincomes" ng-click="removeLoan(LD)" title="RemoveLoan">Remove EMI</button>
+                                                    </div>
+                                                </div>
+												<div class="row no-margin" ng-show="loanDatas.length == 0">
+													<div class="col-md-3 col-xs-12 col-sm-1 padd2">
+                                                        <button type="button" ng-if="loanDatas.length == 0" class="btn btn-primary" ng-click="loanClone();" title="AddLoan">Add EMI Details</button>
+                                                    </div>
+												</div>
+												<div class="row no-margin" ng-show="loanDatas.length > 0">
+													<div class="col-md-3 col-xs-12 col-sm-1 padd2">
+                                                        <button type="button" ng-if="loanDatas.length > 0" class="btn btn-primary" ng-click="loanClone();" title="AddLoan">Add Another EMI</button>
+                                                    </div>
+												</div>
+                                            </div>
+											
+                                            </div>
+                                            
+                                            <div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 2%;padding-bottom: 2%;padding-right: 0px;">
+						<div class="ibox-tools">
+                      		<button class="btn vcirclebtn pull-right savenxt" ng-click="next1(userInfo,incomes,loanDatas,salaryDatas,$event)" title="Next">Save & Next</button>
+	                   <!--     <button class="btn vcirclebtn pull-right savebtn" ng-click="save1(userInfo,incomes,loanDatas,salaryDatas,$event)" title="Save" >Save</button>
+                         	<button class="btn vcirclebtn pull-right" ng-click="reset()" title="Reset" >Reset</button> -->
+                          </div>
+					</div>
+					</div>
+							</div>
+					
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+if(localStorage.getItem("userLpiStatus") == "1"){
+	console.clear();
+	  $( "input" ).prop( "disabled", false );
+	}else{
+	  console.clear();
+	  $( "input" ).prop( "disabled", true );
+	  $('label').css('opacity','0.5');
+	  $( "select" ).prop( "disabled", true );
+	  $( "checkbox" ).prop( "disabled", true );
+	  $( "radio" ).prop( "disabled", true );
+	  $("button").prop("disabled",true);
+	}
+</script>
+<style>
+.font-size-label{
+font-size:14px !important;
+color: #5264AE;
+}
+input[type=checkbox], input[type=radio] {
+	vertical-align: middle;
+	position: relative;
+	bottom: 1px;
+}
+.addTop{
+top:-27px;
+}
+input[type=radio] {
+	bottom: 2px;
+}
+
+.labelmarg {
+	margin-left: 4.7%;
+}
+
+@media ( max-width : 991px) {
+	.labelmarg {
+		margin-left: 2% !important;
+	}
+}
+
+@media ( max-width : 728px) {
+	.labelmarg {
+		margin-left: 3% !important;
+	}
+}
+
+@media ( min-width :450px) and (max-width: 980px) {
+	.labelmarg {
+		margin-left: 2% !important;
+	}
+}
+
+.cursor {
+	cursor: pointer;
+}
+
+
+.mrgbot0{
+	margin-bottom: 0px;
+	margin-top:-4px;
+	padding-left: 40px;
+	padding-right: 39px;
+	color: #5264AE;
+	 padding-bottom: 14px;
+	 font-size: 13px;
+}
+.mrgbot1{
+	margin-bottom: 0px;
+	margin-top:-4px;
+	padding-left: 45px;
+	padding-right: 39px;
+	color: #5264AE; 
+	font-size: 13px;
+}
+.mrgbot3{
+margin-top:-4px;
+padding-left: 40px;
+	padding-right: 39px;
+ color: #5264AE;
+ font-size: 13px;
+}
+.pageheading{
+   	font-size : 18px;
+   }
+@media only screen and (max-width: 378px) {
+   .pageheading{
+   	font-size : 13px;
+   	line-height: 1.5;
+   }
+}
+.paraDisp{
+	    margin: 0 14px;
+    display: list-item;
+}
+.mobile_device_425px {
+    display: none;
+}
+ @media only screen and (max-device-width: 595px) {
+   .mobile_device_425px{display: block;}
+   .desktop {display: none;}
+}
+
+.padd2{
+    padding-bottom: 2%;
+    padding-top: 2%;
+    }
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 0px;
+  
+ }
+@media only screen and (max-width: 320px) {
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 15%;
+  
+ }
+ }
+  .nopaddlr{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+    
+</style>

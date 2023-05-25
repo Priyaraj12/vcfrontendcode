@@ -13,7 +13,8 @@
         var api = {};
 
         // Base Url
-	api.baseUrl = 'http://13.235.118.32/StagingService';
+	//api.baseUrl = 'http://13.235.118.32/StagingService';
+	apiUrl: 'http://localhost:8081/StagingService',
    //   api.baseUrl = 'http://13.127.114.89/StagingService';
 //      api.baseUrl = 'https://valucircles.com/StagingService';
       //  api.baseUrl = 'http://192.168.1.3:8081/StagingService';

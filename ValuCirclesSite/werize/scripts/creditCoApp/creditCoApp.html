@@ -1,0 +1,521 @@
+<div class="wrapper wrapper-content ng-scope">
+	<div class="row">
+		<div class="ibox" style="margin: 0;">
+			<div class="row" style="color: #1d7ec1; line-height: 2.5;">
+				<div class="col-md-2 col-sm-4 col-xs-4" style="color: #1d7ec1;"
+					ng-init="linktext()">
+					<div align="left" ng-click="back()" class="cursor">
+						<i style="padding: 0 1%; font-size: 16px;"
+							class="fa fa-angle-double-left"></i>Credit
+					</div>
+				</div>
+				<div class="col-md-8 col-xs-4">
+					<div align="center" class="cursor pageheading"
+						style="color: #1d7ec1; font-weight: bold;">Co-Applicant
+						Credit Report</div>
+				</div>
+				<div class="col-md-2 col-sm-4 col-xs-4" style="color: #1d7ec1;">
+					<div align="right" ng-click="nextPge()" id="creCoapp"
+						class="cursor">
+						LP<i>i</i>&ensp;<i style="padding: 0 1%; font-size: 16px;"
+							class="fa fa-angle-double-right"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ibox">
+			<div class="" style="background: white">
+				<div class="ibox-title" style="border-bottom: 1px solid #e7e7e7; margin-bottom: 17px;">
+					<div class="row">
+					<div class="col-md-4 col-sm-3 col-xs-1"></div>
+					<div class="col-md-4 col-sm-5 col-xs-11">
+						<p style="display: flex;text-align:center; margin-left: 15%; color: red;"
+						ng-if="dirty"></p>
+					<p class="smsg" style="color: green;"
+						ng-if="success">
+						<i class="em em-thumbsup f-24"></i> {{success_message}} <i
+							class="em em-thumbsup f-24"></i>
+					</p>
+					<p class="smsg" style="color: red;"
+						ng-if="error">
+						<i class="em em-bulb f-24"></i> {{error_message}} <i
+							class="em em-bulb f-24"></i>
+					</p>
+				</div>
+				<div class="col-md-4 col-sm-4 "></div>
+					</div>
+					<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-12" style="margin-bottom:5px" >
+					<h5>ValuCircles Advice</h5>
+					
+					
+					</div>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="ibox-tools">
+						<p style="display: inline; margin-left: 15%; color:;"
+							ng-if="sucess">
+							<i class="em em-thumbsup f-24"></i><strong></strong> {{message}}
+							<i class="em em-blush f-24"></i>
+						</p>
+						<p style="display: inline; margin-left: 15%; color:;"
+							ng-if="error">
+							<i class="em em-bulb f-24"></i><strong></strong> {{message}} <i
+								class="em em-bulb f-24"></i>
+						</p>
+					 <button class="btn vcirclebtn pull-right"
+							ng-click="nextPge(userInfo,incomes,loanDatas)" title="Next">Next</button> 
+					<!-- Geetha		<button class="btn vcirclebtn pull-right" ng-click="nextPages(userInfo,incomes,loanDatas)" title="Next">Next</button> -->
+					<!--   	<button class="btn vcirclebtn pull-right" id="savebtnn"
+							ng-click="credit_save(usercreditscore)" title="Save" ng-disabled="!Personalform.$valid">Save</button>-->
+							<!-- <button class="btn vcirclebtn pull-right" id="savebtnn"
+							ng-click="credit_save(usercreditscore)" title="Save" >Get Credit Report</button>
+							
+						
+						<button class="btn vcirclebtn pull-right" ng-click="skip()"
+							title="Back">Skip</button> -->
+					</div>
+					</div>
+				</div>
+				</div>
+				<span> <img src="assets/images/bulb.png" height="21"
+					width="21" style="margin-left: 9px; margin-top: -12px;">
+				</span>
+				<p class="mrgbot3" style="margin-top: -27px;">
+            	<span class="paraDisp" style="line-height: 1.8;">
+            	Your credit history is important part for your home loan evaluation.</span></p>
+				<p class="mrgbot3" ><span class="paraDisp" style="line-height: 1.8;">Most lenders look at not only your credit score but your detailed credit report as well.</span></p>
+				<p class="mrgbot3"><span class="paraDisp" style="line-height: 1.8;">We check your credit report to ensure that we are able to give you correct advice on your home loan options.</span></p>
+				<p class="mrgbot3"><span class="paraDisp" style="line-height: 1.8;">Checking your credit score with us does not hurt your credit report as we do only a soft inquiry.</span></p>
+				<p class="mrgbot3"><span class="paraDisp" style="line-height: 1.8;">You will also receive a copy of your CRIF Highmark credit report to the email address you have provided. Please do review the same and let us know if you see any issues.</span></p>
+			
+			<div class="ibox-title">
+				<h5 class="v-inline" >Information for Co-Applicant Credit Report</h5>
+
+				<div class="col-md-3"></div>
+			</div>
+			<i class="fa fa-spinner fa-spin fa-5x col-md-offset-5 col-sm-offset-5  col-xs-offset-5  m-t-b-2"
+							aria-hidden="true" ng-if="loader1"></i>
+			<div class="ibox-content">
+				<div class="row">
+					<form name="Personalform" novalidate>
+						<!-- <div ng-if="!loader"> -->
+						<div class="panel-body" >
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="row" >
+						<!--			<div class="col-md-4 form-group loan-information" id="mobileHide">
+										<input type="text" class="form-control inputtext disninput"
+											name="mobile" id="mobile"
+											maxlength="10" placeholder="" id="mobileCheck"
+											ng-model="usercreditscore.coappMobno" style="color: #555;"
+											 ng-pattern="/^(0*[1-9]+0*)+$/"
+											max="10" disabled/>
+										<span class="form-control-feedback"></span> <label
+											for="mobileCheck" class="form-control-placeholder">Mobile <span class="mandoryclr">*</span>
+										</label>
+										<div ng-messages="Personalform.mobile.$error" role="alert"
+											ng-if="Personalform.mobile.$dirty"
+											ng-show="!Personalform.mobile.$pristine">
+											<div ng-message="required" class="mandoryclr"
+												ng-if="Personalform.mobile.$error.required">Mandatory
+												field</div>
+											<div ng-message="pattern" class="mandoryclr"
+												ng-if="Personalform.mobile.$error.pattern">Please
+												enter your correct mobile no</div>
+										</div>
+									</div>   -->
+									<div class="col-md-4 form-group" id="mailHide">
+										<input type="text" class="form-control inputtext disninput "
+											placeholder="" ng-disabled="coappEmailisDisabled"
+											id="mailCheck" ng-model="usercreditscore.coappEmail"
+											name="emailId"  style="color: #555"
+											ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+											 required/>
+										<span class="form-control-feedback"></span> <label
+											for="mailCheck" class="form-control-placeholder">Email <span class="mandoryclr">*</span>
+										</label>
+										<div ng-messages="Personalform.emailId.$error" role="alert"
+											ng-if="Personalform.emailId.$dirty"
+											ng-show="!Personalform.emailId.$pristine">
+											<div ng-message="required" class="mandoryclr"
+												ng-if="Personalform.emailId.$error.required">Mandatory
+												field</div>
+											<div ng-message="pattern" class="mandoryclr"
+												ng-if="Personalform.emailId.$error.pattern">Please
+												enter valid email id</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="row">
+							   <div class="col-md-4 form-group">
+                               
+                                  <input type="text" class="form-control inputtext disninput"  placeholder=""  id="fName" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123 ) || (event.charCode != 8 ) || (event.charCode != 9 ) " ng-model="usercreditscore.myfatherfirstname" name="fName" 
+                                   ng-init="usercreditscore.myfatherfirstname=''" maxlength="12"  ng-change="credit_score(usercreditscore)" ng-disabled="fNameisDisabled"  required>
+                                  <span class="form-control-feedback" > </span>
+                                   <label for="fName" class="form-control-placeholder">Father's First Name <span class="mandoryclr">*</span></label>
+                                    <div ng-if="usercreditscore.myfatherfirstname==null||usercreditscore.myfatherfirstname==undefined" style="color: red" role="alert">Please enter Father's Name</div>
+                              </div> 
+							  <div class="col-md-4 form-group">    
+                                 <input type="text" class="form-control inputtext disninput" ng-pattern="/^([a-zA-Z'\s])+$/" id="lName"  placeholder="" onkeypress="  (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123 ) || (event.charCode != 8 ) || (event.charCode != 9 ) " ng-disabled="lNameisDisabled" maxlength="45" ng-model="usercreditscore.myfatherlastname" name="lName"  ng-change="credit_score(usercreditscore)" maxlength="45" required>
+                                 <span class="form-control-feedback" > </span>
+                                   <label for="lName" class="form-control-placeholder">Father's Last Name <span class="mandoryclr">*</span></label>
+                                      <span style="color:red" ng-show="Personalform.lName.$dirty && Personalform.lName.$invalid" class="ng-hide">   
+                         		   Please enter Father's last name.  </span>  
+                 
+                                </div>
+							  </div>
+								<div class="row">	
+									<div class="col-md-4 form-group loan-information floating-label">
+										<select class="form-control inputtext disselect floating-select"
+											ng-model="selectedName" id="select1"  onclick="this.setAttribute('value', this.value);"
+											ng-options="x.name for x in name" 
+											ng-change="selected_field_id(selectedName)" required>
+											 <option value="" hidden></option>
+											</select>
+											
+											<label for="select1"
+											class="labelmarg1" >Proof Type <span
+											class="mandoryclr">*</span></label>
+									</div>
+									<div class="col-md-4 form-group loan-information">
+										<input type="text"
+											class="form-control inputtext disninput pandisabled"
+											id="lastName" placeholder="" maxlength="45"
+											ng-model="usercreditscore.myPAN"
+											ng-disabled="lastNameisDisabled" name="lastName"
+											ng-if="fields_name_id.PAN"
+											ng-change="credit_score(usercreditscore)" required />
+										<!-- ng-required="req_ls" -->
+
+										<input type="text" class="form-control inputtext disninput"
+											ng-if="fields_name_id.voterId" id="lastName" placeholder=""
+											maxlength="45" ng-model="usercreditscore.myvoterId"
+											ng-disabled="lastNameisDisabled" name="lastName"
+											ng-change="credit_score(usercreditscore)" required />
+										<!-- ng-required="req_ls" -->
+
+										<input type="text" class="form-control inputtext disninput"
+											ng-if="fields_name_id.passport" id="lastName" placeholder=""
+											maxlength="45" ng-model="usercreditscore.mypassport"
+											ng-disabled="lastNameisDisabled" name="lastName"
+											ng-change="credit_score(usercreditscore)" required />
+										<!-- ng-required="req_ls" -->
+										<span class="form-control-feedback"> </span> 
+										<label
+											for="lastName" ng-if="fields_name_id.PAN" class="form-control-placeholder">PAN Number <span class="mandoryclr">*</span>
+										</label>
+										<label
+											for="lastName" ng-if="fields_name_id.voterId" class="form-control-placeholder">Voter
+											ID Number <span class="mandoryclr">*</span>
+										</label>										
+										<label
+											for="lastName" ng-if="fields_name_id.passport" class="form-control-placeholder">Passport Number <span class="mandoryclr">*</span>
+										</label>										
+									</div>
+								</div>
+							</div>
+							
+						<!-- moved fathers name before ID when removing aadhar
+						<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="row">
+
+									<div class="col-md-4 form-group loan-information">
+										<input type="text" class="form-control inputtext disninput"
+											ng-pattern="/^([a-zA-Z'\s])+$/" id="fName"
+											ng-if="fields_name.fatherName" placeholder="" maxlength="45"
+											ng-model="usercreditscore.myfatherfirstname"
+											ng-disabled="fNameisDisabled" name="fName"
+											ng-change="credit_score(usercreditscore)" maxlength="45"
+											onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123 ) || (event.charCode != 8 ) || (event.charCode != 9 ) "
+											required />
+
+											<span class="form-control-feedback"> </span> <label
+											for="fName" class="form-control-placeholder">Father's First
+											Name <span class="mandoryclr">*</span>
+										</label>
+										 <span style="color:red" ng-show="Personalform.fName.$dirty && Personalform.fName.$invalid" class="ng-hide">   
+                         		   Please enter valid first name.  </span>
+									</div>
+									<div class="col-md-4 form-group loan-information">
+										<input type="text" class="form-control inputtext disninput "
+											ng-pattern="/^([a-zA-Z'\s])+$/" id="lName"
+											ng-if="fields_name.fatherName" placeholder="" maxlength="45"
+											ng-model="usercreditscore.myfatherlastname" name="lName"
+											ng-disabled="lNameisDisabled"
+											ng-change="credit_score(usercreditscore)" maxlength="45"
+											onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)|| (event.charCode != 8 ) || (event.charCode != 9 )"
+											required >
+=
+											<span class="form-control-feedback"> 
+											</span> 
+											<label
+											for="lName" class="form-control-placeholder">Father's Last
+											Name <span class="mandoryclr">*</span>
+										</label>
+										   <span style="color:red" ng-show="Personalform.lName.$dirty && Personalform.lName.$invalid" class="ng-hide">   
+                         		   Please enter valid last name.  </span>  
+									</div>
+								</div>
+							</div>  -->
+							<span class="col-md-8 col-sm-12 col-xs-12 form-group" >
+								<label class="checkbox-inline" style="padding-top: 1px;text-align: justify;font-size: 13px;white-space: normal !important;">
+									<input type="checkbox" ng-model="accept" 
+									name="check" id="check" class="CreditCheckbox" required>
+									<!-- <span style="white-space:normal">I, do hereby give my free consent and authorize ValuCircles - by providing my personal information to obtain my Credit Information Report and Credit Score from CRIF High Mark Credit Information Services Private Limited for the purpose of analysing my Loan Probability Index and not for any other purposes as provided in this consent. I also acknowledge that I shall not raise any claim or held liable CRIF High Mark Credit Information Services Private Limited in relation to my Credit Information Report and Credit Score provided or to be provided by CRIF High Mark to ValuCircles.</span> -->
+									<span style="white-space:normal">I, do hereby give my free consent and authorize ValuCircles - by providing my personal information to obtain my Credit Information Report and Credit Score from CRIF High Mark Credit Information Services Private Limited for the purpose of analysing my Loan Probability Index and not for any other purposes as provided in this consent. I also acknowledge that I shall not raise any claim or held liable CRIF High Mark Credit Information Services Private Limited in relation to my Credit Information Report and Credit Score provided or to be provided by CRIF High Mark to ValuCircles.</span>
+								</label>
+							</span>
+							<div class="row" ng-if="!loader">
+								<div class="col-md-2 col-sm-2 col-xs-2 form-group loan-information" id="bottom">
+								</div>
+								<div class="col-md-8 col-sm-8 col-xs-8 form-group loan-information"
+									ng-if="!hideButton" style="text-align: center;">
+					<!--  	 <button type="submit" class="btn btn-info hidecreditbtn"
+										ng-click="credit_save(usercreditscore)" style="width: 136px"
+										ng-disabled="!Personalform.$valid">Get Credit Report</button>-->
+										
+								 <button type="submit" class="btn btn-primary hidecreditbtn"
+										ng-click="credit_save(usercreditscore)" 
+										 >Get Credit Report</button>
+								</div>
+								
+							</div>
+							<i
+							class="fa fa-spinner fa-spin fa-5x white col-md-offset-5 col-sm-offset-5 col-xs-offset-5 m-t-b-2"
+							aria-hidden="true" ng-if="loader"></i>
+							<div class="row" style="padding-bottom: 2%;">
+								<div class="col-md-8 col-sm-12 col-xs-12 creditmsg" >
+									{{creditScore_message}}</div>
+							</div>
+			
+						
+							
+					<!--			</div> commenting this by prernna to check alignment		
+							<div class="col-md-12 col-sm-12 col-xs-12" style="padding-bottom: 2%;padding-right: 0px;">
+					<div class="ibox-tools">
+						
+					<!-- Geetha 	<button class="btn vcirclebtn pull-right"
+							ng-click="next(userInfo,incomes,loanDatas)" title="Next">Save
+							& Next</button>-->
+							  <button class="btn vcirclebtn pull-right" ng-click="nextPge(userInfo,incomes,loanDatas)" title="Next">Next</button>
+						<!--  <button class="btn vcirclebtn pull-right" id="savebttn"
+							ng-click="credit_save(usercreditscore)" title="Save" ng-disabled="!Personalform.$valid">Save</button>-->
+						<!-- <button class="btn vcirclebtn pull-right" id="savebttn"
+							ng-click="credit_save(usercreditscore)" title="Save" >Get Credit Report</button>	
+						 
+						<button class="btn vcirclebtn pull-right" ng-click="skip()"
+							title="Back">Skip</button> -->
+					</div>
+					
+					
+						<div class="modal fade" id="myquestion" role="dialog">
+							<div class="modal-dialog">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header" style="text-align: center;">
+										<img src="assets/images/bulb.png"><br>
+										<h5 class="modal-title">
+											{{question}}
+										</h5>
+										<br>
+										<div class="radio-inline" ng-repeat="data in ans">
+											<input style="margin-left: -15px; margin-top: -1px;"
+												type="radio" name="optradio" ng-value="{{$index}}"
+												ng-click="selectedAns(data)">{{ans[$index]}}
+										</div>
+									</div>
+									<i class="fa fa-spinner fa-spin fa-5x orange col-md-offset-5 col-sm-offset-5 col-xs-offset-5 m-t-b-2 "
+										aria-hidden="true" ng-if="quesloader"></i>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											ng-click="credit_save(usercreditscore)">Confirm</button>
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+html, body {
+	height: 100%;
+}
+body {
+	width: 100%;
+	background-size: cover;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control
+	{
+	background: #eee;
+	color: #555;
+}
+
+button[disabled], html input[disabled] {
+	cursor: not-allowed;
+}
+.labelmarg {
+	margin-left: 7.7%;
+	font-size: 13px;
+}
+
+@media ( max-width : 991px) {
+	.labelmarg {
+		margin-left: 2% !important;
+	}
+}
+
+@media ( max-width : 728px) {
+	.labelmarg {
+		margin-left: 3% !important;
+	}
+}
+
+@media ( min-width :450px) and (max-width: 980px) {
+	.labelmarg {
+		margin-left: 2% !important;
+	}
+}
+.labelmarg1 {
+	margin-left: 3.5%;
+	font-size: 13px;
+}
+
+@media ( max-width : 991px) {
+	.labelmarg1 {
+		margin-left: 2% !important;
+	}
+}
+
+@media ( max-width : 728px) {
+	.labelmarg1 {
+		margin-left: 3% !important;
+	}
+}
+
+@media ( min-width :450px) and (max-width: 980px) {
+	.labelmarg1 {
+		margin-left: 2% !important;
+	}
+}
+
+.cursor {
+	cursor: pointer;
+}
+ .paraDisp{
+	    margin: 0 14px;
+    display: list-item;
+}
+
+.mrgbot0{
+	margin-bottom: 0px;
+	margin-top:-4px;
+		padding-left: 62px;
+	padding-right: 39px;
+	color: #5264AE;
+	font-size: 13px;
+	line-height: 1.9;
+}
+
+.mrgbot1{
+	margin-bottom: 0px;
+	margin-top:-4px;
+	padding-left: 40px;
+	padding-right: 39px;
+	color: #5264AE; 
+	font-size: 13px;
+}
+.mrgbot3{
+margin-top:-4px;
+padding-left:40px;
+font-size: 13px;
+	padding-right: 39px;
+ color: #5264AE;
+  padding-bottom: 7px;
+  margin-bottom: 0px;
+}
+.mrgbot31{
+margin-top: -4px;
+padding-left:63px;
+padding-right: 39px;
+font-size: 13px;
+ color: #5264AE;
+  background-color: white;
+  line-height: 1.9;
+}
+#scrollArea {
+	height: 280px;
+	overflow: auto;
+}
+
+#bottom {
+	display: block;
+	margin-top: auto;
+}
+
+.pageheading {
+	font-size: 18px;
+}
+
+@media only screen and (max-width: 378px) {
+	.pageheading {
+		font-size: 13px;
+	}
+}
+ .disselect:disabled +.labelmarg,
+.disselect:valid +  .labelmarg{
+ top :-19px !important ;
+ }
+ 
+   .disselect:disabled +.form-control-placeholderr,
+.disselect:valid +  .form-control-placeholderr{
+ top :-19px !important ;
+ }
+ 
+ .disselect:disabled +.labelmarg1,
+.disselect:valid +  .labelmarg1{
+ top :-19px !important ;
+ }
+ 
+   .disselect:disabled +.form-control-placeholderr,
+.disselect:valid +  .form-control-placeholderr{
+ top :-19px !important ;
+ }
+ 
+ .acptheck{
+  height: 22px; 
+} 
+.CreditCheckbox { 
+            width: 18px; 
+            height: 18px; 
+        } 
+@media only screen and (max-width: 320px) {
+.smsg{
+ display: flex;
+ text-align:center;
+  margin-left: 15%;
+  
+ }
+ }
+.creditmsg{
+ 	color: #ff9709;
+ 	font-size: 18px;
+	font-weight: bold;
+ 	text-align:center;
+ 	}
+@media only screen and (max-width: 425px) {
+.creditmsg{
+ 	color: #ff9709;
+ 	font-size: 15px;
+ 	text-align:center;
+ 	}
+ }
+</style>
+

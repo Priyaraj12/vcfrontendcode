@@ -146,8 +146,9 @@ angular
 							});
 						} ])
 		.constant('config', {
-		apiUrl: 'http://13.235.118.32/StagingService',
-//LOCAL			 apiUrl: 'http://localhost:8081/StagingService',
+		//apiUrl: 'http://13.235.118.32/StagingService',
+//LOCAL			 
+          apiUrl: 'http://localhost:8081/StagingService',
 //Production		apiUrl: 'https://valucircles.com/StagingService',
 	//		apiUrl: 'http://13.127.114.89/StagingService',
 			baseUrl : '/',

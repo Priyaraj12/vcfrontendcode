@@ -1,0 +1,56 @@
+<!-- Wrapper -->
+<div id="wrapper" >
+    
+        <div class="app-header header-shadow" style="margin-bottom:10px;">
+            <div class="app-header__logo" >
+                <div class="logo-src" style="height:35px;width: 125px"></div>
+
+            </div>
+			<div class="app-header__content">
+                <div class="app-header-left">
+                    <ul class="header-menu nav">
+                        <li class="nav-item">
+                            <a href="#/index/partnerUserList" class="nav-link">
+                                <i class="nav-link-icon fa fa-users" style="color:orange"> </i>
+                                LPi for Customers
+                            </a>
+                        </li>
+                        <li class="btn-group nav-item">
+                            <a href="#/index/loansWIP" class="nav-link">
+                                <i class="nav-link-icon fa fa-cogs" style="color:orange"></i>
+                                Loans In Progress
+                            </a>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a href="#/index/loansSanctioned" class="nav-link">
+                                <i class="nav-link-icon fa fa-check" style="color:orange"></i>
+                                Sanctioned Loans
+                            </a>
+                        </li>
+                    </ul>        
+				</div>
+                <div class="app-header-right">
+                    <div class="header-btn-lg pr-0">
+                        <div class="widget-content p-0">
+                            <div class="widget-content-wrapper">
+								<div class="widget-content-left  ml-3 header-user-info">
+                                    <div class="widget-heading">
+                                        {{builderNAME}}
+                                    </div>
+                                </div>
+
+                                <div class="widget-content-right header-user-info ml-3">
+                                    <button type="button" class="border-1 btn btn-outline-primary" ng-click="Logout();">
+                                       Logout
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        </div>
+            </div>
+        </div>
+
+		<div ui-view></div>
+</div>
+<!-- End wrapper-->
+
